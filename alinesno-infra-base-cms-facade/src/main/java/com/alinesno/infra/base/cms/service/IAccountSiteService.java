@@ -9,5 +9,5 @@ import com.alinesno.infra.common.facade.services.IBaseService;
  * @version 1.0.0
  * @author luoxiaodong
  */
-public interface AccountSiteService extends IBaseService<AccountSiteEntity> {
+public interface IAccountSiteService extends IBaseService<AccountSiteEntity> {
 }

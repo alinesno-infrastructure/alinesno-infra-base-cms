@@ -52,11 +52,11 @@ public class SpecialCDataEntity extends InfraBaseEntity {
 	private String showTemplate;
 
 	// getter and setter
-	public String getAuthor() {
+	public String getauthor() {
 		return author;
 	}
 
-	public SpecialCDataEntity setAuthor(String author) {
+	public SpecialCDataEntity setauthor(String author) {
 		this.author = author;
 		return this;
 	}
