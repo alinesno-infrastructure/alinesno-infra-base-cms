@@ -1,3 +1,5 @@
+package com.alinesno.infra.base.cms.entity;
+
 import cn.afterturn.easypoi.excel.annotation.Excel;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
