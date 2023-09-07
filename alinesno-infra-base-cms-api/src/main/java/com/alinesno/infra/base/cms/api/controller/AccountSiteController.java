@@ -1,7 +1,7 @@
 package com.alinesno.infra.base.cms.api.controller;
 
 import com.alinesno.infra.base.cms.entity.AccountSiteEntity;
-import com.alinesno.infra.base.cms.service.AccountSiteService;
+import com.alinesno.infra.base.cms.service.IAccountSiteService;
 import com.alinesno.infra.common.core.constants.SpringInstanceScope;
 import com.alinesno.infra.common.core.rest.BaseController;
 import com.alinesno.infra.common.facade.pageable.DatatablesPageBean;
@@ -21,23 +21,22 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 处理与AccountSiteEntity相关的请求的Controller。
- * 继承自BaseController类并实现AccountSiteService接口。
+ * 继承自BaseController类并实现IAccountSiteService接口。
  *
  * @version 1.0.0
- * @since 1.0.0
  * @author luoxiaodong
  */
 @Api(tags = "AccountSite")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/accountSite")
-public class AccountSiteController extends BaseController<AccountSiteEntity, AccountSiteService> {
+@RequestMapping("/api/infra/simple/crm/account_site")
+public class AccountSiteController extends BaseController<AccountSiteEntity, IAccountSiteService> {
 
     // 日志记录
     private static final Logger log = LoggerFactory.getLogger(AccountSiteController.class);
 
     @Autowired
-    private AccountSiteService service;
+    private IAccountSiteService service;
 
     /**
      * 获取AccountSiteEntity的DataTables数据。
@@ -55,7 +54,7 @@ public class AccountSiteController extends BaseController<AccountSiteEntity, Acc
     }
 
     @Override
-    public AccountSiteService getFeign() {
+    public IAccountSiteService getFeign() {
         return this.service;
     }
 }
