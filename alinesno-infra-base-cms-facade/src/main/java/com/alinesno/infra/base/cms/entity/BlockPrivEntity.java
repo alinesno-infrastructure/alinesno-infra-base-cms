@@ -3,6 +3,9 @@ package com.alinesno.infra.base.cms.entity;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
+import lombok.Data;
 
 /**
  * 数据表：block_priv 表备注：
@@ -12,6 +15,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
  * @author luoxiaodong
  *@version 1.0.0
  */
+@Data
 @TableName("block_priv")
 public class BlockPrivEntity extends InfraBaseEntity {
 
@@ -21,46 +25,23 @@ public class BlockPrivEntity extends InfraBaseEntity {
 	 * 角色ID
 	 */
 	@TableField("roleid")
+	@ColumnType
+	@ColumnComment("角色ID")
 	private Integer roleid;
 
 	/**
 	 * 站点ID
 	 */
 	@TableField("siteid")
+	@ColumnType
+	@ColumnComment("站点ID")
 	private Integer siteid;
 
 	/**
 	 * 区块ID
 	 */
 	@TableField("blockid")
+	@ColumnType
+	@ColumnComment("区块ID")
 	private Integer blockid;
-
-	// getter and setter methods
-
-	public Integer getRoleid() {
-		return this.roleid;
-	}
-
-	public BlockPrivEntity setRoleid(Integer roleid) {
-		this.roleid = roleid;
-		return this;
-	}
-
-	public Integer getSiteid() {
-		return this.siteid;
-	}
-
-	public BlockPrivEntity setSiteid(Integer siteid) {
-		this.siteid = siteid;
-		return this;
-	}
-
-	public Integer getBlockid() {
-		return this.blockid;
-	}
-
-	public BlockPrivEntity setBlockid(Integer blockid) {
-		this.blockid = blockid;
-		return this;
-	}
 }
