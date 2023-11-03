@@ -1,5 +1,8 @@
 package com.alinesno.infra.base.cms.entity;
 
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
+import lombok.Data;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -13,7 +16,9 @@ import com.baomidou.mybatisplus.annotation.TableName;
  *@version 1.0.0
  */
 @TableName("collection_content")
+@Data
 public class CollectionContentEntity extends InfraBaseEntity {
+
 
 	// fields
 
@@ -27,79 +32,39 @@ public class CollectionContentEntity extends InfraBaseEntity {
 	 * siteid
 	 */
 	@TableField("siteid")
+	@ColumnType(length=255)
+	@ColumnComment("站点ID")
 	private Integer siteid;
 
 	/**
 	 * status
 	 */
 	@TableField("status")
+	@ColumnType(length=255)
+	@ColumnComment("地位")
 	private Integer status;
 
 	/**
 	 * url
 	 */
 	@TableField("url")
+	@ColumnType(length=255)
+	@ColumnComment("url")
 	private String url;
 
 	/**
 	 * title
 	 */
 	@TableField("title")
+	@ColumnType(length=255)
+	@ColumnComment("标题")
 	private String title;
 
 	/**
 	 * data
 	 */
 	@TableField("data")
+	@ColumnType(length=255)
+	@ColumnComment("数据")
 	private String data;
-
-	// getter and setter methods
-
-	public Integer getNodeid() {
-		return this.nodeid;
-	}
-
-	public void setNodeid(Integer nodeid) {
-		this.nodeid = nodeid;
-	}
-
-	public Integer getSiteid() {
-		return this.siteid;
-	}
-
-	public void setSiteid(Integer siteid) {
-		this.siteid = siteid;
-	}
-
-	public Integer getStatus() {
-		return this.status;
-	}
-
-	public void setStatus(Integer status) {
-		this.status = status;
-	}
-
-	public String getUrl() {
-		return this.url;
-	}
-
-	public void setUrl(String url) {
-		this.url = url;
-	}
-
-	public String getTitle() {
-		return this.title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getData() {
-		return this.data;
-	}
-
-	public void setData(String data) {
-		this.data = data;
-	}
 }

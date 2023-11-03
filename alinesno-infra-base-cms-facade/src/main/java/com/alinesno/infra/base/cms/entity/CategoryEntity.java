@@ -3,6 +3,9 @@ package com.alinesno.infra.base.cms.entity;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
+import lombok.Data;
 
 /**
  * 数据表：category 表备注：
@@ -13,6 +16,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
  *@version 1.0.0
  */
 @TableName("category")
+@Data
 public class CategoryEntity extends InfraBaseEntity {
 
 	// fields
@@ -21,113 +25,63 @@ public class CategoryEntity extends InfraBaseEntity {
 	 * 上级栏目
 	 */
 	@TableField("parentid")
+	@ColumnType(length=255)
+	@ColumnComment("父节点")
 	private String parentid;
 
 	/**
 	 * 栏目名称
 	 */
 	@TableField("catname")
+	@ColumnType(length=255)
+	@ColumnComment("栏目名称")
 	private String catname;
 
 	/**
 	 * 栏目图片
 	 */
 	@TableField("image")
+	@ColumnType(length=255)
+	@ColumnComment("形象")
 	private String image;
 
 	/**
 	 * 栏目描述
 	 */
 	@TableField("description")
+	@ColumnType(length=255)
+	@ColumnComment("描述")
 	private String description;
 
 	/**
 	 * SEO标题
 	 */
 	@TableField("seo_title")
+	@ColumnType(length=255)
+	@ColumnComment("seoTitle")
 	private String seoTitle;
 
 	/**
 	 * SEO关键字
 	 */
 	@TableField("seo_keywords")
+	@ColumnType(length=255)
+	@ColumnComment("seoKeywords")
 	private String seoKeywords;
 
 	/**
 	 * SEO描述
 	 */
 	@TableField("seo_description")
+	@ColumnType(length=255)
+	@ColumnComment("seoDescription")
 	private String seoDescription;
 
 	/**
 	 * 是否导航展示
 	 */
 	@TableField("link_show")
+	@ColumnType(length=255)
+	@ColumnComment("链接显示")
 	private Integer linkShow;
-
-	// getter and setter methods
-
-	public String getParentid() {
-		return this.parentid;
-	}
-
-	public void setParentid(String parentid) {
-		this.parentid = parentid;
-	}
-
-	public String getCatname() {
-		return this.catname;
-	}
-
-	public void setCatname(String catname) {
-		this.catname = catname;
-	}
-
-	public String getImage() {
-		return this.image;
-	}
-
-	public void setImage(String image) {
-		this.image = image;
-	}
-
-	public String getDescription() {
-		return this.description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public String getSeoTitle() {
-		return this.seoTitle;
-	}
-
-	public void setSeoTitle(String seoTitle) {
-		this.seoTitle = seoTitle;
-	}
-
-	public String getSeoKeywords() {
-		return this.seoKeywords;
-	}
-
-	public void setSeoKeywords(String seoKeywords) {
-		this.seoKeywords = seoKeywords;
-	}
-
-	public String getSeoDescription() {
-		return this.seoDescription;
-	}
-
-	public void setSeoDescription(String seoDescription) {
-		this.seoDescription = seoDescription;
-	}
-
-	public Integer getLinkShow() {
-		return this.linkShow;
-	}
-
-	public void setLinkShow(Integer linkShow) {
-		this.linkShow = linkShow;
-	}
 }

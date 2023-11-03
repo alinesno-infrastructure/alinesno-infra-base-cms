@@ -1,5 +1,8 @@
 package com.alinesno.infra.base.cms.entity;
 
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
+import lombok.Data;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -51,6 +54,7 @@ import cn.afterturn.easypoi.excel.annotation.Excel;
  *@version 1.0.0
  */
 @TableName("collection_node")
+@Data
 public class CollectionNodeEntity extends InfraBaseEntity {
 
 	// Fields
@@ -60,6 +64,8 @@ public class CollectionNodeEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "节点ID")
 	@TableField("nodeid")
+	@ColumnType(length=255)
+	@ColumnComment("nodeid")
 	private Integer nodeid;
 
 	/**
@@ -67,6 +73,8 @@ public class CollectionNodeEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "名称")
 	@TableField("name")
+	@ColumnType(length=255)
+	@ColumnComment("名称")
 	private String name;
 
 	/**
@@ -74,6 +82,8 @@ public class CollectionNodeEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "最后日期")
 	@TableField("lastdate")
+	@ColumnType(length=255)
+	@ColumnComment("最后日期")
 	private Integer lastdate;
 
 	/**
@@ -81,6 +91,8 @@ public class CollectionNodeEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "站点ID")
 	@TableField("siteid")
+	@ColumnType(length=255)
+	@ColumnComment("站点ID")
 	private Integer siteid;
 
 	/**
@@ -88,6 +100,8 @@ public class CollectionNodeEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "源字符集")
 	@TableField("sourcecharset")
+	@ColumnType(length=255)
+	@ColumnComment("源字符集")
 	private String sourcecharset;
 
 	/**
@@ -95,6 +109,8 @@ public class CollectionNodeEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "源类型")
 	@TableField("sourcetype")
+	@ColumnType(length=255)
+	@ColumnComment("源类型")
 	private Integer sourcetype;
 
 	/**
@@ -102,6 +118,8 @@ public class CollectionNodeEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "URL页面")
 	@TableField("urlpage")
+	@ColumnType(length=255)
+	@ColumnComment("url页面")
 	private String urlpage;
 
 	/**
@@ -109,6 +127,8 @@ public class CollectionNodeEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "页面大小开始")
 	@TableField("pagesize_start")
+	@ColumnType(length=255)
+	@ColumnComment("pagesize开始")
 	private Integer pagesizeStart;
 
 	/**
@@ -116,6 +136,8 @@ public class CollectionNodeEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "页面大小结束")
 	@TableField("pagesize_end")
+	@ColumnType(length=255)
+	@ColumnComment("页面大小结束")
 	private Integer pagesizeEnd;
 
 	/**
@@ -123,6 +145,8 @@ public class CollectionNodeEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "页面基础")
 	@TableField("page_base")
+	@ColumnType(length=255)
+	@ColumnComment("pageBase")
 	private String pageBase;
 
 	/**
@@ -130,6 +154,8 @@ public class CollectionNodeEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "参数数量")
 	@TableField("par_num")
+	@ColumnType(length=255)
+	@ColumnComment("parNum")
 	private Integer parNum;
 
 	/**
@@ -137,6 +163,8 @@ public class CollectionNodeEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "URL包含")
 	@TableField("url_contain")
+	@ColumnType(length=255)
+	@ColumnComment("url包含")
 	private String urlContain;
 
 	/**
@@ -144,6 +172,8 @@ public class CollectionNodeEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "URL排除")
 	@TableField("url_except")
+	@ColumnType(length=255)
+	@ColumnComment("url除外")
 	private String urlExcept;
 
 	/**
@@ -151,6 +181,8 @@ public class CollectionNodeEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "URL开始")
 	@TableField("url_start")
+	@ColumnType(length=255)
+	@ColumnComment("urlStart")
 	private String urlStart;
 
 	/**
@@ -158,6 +190,8 @@ public class CollectionNodeEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "URL结束")
 	@TableField("url_end")
+	@ColumnType(length=255)
+	@ColumnComment("urlEnd")
 	private String urlEnd;
 
 	/**
@@ -165,6 +199,8 @@ public class CollectionNodeEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "标题规则")
 	@TableField("title_rule")
+	@ColumnType(length=255)
+	@ColumnComment("title规则")
 	private String titleRule;
 
 	/**
@@ -172,6 +208,8 @@ public class CollectionNodeEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "标题HTML规则")
 	@TableField("title_html_rule")
+	@ColumnType(length=255)
+	@ColumnComment("title Html规则")
 	private String titleHtmlRule;
 
 	/**
@@ -179,6 +217,8 @@ public class CollectionNodeEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "作者规则")
 	@TableField("author_rule")
+	@ColumnType(length=255)
+	@ColumnComment("authorRule")
 	private String authorRule;
 
 	/**
@@ -186,6 +226,8 @@ public class CollectionNodeEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "作者HTML规则")
 	@TableField("author_html_rule")
+	@ColumnType(length=255)
+	@ColumnComment("authorHtml规则")
 	private String authorHtmlRule;
 
 	/**
@@ -193,6 +235,8 @@ public class CollectionNodeEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "来源规则")
 	@TableField("comeform_rule")
+	@ColumnType(length=255)
+	@ColumnComment("comeformRule")
 	private String comeformRule;
 
 	/**
@@ -200,6 +244,8 @@ public class CollectionNodeEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "来源HTML规则")
 	@TableField("comeform_html_rule")
+	@ColumnType(length=255)
+	@ColumnComment("comeformHtml规则")
 	private String comeformHtmlRule;
 
 	/**
@@ -207,6 +253,8 @@ public class CollectionNodeEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "时间规则")
 	@TableField("time_rule")
+	@ColumnType(length=255)
+	@ColumnComment("时间规则")
 	private String timeRule;
 
 	/**
@@ -214,6 +262,8 @@ public class CollectionNodeEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "时间HTML规则")
 	@TableField("time_html_rule")
+	@ColumnType(length=255)
+	@ColumnComment("timeHtml规则")
 	private String timeHtmlRule;
 
 	/**
@@ -221,6 +271,8 @@ public class CollectionNodeEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "内容规则")
 	@TableField("content_rule")
+	@ColumnType(length=255)
+	@ColumnComment("contentRule")
 	private String contentRule;
 
 	/**
@@ -228,6 +280,8 @@ public class CollectionNodeEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "内容HTML规则")
 	@TableField("content_html_rule")
+	@ColumnType(length=255)
+	@ColumnComment("contentHtml规则")
 	private String contentHtmlRule;
 
 	/**
@@ -235,6 +289,8 @@ public class CollectionNodeEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "内容页开始")
 	@TableField("content_page_start")
+	@ColumnType(length=255)
+	@ColumnComment("contentPageStart")
 	private String contentPageStart;
 
 	/**
@@ -242,6 +298,8 @@ public class CollectionNodeEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "内容页结束")
 	@TableField("content_page_end")
+	@ColumnType(length=255)
+	@ColumnComment("内容页面结束")
 	private String contentPageEnd;
 
 	/**
@@ -249,6 +307,8 @@ public class CollectionNodeEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "内容页规则")
 	@TableField("content_page_rule")
+	@ColumnType(length=255)
+	@ColumnComment("contentPageRule")
 	private Integer contentPageRule;
 
 	/**
@@ -256,6 +316,8 @@ public class CollectionNodeEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "内容页")
 	@TableField("content_page")
+	@ColumnType(length=255)
+	@ColumnComment("contentPage")
 	private Integer contentPage;
 
 	/**
@@ -263,6 +325,8 @@ public class CollectionNodeEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "下一页内容")
 	@TableField("content_nextpage")
+	@ColumnType(length=255)
+	@ColumnComment("内容下一页")
 	private String contentNextpage;
 
 	/**
@@ -270,6 +334,8 @@ public class CollectionNodeEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "下载附件")
 	@TableField("down_attachment")
+	@ColumnType(length=255)
+	@ColumnComment("向下附件")
 	private Integer downAttachment;
 
 	/**
@@ -277,6 +343,8 @@ public class CollectionNodeEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "水印")
 	@TableField("watermark")
+	@ColumnType(length=255)
+	@ColumnComment("水印")
 	private Integer watermark;
 
 	/**
@@ -284,6 +352,8 @@ public class CollectionNodeEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "收集顺序")
 	@TableField("coll_order")
+	@ColumnType(length=255)
+	@ColumnComment("collOrder")
 	private Integer collOrder;
 
 	/**
@@ -291,6 +361,7 @@ public class CollectionNodeEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "自定义配置")
 	@TableField("customize_config")
+	@ColumnType(length=255)
+	@ColumnComment("customizeConfig")
 	private String customizeConfig;
-
 }
