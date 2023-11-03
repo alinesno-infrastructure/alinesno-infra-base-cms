@@ -1,5 +1,8 @@
 package com.alinesno.infra.base.cms.entity;
 
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
+import lombok.Data;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -15,6 +18,7 @@ import cn.afterturn.easypoi.excel.annotation.Excel;
  * @version 1.0.0
  */
 @TableName("sso_settings")
+@Data
 public class SsoSettingsEntity extends InfraBaseEntity {
 
 	// fields
@@ -24,6 +28,8 @@ public class SsoSettingsEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "name")
 	@TableField("name")
+	@ColumnType(length=255)
+	@ColumnComment("名称")
 	private String name;
 
 	/**
@@ -31,25 +37,7 @@ public class SsoSettingsEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "data")
 	@TableField("data")
+	@ColumnType(length=255)
+	@ColumnComment("数据")
 	private String data;
-
-	// getter and setter methods
-
-	public String getName() {
-		return this.name;
-	}
-
-	public SsoSettingsEntity setName(String arg) {
-		this.name = arg;
-		return this;
-	}
-
-	public String getData() {
-		return this.data;
-	}
-
-	public SsoSettingsEntity setData(String arg) {
-		this.data = arg;
-		return this;
-	}
 }

@@ -1,5 +1,8 @@
 package com.alinesno.infra.base.cms.entity;
 
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
+import lombok.Data;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -14,6 +17,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
  * @version 1.0.0
  */
 @TableName("message_group")
+@Data
 public class MessageGroupEntity extends InfraBaseEntity {
 
 	// 字段
@@ -21,90 +25,47 @@ public class MessageGroupEntity extends InfraBaseEntity {
 	 * 类型ID
 	 */
 	@TableField("typeid")
+	@ColumnType(length=255)
+	@ColumnComment("类型ID")
 	private Integer typeId;
 
 	/**
 	 * 用户组ID
 	 */
 	@TableField("groupid")
+	@ColumnType(length=255)
+	@ColumnComment("用户组ID")
 	private Integer groupId;
 
 	/**
 	 * 主题
 	 */
 	@TableField("subject")
+	@ColumnType(length=255)
+	@ColumnComment("主题")
 	private String subject;
 
 	/**
 	 * 内容
 	 */
 	@TableField("content")
+	@ColumnType(length=255)
+	@ColumnComment("内容")
 	private String content;
 
 	/**
 	 * 输入时间
 	 */
 	@TableField("inputtime")
+	@ColumnType(length=255)
+	@ColumnComment("输入时间")
 	private Integer inputTime;
 
 	/**
 	 * 状态
 	 */
 	@TableField("status")
+	@ColumnType(length=255)
+	@ColumnComment("状态")
 	private Integer status;
-
-	// getter and setter
-	public Integer getTypeId() {
-		return this.typeId;
-	}
-
-	public MessageGroupEntity setTypeId(Integer typeId) {
-		this.typeId = typeId;
-		return this;
-	}
-
-	public Integer getGroupId() {
-		return this.groupId;
-	}
-
-	public MessageGroupEntity setGroupId(Integer groupId) {
-		this.groupId = groupId;
-		return this;
-	}
-
-	public String getSubject() {
-		return this.subject;
-	}
-
-	public MessageGroupEntity setSubject(String subject) {
-		this.subject = subject;
-		return this;
-	}
-
-	public String getContent() {
-		return this.content;
-	}
-
-	public MessageGroupEntity setContent(String content) {
-		this.content = content;
-		return this;
-	}
-
-	public Integer getInputTime() {
-		return this.inputTime;
-	}
-
-	public MessageGroupEntity setInputTime(Integer inputTime) {
-		this.inputTime = inputTime;
-		return this;
-	}
-
-	public Integer getStatus() {
-		return this.status;
-	}
-
-	public MessageGroupEntity setStatus(Integer status) {
-		this.status = status;
-		return this;
-	}
 }

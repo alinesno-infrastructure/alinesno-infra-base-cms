@@ -1,11 +1,11 @@
 package com.alinesno.infra.base.cms.entity;
 
-import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
 import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
 import lombok.Data;
+import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
 
 /**
  * 数据表：admin_panel
@@ -59,5 +59,4 @@ public class AdminPanelEntity extends InfraBaseEntity {
 	@ColumnType
 	@ColumnComment("时间")
 	private Integer datetime;
-
 }

@@ -1,5 +1,8 @@
 package com.alinesno.infra.base.cms.entity;
 
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
+import lombok.Data;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -25,6 +28,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
  *@version 1.0.0
  */
 @TableName("comment")
+@Data
 public class CommentEntity extends InfraBaseEntity {
 
 	// 字段
@@ -33,166 +37,87 @@ public class CommentEntity extends InfraBaseEntity {
 	 * 评论ID
 	 */
 	@TableField("commentid")
+	@ColumnType(length=10)
+	@ColumnComment("评论ID")
 	private String commentid;
 
 	/**
 	 * 站点ID
 	 */
 	@TableField("siteid")
+	@ColumnType(length=255)
+	@ColumnComment("站点ID")
 	private Integer siteid;
 
 	/**
 	 * 标题
 	 */
 	@TableField("title")
+	@ColumnType(length=255)
+	@ColumnComment("标题")
 	private String title;
 
 	/**
 	 * URL
 	 */
 	@TableField("url")
+	@ColumnType(length=255)
+	@ColumnComment("URL")
 	private String url;
 
 	/**
 	 * 总数
 	 */
 	@TableField("total")
+	@ColumnType(length=10)
+	@ColumnComment("总数")
 	private Integer total;
 
 	/**
 	 * 正方数
 	 */
 	@TableField("square")
+	@ColumnType(length=10)
+	@ColumnComment("正方数")
 	private Integer square;
 
 	/**
 	 * 反方数
 	 */
 	@TableField("anti")
+	@ColumnType(length=255)
+	@ColumnComment("反方数")
 	private Integer anti;
 
 	/**
 	 * 中立数
 	 */
 	@TableField("neutral")
+	@ColumnType(length=255)
+	@ColumnComment("中立数")
 	private Integer neutral;
 
 	/**
 	 * 显示类型
 	 */
 	@TableField("display_type")
+	@ColumnType(length=20)
+	@ColumnComment("显示类型")
 	private Integer displayType;
 
 	/**
 	 * 表格ID
 	 */
 	@TableField("tableid")
+	@ColumnType(length=10)
+	@ColumnComment("表格ID")
 	private Integer tableid;
 
 	/**
 	 * 最后更新时间
 	 */
 	@TableField("lastupdate")
+	@ColumnType(length=10)
+	@ColumnComment("最后更新时间")
 	private Integer lastupdate;
-
-	// Getter and Setter methods
-
-	public String getCommentid() {
-		return this.commentid;
-	}
-
-	public CommentEntity setCommentid(String commentid) {
-		this.commentid = commentid;
-		return this;
-	}
-
-	public Integer getSiteid() {
-		return this.siteid;
-	}
-
-	public CommentEntity setSiteid(Integer siteid) {
-		this.siteid = siteid;
-		return this;
-	}
-
-	public String getTitle() {
-		return this.title;
-	}
-
-	public CommentEntity setTitle(String title) {
-		this.title = title;
-		return this;
-	}
-
-	public String getUrl() {
-		return this.url;
-	}
-
-	public CommentEntity setUrl(String url) {
-		this.url = url;
-		return this;
-	}
-
-	public Integer getTotal() {
-		return this.total;
-	}
-
-	public CommentEntity setTotal(Integer total) {
-		this.total = total;
-		return this;
-	}
-
-	public Integer getSquare() {
-		return this.square;
-	}
-
-	public CommentEntity setSquare(Integer square) {
-		this.square = square;
-		return this;
-	}
-
-	public Integer getAnti() {
-		return this.anti;
-	}
-
-	public CommentEntity setAnti(Integer anti) {
-		this.anti = anti;
-		return this;
-	}
-
-	public Integer getNeutral() {
-		return this.neutral;
-	}
-
-	public CommentEntity setNeutral(Integer neutral) {
-		this.neutral = neutral;
-		return this;
-	}
-
-	public Integer getDisplayType() {
-		return this.displayType;
-	}
-
-	public CommentEntity setDisplayType(Integer displayType) {
-		this.displayType = displayType;
-		return this;
-	}
-
-	public Integer getTableid() {
-		return this.tableid;
-	}
-
-	public CommentEntity setTableid(Integer tableid) {
-		this.tableid = tableid;
-		return this;
-	}
-
-	public Integer getLastupdate() {
-		return this.lastupdate;
-	}
-
-	public CommentEntity setLastupdate(Integer lastupdate) {
-		this.lastupdate = lastupdate;
-		return this;
-	}
 }

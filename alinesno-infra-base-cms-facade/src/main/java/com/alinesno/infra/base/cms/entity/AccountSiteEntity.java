@@ -1,6 +1,5 @@
 package com.alinesno.infra.base.cms.entity;
 
-
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -38,5 +37,4 @@ public class AccountSiteEntity extends InfraBaseEntity {
 	@ColumnType(length = 255)
 	@ColumnComment("站点ID")
 	private String siteId;
-
 }

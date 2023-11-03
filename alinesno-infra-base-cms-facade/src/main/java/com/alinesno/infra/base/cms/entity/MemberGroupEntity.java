@@ -1,5 +1,8 @@
 package com.alinesno.infra.base.cms.entity;
 
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
+import lombok.Data;
 import java.math.BigDecimal;
 
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
@@ -18,6 +21,7 @@ import cn.afterturn.easypoi.excel.annotation.Excel;
  * @version 1.0.0
  */
 @TableName("member_group")
+@Data
 public class MemberGroupEntity extends InfraBaseEntity {
 
 	// fields
@@ -26,6 +30,8 @@ public class MemberGroupEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "groupid")
 	@TableField("groupid")
+	@ColumnType(length=255)
+	@ColumnComment("groupid")
 	private Integer groupid;
 
 	/**
@@ -33,6 +39,8 @@ public class MemberGroupEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "name")
 	@TableField("name")
+	@ColumnType(length=255)
+	@ColumnComment("名称")
 	private String name;
 
 	/**
@@ -40,6 +48,8 @@ public class MemberGroupEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "issystem")
 	@TableField("issystem")
+	@ColumnType(length=255)
+	@ColumnComment("是否系统组")
 	private Integer issystem;
 
 	/**
@@ -47,6 +57,8 @@ public class MemberGroupEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "starnum")
 	@TableField("starnum")
+	@ColumnType(length=255)
+	@ColumnComment("星级")
 	private Integer starnum;
 
 	/**
@@ -54,6 +66,8 @@ public class MemberGroupEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "point")
 	@TableField("point")
+	@ColumnType(length=255)
+	@ColumnComment("积分")
 	private Integer point;
 
 	/**
@@ -61,6 +75,8 @@ public class MemberGroupEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "allowmessage")
 	@TableField("allowmessage")
+	@ColumnType(length=255)
+	@ColumnComment("是否允许发短消息")
 	private Integer allowmessage;
 
 	/**
@@ -68,6 +84,8 @@ public class MemberGroupEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "allowvisit")
 	@TableField("allowvisit")
+	@ColumnType(length=255)
+	@ColumnComment("是否允许访问")
 	private Integer allowvisit;
 
 	/**
@@ -75,6 +93,8 @@ public class MemberGroupEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "allowpost")
 	@TableField("allowpost")
+	@ColumnType(length=255)
+	@ColumnComment("是否允许发帖")
 	private Integer allowpost;
 
 	/**
@@ -82,6 +102,8 @@ public class MemberGroupEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "allowpostverify")
 	@TableField("allowpostverify")
+	@ColumnType(length=255)
+	@ColumnComment("发帖是否需要审核")
 	private Integer allowpostverify;
 
 	/**
@@ -89,6 +111,8 @@ public class MemberGroupEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "allowsearch")
 	@TableField("allowsearch")
+	@ColumnType(length=255)
+	@ColumnComment("是否允许搜索")
 	private Integer allowsearch;
 
 	/**
@@ -96,6 +120,8 @@ public class MemberGroupEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "allowupgrade")
 	@TableField("allowupgrade")
+	@ColumnType(length=255)
+	@ColumnComment("是否允许升级")
 	private Integer allowupgrade;
 
 	/**
@@ -103,6 +129,8 @@ public class MemberGroupEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "allowsendmessage")
 	@TableField("allowsendmessage")
+	@ColumnType(length=255)
+	@ColumnComment("是否允许发送短消息")
 	private Integer allowsendmessage;
 
 	/**
@@ -110,6 +138,8 @@ public class MemberGroupEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "allowpostnum")
 	@TableField("allowpostnum")
+	@ColumnType(length=255)
+	@ColumnComment("允许的最大发帖数")
 	private Integer allowpostnum;
 
 	/**
@@ -117,6 +147,8 @@ public class MemberGroupEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "allowattachment")
 	@TableField("allowattachment")
+	@ColumnType(length=255)
+	@ColumnComment("是否允许附件")
 	private Integer allowattachment;
 
 	/**
@@ -124,6 +156,8 @@ public class MemberGroupEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "priceY")
 	@TableField("price_y")
+	@ColumnType(length=255)
+	@ColumnComment("年费价格")
 	private BigDecimal priceY;
 
 	/**
@@ -131,6 +165,8 @@ public class MemberGroupEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "priceM")
 	@TableField("price_m")
+	@ColumnType(length=255)
+	@ColumnComment("月费价格")
 	private BigDecimal priceM;
 
 	/**
@@ -138,6 +174,8 @@ public class MemberGroupEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "priceD")
 	@TableField("price_d")
+	@ColumnType(length=255)
+	@ColumnComment("日费价格")
 	private BigDecimal priceD;
 
 	/**
@@ -145,6 +183,8 @@ public class MemberGroupEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "icon")
 	@TableField("icon")
+	@ColumnType(length=255)
+	@ColumnComment("图标")
 	private String icon;
 
 	/**
@@ -152,6 +192,8 @@ public class MemberGroupEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "usernamecolor")
 	@TableField("usernamecolor")
+	@ColumnType(length=255)
+	@ColumnComment("用户名颜色")
 	private String usernamecolor;
 
 	/**
@@ -159,6 +201,8 @@ public class MemberGroupEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "description")
 	@TableField("description")
+	@ColumnType(length=255)
+	@ColumnComment("描述")
 	private String description;
 
 	/**
@@ -166,6 +210,8 @@ public class MemberGroupEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "sort")
 	@TableField("sort")
+	@ColumnType(length=255)
+	@ColumnComment("排序")
 	private Integer sort;
 
 	/**
@@ -173,204 +219,7 @@ public class MemberGroupEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "disabled")
 	@TableField("disabled")
+	@ColumnType(length=255)
+	@ColumnComment("是否禁用")
 	private Integer disabled;
-
-	// getter and setter
-	public Integer getGroupid() {
-		return this.groupid;
-	}
-
-	public MemberGroupEntity setGroupid(Integer arg) {
-		this.groupid = arg;
-		return this;
-	}
-
-	public String getName() {
-		return this.name;
-	}
-
-	public MemberGroupEntity setName(String arg) {
-		this.name = arg;
-		return this;
-	}
-
-	public Integer getIssystem() {
-		return this.issystem;
-	}
-
-	public MemberGroupEntity setIssystem(Integer arg) {
-		this.issystem = arg;
-		return this;
-	}
-
-	public Integer getStarnum() {
-		return this.starnum;
-	}
-
-	public MemberGroupEntity setStarnum(Integer arg) {
-		this.starnum = arg;
-		return this;
-	}
-
-	public Integer getPoint() {
-		return this.point;
-	}
-
-	public MemberGroupEntity setPoint(Integer arg) {
-		this.point = arg;
-		return this;
-	}
-
-	public Integer getAllowmessage() {
-		return this.allowmessage;
-	}
-
-	public MemberGroupEntity setAllowmessage(Integer arg) {
-		this.allowmessage = arg;
-		return this;
-	}
-
-	public Integer getAllowvisit() {
-		return this.allowvisit;
-	}
-
-	public MemberGroupEntity setAllowvisit(Integer arg) {
-		this.allowvisit = arg;
-		return this;
-	}
-
-	public Integer getAllowpost() {
-		return this.allowpost;
-	}
-
-	public MemberGroupEntity setAllowpost(Integer arg) {
-		this.allowpost = arg;
-		return this;
-	}
-
-	public Integer getAllowpostverify() {
-		return this.allowpostverify;
-	}
-
-	public MemberGroupEntity setAllowpostverify(Integer arg) {
-		this.allowpostverify = arg;
-		return this;
-	}
-
-	public Integer getAllowsearch() {
-		return this.allowsearch;
-	}
-
-	public MemberGroupEntity setAllowsearch(Integer arg) {
-		this.allowsearch = arg;
-		return this;
-	}
-
-	public Integer getAllowupgrade() {
-		return this.allowupgrade;
-	}
-
-	public MemberGroupEntity setAllowupgrade(Integer arg) {
-		this.allowupgrade = arg;
-		return this;
-	}
-
-	public Integer getAllowsendmessage() {
-		return this.allowsendmessage;
-	}
-
-	public MemberGroupEntity setAllowsendmessage(Integer arg) {
-		this.allowsendmessage = arg;
-		return this;
-	}
-
-	public Integer getAllowpostnum() {
-		return this.allowpostnum;
-	}
-
-	public MemberGroupEntity setAllowpostnum(Integer arg) {
-		this.allowpostnum = arg;
-		return this;
-	}
-
-	public Integer getAllowattachment() {
-		return this.allowattachment;
-	}
-
-	public MemberGroupEntity setAllowattachment(Integer arg) {
-		this.allowattachment = arg;
-		return this;
-	}
-
-	public BigDecimal getPriceY() {
-		return this.priceY;
-	}
-
-	public MemberGroupEntity setPriceY(BigDecimal arg) {
-		this.priceY = arg;
-		return this;
-	}
-
-	public BigDecimal getPriceM() {
-		return this.priceM;
-	}
-
-	public MemberGroupEntity setPriceM(BigDecimal arg) {
-		this.priceM = arg;
-		return this;
-	}
-
-	public BigDecimal getPriceD() {
-		return this.priceD;
-	}
-
-	public MemberGroupEntity setPriceD(BigDecimal arg) {
-		this.priceD = arg;
-		return this;
-	}
-
-	public String getIcon() {
-		return this.icon;
-	}
-
-	public MemberGroupEntity setIcon(String arg) {
-		this.icon = arg;
-		return this;
-	}
-
-	public String getUsernamecolor() {
-		return this.usernamecolor;
-	}
-
-	public MemberGroupEntity setUsernamecolor(String arg) {
-		this.usernamecolor = arg;
-		return this;
-	}
-
-	public String getDescription() {
-		return this.description;
-	}
-
-	public MemberGroupEntity setDescription(String arg) {
-		this.description = arg;
-		return this;
-	}
-
-	public Integer getSort() {
-		return this.sort;
-	}
-
-	public MemberGroupEntity setSort(Integer arg) {
-		this.sort = arg;
-		return this;
-	}
-
-	public Integer getDisabled() {
-		return this.disabled;
-	}
-
-	public MemberGroupEntity setDisabled(Integer arg) {
-		this.disabled = arg;
-		return this;
-	}
 }

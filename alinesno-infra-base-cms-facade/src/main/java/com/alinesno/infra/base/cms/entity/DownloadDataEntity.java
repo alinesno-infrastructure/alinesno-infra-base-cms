@@ -1,5 +1,8 @@
 package com.alinesno.infra.base.cms.entity;
 
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
+import lombok.Data;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -25,6 +28,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
  * @version 1.0.0
  */
 @TableName("download_data")
+@Data
 public class DownloadDataEntity extends InfraBaseEntity {
 
 	// 字段
@@ -33,166 +37,87 @@ public class DownloadDataEntity extends InfraBaseEntity {
 	 * 内容
 	 */
 	@TableField("content")
+	@ColumnType(length=255)
+	@ColumnComment("内容")
 	private String content;
 
 	/**
 	 * 阅读点
 	 */
 	@TableField("readpoint")
+	@ColumnType(length=255)
+	@ColumnComment("阅读点")
 	private Integer readpoint;
 
 	/**
 	 * 可见用户组
 	 */
 	@TableField("groupids_view")
+	@ColumnType(length=255)
+	@ColumnComment("可见用户组")
 	private String groupidsView;
 
 	/**
 	 * 分页方式
 	 */
 	@TableField("paginationtype")
+	@ColumnType(length=255)
+	@ColumnComment("分页方式")
 	private Integer paginationtype;
 
 	/**
 	 * 每页最大字符数
 	 */
 	@TableField("maxcharperpage")
+	@ColumnType(length=255)
+	@ColumnComment("每页最大字符数")
 	private Integer maxcharperpage;
 
 	/**
 	 * 模板
 	 */
 	@TableField("template")
+	@ColumnType(length=255)
+	@ColumnComment("模板")
 	private String template;
 
 	/**
 	 * 支付类型
 	 */
 	@TableField("paytype")
+	@ColumnType(length=255)
+	@ColumnComment("支付类型")
 	private Integer paytype;
 
 	/**
 	 * 相关文章
 	 */
 	@TableField("relation")
+	@ColumnType(length=255)
+	@ColumnComment("相关文章")
 	private String relation;
 
 	/**
 	 * 是否允许评论
 	 */
 	@TableField("allow_comment")
+	@ColumnType(length=255)
+	@ColumnComment("是否允许评论")
 	private Integer allowComment;
 
 	/**
 	 * 下载附件
 	 */
 	@TableField("downfiles")
+	@ColumnType(length=255)
+	@ColumnComment("下载附件")
 	private String downfiles;
 
 	/**
 	 * 下载地址
 	 */
 	@TableField("downfile")
+	@ColumnType(length=255)
+	@ColumnComment("下载地址")
 	private String downfile;
-
-	// Getter and Setter methods
-
-	public String getContent() {
-		return this.content;
-	}
-
-	public DownloadDataEntity setContent(String content) {
-		this.content = content;
-		return this;
-	}
-
-	public Integer getReadpoint() {
-		return this.readpoint;
-	}
-
-	public DownloadDataEntity setReadpoint(Integer readpoint) {
-		this.readpoint = readpoint;
-		return this;
-	}
-
-	public String getGroupidsView() {
-		return this.groupidsView;
-	}
-
-	public DownloadDataEntity setGroupidsView(String groupidsView) {
-		this.groupidsView = groupidsView;
-		return this;
-	}
-
-	public Integer getPaginationtype() {
-		return this.paginationtype;
-	}
-
-	public DownloadDataEntity setPaginationtype(Integer paginationtype) {
-		this.paginationtype = paginationtype;
-		return this;
-	}
-
-	public Integer getMaxcharperpage() {
-		return this.maxcharperpage;
-	}
-
-	public DownloadDataEntity setMaxcharperpage(Integer maxcharperpage) {
-		this.maxcharperpage = maxcharperpage;
-		return this;
-	}
-
-	public String getTemplate() {
-		return this.template;
-	}
-
-	public DownloadDataEntity setTemplate(String template) {
-		this.template = template;
-		return this;
-	}
-
-	public Integer getPaytype() {
-		return this.paytype;
-	}
-
-	public DownloadDataEntity setPaytype(Integer paytype) {
-		this.paytype = paytype;
-		return this;
-	}
-
-	public String getRelation() {
-		return this.relation;
-	}
-
-	public DownloadDataEntity setRelation(String relation) {
-		this.relation = relation;
-		return this;
-	}
-
-	public Integer getAllowComment() {
-		return this.allowComment;
-	}
-
-	public DownloadDataEntity setAllowComment(Integer allowComment) {
-		this.allowComment = allowComment;
-		return this;
-	}
-
-	public String getDownfiles() {
-		return this.downfiles;
-	}
-
-	public DownloadDataEntity setDownfiles(String downfiles) {
-		this.downfiles = downfiles;
-		return this;
-	}
-
-	public String getDownfile() {
-		return this.downfile;
-	}
-
-	public DownloadDataEntity setDownfile(String downfile) {
-		this.downfile = downfile;
-		return this;
-	}
 }

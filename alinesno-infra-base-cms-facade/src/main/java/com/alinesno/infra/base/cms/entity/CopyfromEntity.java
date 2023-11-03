@@ -1,5 +1,8 @@
 package com.alinesno.infra.base.cms.entity;
 
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
+import lombok.Data;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -19,6 +22,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
  * @version 1.0.0
  */
 @TableName("copyfrom")
+@Data
 public class CopyfromEntity extends InfraBaseEntity {
 
 	// 字段
@@ -27,76 +31,39 @@ public class CopyfromEntity extends InfraBaseEntity {
 	 * 站点ID
 	 */
 	@TableField("siteid")
+	@ColumnType(length=10)
+	@ColumnComment("站点ID")
 	private Integer siteid;
 
 	/**
 	 * 站点名称
 	 */
 	@TableField("sitename")
+	@ColumnType(length=50)
+	@ColumnComment("站点名称")
 	private String sitename;
 
 	/**
 	 * 站点URL
 	 */
 	@TableField("siteurl")
+	@ColumnType(length=255)
+	@ColumnComment("站点URL")
 	private String siteurl;
 
 	/**
 	 * 缩略图
 	 */
 	@TableField("thumb")
+	@ColumnType(length=255)
+	@ColumnComment("缩略图")
 	private String thumb;
 
 	/**
 	 * 排序
 	 */
 	@TableField("listorder")
+	@ColumnType(length=10)
+	@ColumnComment("排序")
 	private Integer listorder;
-
-	// Getter and Setter methods
-
-	public Integer getSiteid() {
-		return this.siteid;
-	}
-
-	public CopyfromEntity setSiteid(Integer siteid) {
-		this.siteid = siteid;
-		return this;
-	}
-
-	public String getSitename() {
-		return this.sitename;
-	}
-
-	public CopyfromEntity setSitename(String sitename) {
-		this.sitename = sitename;
-		return this;
-	}
-
-	public String getSiteurl() {
-		return this.siteurl;
-	}
-
-	public CopyfromEntity setSiteurl(String siteurl) {
-		this.siteurl = siteurl;
-		return this;
-	}
-
-	public String getThumb() {
-		return this.thumb;
-	}
-
-	public CopyfromEntity setThumb(String thumb) {
-		this.thumb = thumb;
-		return this;
-	}
-
-	public Integer getListorder() {
-		return this.listorder;
-	}
-
-	public CopyfromEntity setListorder(Integer listorder) {
-		this.listorder = listorder;
-		return this;
-	}
 }

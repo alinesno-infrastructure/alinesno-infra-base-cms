@@ -1,12 +1,12 @@
 package com.alinesno.infra.base.cms.entity;
 
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
+import lombok.Data;
 import cn.afterturn.easypoi.excel.annotation.Excel;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
-import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
-import lombok.Data;
 
 /**
  * 数据表：admin_role 表备注：
@@ -64,5 +64,4 @@ public class AdminRoleEntity extends InfraBaseEntity {
 	@ColumnComment("是否禁用")
 	@Excel(name = "是否禁用")
 	private Integer disabled;
-
 }

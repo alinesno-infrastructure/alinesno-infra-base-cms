@@ -1,5 +1,8 @@
 package com.alinesno.infra.base.cms.entity;
 
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
+import lombok.Data;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -17,6 +20,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
  * @version 1.0.0
  */
 @TableName("keyword_data")
+@Data
 public class KeywordDataEntity extends InfraBaseEntity {
 
 	// 字段
@@ -25,43 +29,23 @@ public class KeywordDataEntity extends InfraBaseEntity {
 	 * 标签ID
 	 */
 	@TableField("tagid")
+	@ColumnType(length=255)
+	@ColumnComment("标签ID")
 	private Integer tagid;
 
 	/**
 	 * 站点ID
 	 */
 	@TableField("siteid")
+	@ColumnType(length=255)
+	@ColumnComment("站点ID")
 	private Integer siteid;
 
 	/**
 	 * 内容ID
 	 */
 	@TableField("contentid")
+	@ColumnType(length=255)
+	@ColumnComment("内容ID")
 	private String contentid;
-
-	// Getters and Setters
-
-	public Integer getTagid() {
-		return tagid;
-	}
-
-	public void setTagid(Integer tagid) {
-		this.tagid = tagid;
-	}
-
-	public Integer getSiteid() {
-		return siteid;
-	}
-
-	public void setSiteid(Integer siteid) {
-		this.siteid = siteid;
-	}
-
-	public String getContentid() {
-		return contentid;
-	}
-
-	public void setContentid(String contentid) {
-		this.contentid = contentid;
-	}
 }

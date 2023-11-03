@@ -1,5 +1,8 @@
 package com.alinesno.infra.base.cms.entity;
 
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
+import lombok.Data;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -14,111 +17,62 @@ import com.baomidou.mybatisplus.annotation.TableName;
  * @version 1.0.0
  */
 @TableName("page")
+@Data
 public class PageEntity extends InfraBaseEntity {
 
 	/**
 	 * 栏目ID
 	 */
 	@TableField("catid")
+	@ColumnType(length=255)
+	@ColumnComment("栏目ID")
 	private Integer catid;
 
 	/**
 	 * 标题
 	 */
 	@TableField("title")
+	@ColumnType(length=255)
+	@ColumnComment("标题")
 	private String title;
 
 	/**
 	 * 样式
 	 */
 	@TableField("style")
+	@ColumnType(length=255)
+	@ColumnComment("样式")
 	private String style;
 
 	/**
 	 * 关键词
 	 */
 	@TableField("keywords")
+	@ColumnType(length=255)
+	@ColumnComment("关键词")
 	private String keywords;
 
 	/**
 	 * 内容
 	 */
 	@TableField("content")
+	@ColumnType(length=255)
+	@ColumnComment("内容")
 	private String content;
 
 	/**
 	 * 模板
 	 */
 	@TableField("template")
+	@ColumnType(length=255)
+	@ColumnComment("模板")
 	private String template;
 
 	/**
 	 * 更新时间
 	 */
 	@TableField("updatetime")
+	@ColumnType(length=255)
+	@ColumnComment("更新时间")
 	private Integer updatetime;
-
-	// getter and setter
-	public Integer getCatid() {
-		return this.catid;
-	}
-
-	public PageEntity setCatid(Integer catid) {
-		this.catid = catid;
-		return this;
-	}
-
-	public String getTitle() {
-		return this.title;
-	}
-
-	public PageEntity setTitle(String title) {
-		this.title = title;
-		return this;
-	}
-
-	public String getStyle() {
-		return this.style;
-	}
-
-	public PageEntity setStyle(String style) {
-		this.style = style;
-		return this;
-	}
-
-	public String getKeywords() {
-		return this.keywords;
-	}
-
-	public PageEntity setKeywords(String keywords) {
-		this.keywords = keywords;
-		return this;
-	}
-
-	public String getContent() {
-		return this.content;
-	}
-
-	public PageEntity setContent(String content) {
-		this.content = content;
-		return this;
-	}
-
-	public String getTemplate() {
-		return this.template;
-	}
-
-	public PageEntity setTemplate(String template) {
-		this.template = template;
-		return this;
-	}
-
-	public Integer getUpdatetime() {
-		return this.updatetime;
-	}
-
-	public PageEntity setUpdatetime(Integer updatetime) {
-		this.updatetime = updatetime;
-		return this;
-	}
 }

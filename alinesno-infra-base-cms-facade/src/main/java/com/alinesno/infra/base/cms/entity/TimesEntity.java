@@ -1,5 +1,8 @@
 package com.alinesno.infra.base.cms.entity;
 
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
+import lombok.Data;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -13,67 +16,32 @@ import cn.afterturn.easypoi.excel.annotation.Excel;
  *@version 1.0.0
  */
 @TableName("times")
+@Data
 public class TimesEntity extends InfraBaseEntity {
 	
 	// fields
 	@TableField("username")
+	@ColumnType(length=255)
+	@ColumnComment("数据表：")
 	private String username;
 
 	@TableField("ip")
+	@ColumnType(length=15)
+	@ColumnComment("ip")
 	private String ip;
 
 	@TableField("logintime")
+	@ColumnType(length=19)
+	@ColumnComment("登录时间")
 	private Integer logintime;
 
 	@TableField("isadmin")
+	@ColumnType(length=1)
+	@ColumnComment("isadmin")
 	private Integer isadmin;
 
 	@TableField("times")
+	@ColumnType(length=10)
+	@ColumnComment("次")
 	private Integer times;
-
-	// getter and setter
-	public String getUsername() {
-		return this.username;
-	}
-
-	public TimesEntity setUsername(String arg) {
-		this.username = arg;
-		return this;
-	}
-
-	public String getIp() {
-		return this.ip;
-	}
-
-	public TimesEntity setIp(String arg) {
-		this.ip = arg;
-		return this;
-	}
-
-	public Integer getLogintime() {
-		return this.logintime;
-	}
-
-	public TimesEntity setLogintime(Integer arg) {
-		this.logintime = arg;
-		return this;
-	}
-
-	public Integer getIsadmin() {
-		return this.isadmin;
-	}
-
-	public TimesEntity setIsadmin(Integer arg) {
-		this.isadmin = arg;
-		return this;
-	}
-
-	public Integer getTimes() {
-		return this.times;
-	}
-
-	public TimesEntity setTimes(Integer arg) {
-		this.times = arg;
-		return this;
-	}
 }

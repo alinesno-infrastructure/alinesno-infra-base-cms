@@ -1,5 +1,8 @@
 package com.alinesno.infra.base.cms.entity;
 
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
+import lombok.Data;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -13,96 +16,54 @@ import com.baomidou.mybatisplus.annotation.TableName;
  * @version 1.0.0
  */
 @TableName("site_safety_setting")
+@Data
 public class SiteSafetySettingEntity extends InfraBaseEntity {
 
 	/**
 	 * CDN设置
 	 */
 	@TableField("cdn_setting")
+	@ColumnType(length=255)
+	@ColumnComment("CDN设置")
 	private String cdnSetting;
 
 	/**
 	 * 站点统计
 	 */
 	@TableField("site_statistical")
+	@ColumnType(length=255)
+	@ColumnComment("站点统计")
 	private String siteStatistical;
 
 	/**
 	 * 是否开启拦截，0否，1是
 	 */
 	@TableField("intercept")
+	@ColumnType(length=255)
+	@ColumnComment("是否开启拦截，0否，1是")
 	private Integer intercept;
 
 	/**
 	 * 白名单
 	 */
 	@TableField("whitelist")
+	@ColumnType(length=255)
+	@ColumnComment("白名单")
 	private String whitelist;
 
 	/**
 	 * 运维状态，0否，1是
 	 */
 	@TableField("operation_status")
+	@ColumnType(length=255)
+	@ColumnComment("运维状态，0否，1是")
 	private Integer operationStatus;
 
 	/**
 	 * 运维提示语
 	 */
 	@TableField("operation_hint")
+	@ColumnType(length=255)
+	@ColumnComment("运维提示语")
 	private String operationHint;
-
-	// getter and setter
-	public String getCdnSetting() {
-		return cdnSetting;
-	}
-
-	public SiteSafetySettingEntity setCdnSetting(String cdnSetting) {
-		this.cdnSetting = cdnSetting;
-		return this;
-	}
-
-	public String getSiteStatistical() {
-		return siteStatistical;
-	}
-
-	public SiteSafetySettingEntity setSiteStatistical(String siteStatistical) {
-		this.siteStatistical = siteStatistical;
-		return this;
-	}
-
-	public Integer getIntercept() {
-		return intercept;
-	}
-
-	public SiteSafetySettingEntity setIntercept(Integer intercept) {
-		this.intercept = intercept;
-		return this;
-	}
-
-	public String getWhitelist() {
-		return whitelist;
-	}
-
-	public SiteSafetySettingEntity setWhitelist(String whitelist) {
-		this.whitelist = whitelist;
-		return this;
-	}
-
-	public Integer getOperationStatus() {
-		return operationStatus;
-	}
-
-	public SiteSafetySettingEntity setOperationStatus(Integer operationStatus) {
-		this.operationStatus = operationStatus;
-		return this;
-	}
-
-	public String getOperationHint() {
-		return operationHint;
-	}
-
-	public SiteSafetySettingEntity setOperationHint(String operationHint) {
-		this.operationHint = operationHint;
-		return this;
-	}
 }

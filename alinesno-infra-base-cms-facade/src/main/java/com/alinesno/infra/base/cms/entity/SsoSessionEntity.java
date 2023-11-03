@@ -1,5 +1,8 @@
 package com.alinesno.infra.base.cms.entity;
 
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
+import lombok.Data;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -13,127 +16,57 @@ import com.baomidou.mybatisplus.annotation.TableName;
  * @version 1.0.0
  */
 @TableName("sso_session")
+@Data
 public class SsoSessionEntity extends InfraBaseEntity {
 
 	// fields
 	@TableField("sessionid")
+	@ColumnType(length=255)
+	@ColumnComment("sessionid")
 	private String sessionid; // sessionid
 
 	@TableField("userid")
+	@ColumnType(length=255)
+	@ColumnComment("userid")
 	private Integer userid; // userid
 
 	@TableField("ip")
+	@ColumnType(length=255)
+	@ColumnComment("ip")
 	private String ip; // ip
 
 	@TableField("lastvisit")
+	@ColumnType(length=255)
+	@ColumnComment("lastvisit")
 	private Integer lastvisit; // lastvisit
 
 	@TableField("roleid")
+	@ColumnType(length=255)
+	@ColumnComment("roleid")
 	private Integer roleid; // roleid
 
 	@TableField("groupid")
+	@ColumnType(length=255)
+	@ColumnComment("groupid")
 	private Integer groupid; // groupid
 
 	@TableField("m")
+	@ColumnType(length=255)
+	@ColumnComment("m")
 	private String m; // m
 
 	@TableField("c")
+	@ColumnType(length=255)
+	@ColumnComment("c")
 	private String c; // c
 
 	@TableField("a")
+	@ColumnType(length=255)
+	@ColumnComment("a")
 	private String a; // a
 
 	@TableField("data")
+	@ColumnType(length=255)
+	@ColumnComment("data")
 	private String data; // data
-
-	// getter and setter
-	public String getSessionid() {
-		return this.sessionid;
-	}
-
-	public SsoSessionEntity setSessionid(String sessionid) {
-		this.sessionid = sessionid;
-		return this;
-	}
-
-	public Integer getUserid() {
-		return this.userid;
-	}
-
-	public SsoSessionEntity setUserid(Integer userid) {
-		this.userid = userid;
-		return this;
-	}
-
-	public String getIp() {
-		return this.ip;
-	}
-
-	public SsoSessionEntity setIp(String ip) {
-		this.ip = ip;
-		return this;
-	}
-
-	public Integer getLastvisit() {
-		return this.lastvisit;
-	}
-
-	public SsoSessionEntity setLastvisit(Integer lastvisit) {
-		this.lastvisit = lastvisit;
-		return this;
-	}
-
-	public Integer getRoleid() {
-		return this.roleid;
-	}
-
-	public SsoSessionEntity setRoleid(Integer roleid) {
-		this.roleid = roleid;
-		return this;
-	}
-
-	public Integer getGroupid() {
-		return this.groupid;
-	}
-
-	public SsoSessionEntity setGroupid(Integer groupid) {
-		this.groupid = groupid;
-		return this;
-	}
-
-	public String getM() {
-		return this.m;
-	}
-
-	public SsoSessionEntity setM(String m) {
-		this.m = m;
-		return this;
-	}
-
-	public String getC() {
-		return this.c;
-	}
-
-	public SsoSessionEntity setC(String c) {
-		this.c = c;
-		return this;
-	}
-
-	public String getA() {
-		return this.a;
-	}
-
-	public SsoSessionEntity setA(String a) {
-		this.a = a;
-		return this;
-	}
-
-	public String getData() {
-		return this.data;
-	}
-
-	public SsoSessionEntity setData(String data) {
-		this.data = data;
-		return this;
-	}
 }

@@ -1,11 +1,11 @@
 package com.alinesno.infra.base.cms.entity;
 
-import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
 import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
 import lombok.Data;
+import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
 
 /**
  * 管理员实体类
@@ -107,5 +107,4 @@ public class AdminEntity extends InfraBaseEntity {
 	@ColumnType(length = 255)
 	@ColumnComment("语言")
 	private String lang;
-
 }

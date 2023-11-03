@@ -1,5 +1,8 @@
 package com.alinesno.infra.base.cms.entity;
 
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
+import lombok.Data;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -33,124 +36,61 @@ import cn.afterturn.easypoi.excel.annotation.Excel;
  * @version 1.0.0
  */
 @TableName("test_data")
+@Data
 public class TestDataEntity extends InfraBaseEntity {
 
 	// fields
 	@Excel(name = "content")
 	@TableField("content")
+	@ColumnType(length=255)
+	@ColumnComment("content")
 	private String content;
 
 	@Excel(name = "readpoint")
 	@TableField("readpoint")
+	@ColumnType(length=255)
+	@ColumnComment("readpoint")
 	private Integer readpoint;
 
 	@Excel(name = "groupidsView")
 	@TableField("groupids_view")
+	@ColumnType(length=255)
+	@ColumnComment("groupidsView")
 	private String groupidsView;
 
 	@Excel(name = "paginationtype")
 	@TableField("paginationtype")
+	@ColumnType(length=255)
+	@ColumnComment("paginationtype")
 	private Integer paginationtype;
 
 	@Excel(name = "maxcharperpage")
 	@TableField("maxcharperpage")
+	@ColumnType(length=255)
+	@ColumnComment("maxcharperpage")
 	private Integer maxcharperpage;
 
 	@Excel(name = "template")
 	@TableField("template")
+	@ColumnType(length=255)
+	@ColumnComment("template")
 	private String template;
 
 	@Excel(name = "paytype")
 	@TableField("paytype")
+	@ColumnType(length=255)
+	@ColumnComment("paytype")
 	private Integer paytype;
 
 	@Excel(name = "allowComment")
 	@TableField("allow_comment")
+	@ColumnType(length=255)
+	@ColumnComment("allowComment")
 	private Integer allowComment;
 
 	@Excel(name = "relation")
 	@TableField("relation")
+	@ColumnType(length=255)
+	@ColumnComment("relation")
 	private String relation;
-
-	// getter and setter
-	public String getContent() {
-		return this.content;
-	}
-
-	public TestDataEntity setContent(String arg) {
-		this.content = arg;
-		return this;
-	}
-
-	public Integer getReadpoint() {
-		return this.readpoint;
-	}
-
-	public TestDataEntity setReadpoint(Integer arg) {
-		this.readpoint = arg;
-		return this;
-	}
-
-	public String getGroupidsView() {
-		return this.groupidsView;
-	}
-
-	public TestDataEntity setGroupidsView(String arg) {
-		this.groupidsView = arg;
-		return this;
-	}
-
-	public Integer getPaginationtype() {
-		return this.paginationtype;
-	}
-
-	public TestDataEntity setPaginationtype(Integer arg) {
-		this.paginationtype = arg;
-		return this;
-	}
-
-	public Integer getMaxcharperpage() {
-		return this.maxcharperpage;
-	}
-
-	public TestDataEntity setMaxcharperpage(Integer arg) {
-		this.maxcharperpage = arg;
-		return this;
-	}
-
-	public String getTemplate() {
-		return this.template;
-	}
-
-	public TestDataEntity setTemplate(String arg) {
-		this.template = arg;
-		return this;
-	}
-
-	public Integer getPaytype() {
-		return this.paytype;
-	}
-
-	public TestDataEntity setPaytype(Integer arg) {
-		this.paytype = arg;
-		return this;
-	}
-
-	public Integer getAllowComment() {
-		return this.allowComment;
-	}
-
-	public TestDataEntity setAllowComment(Integer arg) {
-		this.allowComment = arg;
-		return this;
-	}
-
-	public String getRelation() {
-		return this.relation;
-	}
-
-	public TestDataEntity setRelation(String arg) {
-		this.relation = arg;
-		return this;
-	}
 }

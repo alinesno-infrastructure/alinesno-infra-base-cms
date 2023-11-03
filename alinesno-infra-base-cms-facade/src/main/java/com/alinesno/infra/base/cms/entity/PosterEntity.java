@@ -1,5 +1,8 @@
 package com.alinesno.infra.base.cms.entity;
 
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
+import lombok.Data;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -12,6 +15,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
  * @version 1.0.0
  */
 @TableName("poster")
+@Data
 public class PosterEntity extends InfraBaseEntity {
 
 	// fields
@@ -20,169 +24,95 @@ public class PosterEntity extends InfraBaseEntity {
 	 * 站点ID
 	 */
 	@TableField("siteid")
+	@ColumnType(length=255)
+	@ColumnComment("站点ID")
 	private Integer siteid;
 
 	/**
 	 * 名称
 	 */
 	@TableField("name")
+	@ColumnType(length=255)
+	@ColumnComment("名称")
 	private String name;
 
 	/**
 	 * 空间ID
 	 */
 	@TableField("spaceid")
+	@ColumnType(length=255)
+	@ColumnComment("空间ID")
 	private Integer spaceid;
 
 	/**
 	 * 类型
 	 */
 	@TableField("type")
+	@ColumnType(length=255)
+	@ColumnComment("类型")
 	private String type;
 
 	/**
 	 * 设置
 	 */
 	@TableField("setting")
+	@ColumnType(length=255)
+	@ColumnComment("设置")
 	private String setting;
 
 	/**
 	 * 开始日期
 	 */
 	@TableField("startdate")
+	@ColumnType(length=255)
+	@ColumnComment("开始日期")
 	private Integer startdate;
 
 	/**
 	 * 结束日期
 	 */
 	@TableField("enddate")
+	@ColumnType(length=255)
+	@ColumnComment("结束日期")
 	private Integer enddate;
 
 	/**
 	 * 添加时间
 	 */
 	@TableField("addtime")
+	@ColumnType(length=255)
+	@ColumnComment("添加时间")
 	private Integer addtime;
 
 	/**
 	 * 点击数
 	 */
 	@TableField("hits")
+	@ColumnType(length=255)
+	@ColumnComment("点击数")
 	private Integer hits;
 
 	/**
 	 * 点击次数
 	 */
 	@TableField("clicks")
+	@ColumnType(length=255)
+	@ColumnComment("点击次数")
 	private Integer clicks;
 
 	/**
 	 * 排序
 	 */
 	@TableField("listorder")
+	@ColumnType(length=255)
+	@ColumnComment("排序")
 	private Integer listorder;
 
 	/**
 	 * 是否禁用
 	 */
 	@TableField("disabled")
+	@ColumnType(length=255)
+	@ColumnComment("是否禁用")
 	private Integer disabled;
-
-	// getter and setter methods
-
-	public Integer getSiteid() {
-		return siteid;
-	}
-
-	public void setSiteid(Integer siteid) {
-		this.siteid = siteid;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public Integer getSpaceid() {
-		return spaceid;
-	}
-
-	public void setSpaceid(Integer spaceid) {
-		this.spaceid = spaceid;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	public String getSetting() {
-		return setting;
-	}
-
-	public void setSetting(String setting) {
-		this.setting = setting;
-	}
-
-	public Integer getStartdate() {
-		return startdate;
-	}
-
-	public void setStartdate(Integer startdate) {
-		this.startdate = startdate;
-	}
-
-	public Integer getEnddate() {
-		return enddate;
-	}
-
-	public void setEnddate(Integer enddate) {
-		this.enddate = enddate;
-	}
-
-	public Integer getAddtime() {
-		return addtime;
-	}
-
-	public void setAddtime(Integer addtime) {
-		this.addtime = addtime;
-	}
-
-	public Integer getHits() {
-		return hits;
-	}
-
-	public void setHits(Integer hits) {
-		this.hits = hits;
-	}
-
-	public Integer getClicks() {
-		return clicks;
-	}
-
-	public void setClicks(Integer clicks) {
-		this.clicks = clicks;
-	}
-
-	public Integer getListorder() {
-		return listorder;
-	}
-
-	public void setListorder(Integer listorder) {
-		this.listorder = listorder;
-	}
-
-	public Integer getDisabled() {
-		return disabled;
-	}
-
-	public void setDisabled(Integer disabled) {
-		this.disabled = disabled;
-	}
 }

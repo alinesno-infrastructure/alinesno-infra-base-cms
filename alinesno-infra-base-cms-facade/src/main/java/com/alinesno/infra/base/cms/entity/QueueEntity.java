@@ -1,5 +1,8 @@
 package com.alinesno.infra.base.cms.entity;
 
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
+import lombok.Data;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -13,6 +16,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
  * @version 1.0.0
  */
 @TableName("queue")
+@Data
 public class QueueEntity extends InfraBaseEntity {
 
 	// fields
@@ -21,193 +25,63 @@ public class QueueEntity extends InfraBaseEntity {
 	 * 类型
 	 */
 	@TableField("type")
+	@ColumnType(length=255)
+	@ColumnComment("类型")
 	private String type;
 
 	/**
 	 * 站点ID
 	 */
 	@TableField("siteid")
+	@ColumnType(length=255)
+	@ColumnComment("站点ID")
 	private Integer siteid;
 
 	/**
 	 * 路径
 	 */
 	@TableField("path")
+	@ColumnType(length=255)
+	@ColumnComment("路径")
 	private String path;
 
 	/**
 	 * 状态1
 	 */
 	@TableField("status1")
+	@ColumnType(length=255)
+	@ColumnComment("状态1")
 	private Integer status1;
 
 	/**
 	 * 状态2
 	 */
 	@TableField("status2")
+	@ColumnType(length=255)
+	@ColumnComment("状态2")
 	private Integer status2;
 
 	/**
 	 * 状态3
 	 */
 	@TableField("status3")
+	@ColumnType(length=255)
+	@ColumnComment("状态3")
 	private Integer status3;
 
 	/**
 	 * 状态4
 	 */
 	@TableField("status4")
+	@ColumnType(length=255)
+	@ColumnComment("状态4")
 	private Integer status4;
 
 	/**
 	 * 次数
 	 */
 	@TableField("times")
+	@ColumnType(length=255)
+	@ColumnComment("次数")
 	private Integer times;
-
-	// getter and setter methods
-
-	/**
-	 * 获取类型
-	 *
-	 * @return 类型
-	 */
-	public String getType() {
-		return this.type;
-	}
-
-	/**
-	 * 设置类型
-	 *
-	 * @param type 类型
-	 */
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	/**
-	 * 获取站点ID
-	 *
-	 * @return 站点ID
-	 */
-	public Integer getSiteid() {
-		return this.siteid;
-	}
-
-	/**
-	 * 设置站点ID
-	 *
-	 * @param siteid 站点ID
-	 */
-	public void setSiteid(Integer siteid) {
-		this.siteid = siteid;
-	}
-
-	/**
-	 * 获取路径
-	 *
-	 * @return 路径
-	 */
-	public String getPath() {
-		return this.path;
-	}
-
-	/**
-	 * 设置路径
-	 *
-	 * @param path 路径
-	 */
-	public void setPath(String path) {
-		this.path = path;
-	}
-
-	/**
-	 * 获取状态1
-	 *
-	 * @return 状态1
-	 */
-	public Integer getStatus1() {
-		return this.status1;
-	}
-
-	/**
-	 * 设置状态1
-	 *
-	 * @param status1 状态1
-	 */
-	public void setStatus1(Integer status1) {
-		this.status1 = status1;
-	}
-
-	/**
-	 * 获取状态2
-	 *
-	 * @return 状态2
-	 */
-	public Integer getStatus2() {
-		return this.status2;
-	}
-
-	/**
-	 * 设置状态2
-	 *
-	 * @param status2 状态2
-	 */
-	public void setStatus2(Integer status2) {
-		this.status2 = status2;
-	}
-
-	/**
-	 * 获取状态3
-	 *
-	 * @return 状态3
-	 */
-	public Integer getStatus3() {
-		return this.status3;
-	}
-
-	/**
-	 * 设置状态3
-	 *
-	 * @param status3 状态3
-	 */
-	public void setStatus3(Integer status3) {
-		this.status3 = status3;
-	}
-
-	/**
-	 * 获取状态4
-	 *
-	 * @return 状态4
-	 */
-	public Integer getStatus4() {
-		return this.status4;
-	}
-
-	/**
-	 * 设置状态4
-	 *
-	 * @param status4 状态4
-	 */
-	public void setStatus4(Integer status4) {
-		this.status4 = status4;
-	}
-
-	/**
-	 * 获取次数
-	 *
-	 * @return 次数
-	 */
-	public Integer getTimes() {
-		return this.times;
-	}
-
-	/**
-	 * 设置次数
-	 *
-	 * @param times 次数
-	 */
-	public void setTimes(Integer times) {
-		this.times = times;
-	}
 }
