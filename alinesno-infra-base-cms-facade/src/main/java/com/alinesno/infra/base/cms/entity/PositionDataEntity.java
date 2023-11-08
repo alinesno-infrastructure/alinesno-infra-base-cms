@@ -14,7 +14,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
  * @author luoxiaodong
  * @version 1.0.0
  */
-@TableName("picture_data")
+@TableName("position_data")
 @Data
 public class PositionDataEntity extends InfraBaseEntity {
 

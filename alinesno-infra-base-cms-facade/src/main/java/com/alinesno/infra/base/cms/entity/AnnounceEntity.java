@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
 import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
+import com.gitee.sunchenbin.mybatis.actable.constants.MySqlTypeConstant;
 import lombok.Data;
 
 import java.util.Date;
@@ -39,7 +40,7 @@ public class AnnounceEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "内容")
 	@TableField("content")
-	@ColumnType(length = 65535)
+	@ColumnType(length = 65535, value= MySqlTypeConstant.TEXT)
 	@ColumnComment("内容")
 	private String content;
 
