@@ -1,8 +1,12 @@
 package com.alinesno.infra.base.cms.entity;
 
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
+import lombok.Data;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.EqualsAndHashCode;
 
 /**
  * 数据表：comment_setting 表备注：
@@ -19,7 +23,9 @@ import com.baomidou.mybatisplus.annotation.TableName;
  * @author luoxiaodong
  * @version 1.0.0
  */
+@EqualsAndHashCode(callSuper = true)
 @TableName("comment_setting")
+@Data
 public class CommentSettingEntity extends InfraBaseEntity {
 
 	// 字段
@@ -28,91 +34,47 @@ public class CommentSettingEntity extends InfraBaseEntity {
 	 * 站点ID
 	 */
 	@TableField("siteid")
+	@ColumnType(length=10)
+	@ColumnComment("站点ID")
 	private Integer siteid;
 
 	/**
 	 * 是否允许游客评论
 	 */
 	@TableField("guest")
+	@ColumnType(length=255)
+	@ColumnComment("是否允许游客评论")
 	private Integer guest;
 
 	/**
 	 * 是否需要审核
 	 */
 	@TableField("check")
+	@ColumnType(length=255)
+	@ColumnComment("是否需要审核")
 	private Integer check;
 
 	/**
 	 * 是否开启验证码
 	 */
 	@TableField("code")
+	@ColumnType(length=255)
+	@ColumnComment("是否开启验证码")
 	private Integer code;
 
 	/**
 	 * 添加的积分数
 	 */
 	@TableField("add_point")
+	@ColumnType(length=255)
+	@ColumnComment("添加的积分数")
 	private Integer addPoint;
 
 	/**
 	 * 扣除的积分数
 	 */
 	@TableField("del_point")
+	@ColumnType(length=255)
+	@ColumnComment("扣除的积分数")
 	private Integer delPoint;
-
-	// Getter and Setter methods
-
-	public Integer getSiteid() {
-		return this.siteid;
-	}
-
-	public CommentSettingEntity setSiteid(Integer siteid) {
-		this.siteid = siteid;
-		return this;
-	}
-
-	public Integer getGuest() {
-		return this.guest;
-	}
-
-	public CommentSettingEntity setGuest(Integer guest) {
-		this.guest = guest;
-		return this;
-	}
-
-	public Integer getCheck() {
-		return this.check;
-	}
-
-	public CommentSettingEntity setCheck(Integer check) {
-		this.check = check;
-		return this;
-	}
-
-	public Integer getCode() {
-		return this.code;
-	}
-
-	public CommentSettingEntity setCode(Integer code) {
-		this.code = code;
-		return this;
-	}
-
-	public Integer getAddPoint() {
-		return this.addPoint;
-	}
-
-	public CommentSettingEntity setAddPoint(Integer addPoint) {
-		this.addPoint = addPoint;
-		return this;
-	}
-
-	public Integer getDelPoint() {
-		return this.delPoint;
-	}
-
-	public CommentSettingEntity setDelPoint(Integer delPoint) {
-		this.delPoint = delPoint;
-		return this;
-	}
 }

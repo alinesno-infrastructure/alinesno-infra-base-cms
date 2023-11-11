@@ -1,8 +1,12 @@
 package com.alinesno.infra.base.cms.entity;
 
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
+import lombok.Data;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.EqualsAndHashCode;
 
 /**
  * 数据表： wap_type 表备注：
@@ -10,80 +14,39 @@ import com.baomidou.mybatisplus.annotation.TableName;
  * @author luoxiaodong
  * @version 1.0.0
  */
+@EqualsAndHashCode(callSuper = true)
 @TableName("wap_type")
+@Data
 public class WapTypeEntity extends InfraBaseEntity {
 
 	// fields
 	@TableField("typeid")
+	@ColumnType(length=255)
+	@ColumnComment("typeid")
 	private Integer typeid;
 
 	@TableField("cat")
+	@ColumnType(length=255)
+	@ColumnComment("cat")
 	private Integer cat;
 
 	@TableField("parentid")
+	@ColumnType(length=255)
+	@ColumnComment("parentid")
 	private Integer parentid;
 
 	@TableField("typename")
+	@ColumnType(length=255)
+	@ColumnComment("typename")
 	private String typename;
 
 	@TableField("siteid")
+	@ColumnType(length=255)
+	@ColumnComment("siteid")
 	private Integer siteid;
 
 	@TableField("listorder")
+	@ColumnType(length=255)
+	@ColumnComment("listorder")
 	private Integer listorder;
-
-	// getter and setter
-	public Integer getTypeid() {
-		return this.typeid;
-	}
-
-	public WapTypeEntity setTypeid(Integer arg) {
-		this.typeid = arg;
-		return this;
-	}
-
-	public Integer getCat() {
-		return this.cat;
-	}
-
-	public WapTypeEntity setCat(Integer arg) {
-		this.cat = arg;
-		return this;
-	}
-
-	public Integer getParentid() {
-		return this.parentid;
-	}
-
-	public WapTypeEntity setParentid(Integer arg) {
-		this.parentid = arg;
-		return this;
-	}
-
-	public String getTypename() {
-		return this.typename;
-	}
-
-	public WapTypeEntity setTypename(String arg) {
-		this.typename = arg;
-		return this;
-	}
-
-	public Integer getSiteid() {
-		return this.siteid;
-	}
-
-	public WapTypeEntity setSiteid(Integer arg) {
-		this.siteid = arg;
-		return this;
-	}
-
-	public Integer getListorder() {
-		return this.listorder;
-	}
-
-	public WapTypeEntity setListorder(Integer arg) {
-		this.listorder = arg;
-		return this;
-	}
 }

@@ -1,10 +1,14 @@
 package com.alinesno.infra.base.cms.entity;
 
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
+import lombok.Data;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import cn.afterturn.easypoi.excel.annotation.Excel;
+import lombok.EqualsAndHashCode;
 
 /**
  * 数据表： template_bak 表备注：
@@ -28,73 +32,39 @@ import cn.afterturn.easypoi.excel.annotation.Excel;
  * @author luoxiaodong
  * @version 1.0.0
  */
+@EqualsAndHashCode(callSuper = true)
 @TableName("template_bak")
+@Data
 public class TemplateBakEntity extends InfraBaseEntity {
 
 	// fields
 	@Excel(name = "creatAt")
 	@TableField("creat_at")
+	@ColumnType(length=19)
+	@ColumnComment("creat_at")
 	private Integer creatAt;
 
 	@Excel(name = "fileid")
 	@TableField("fileid")
+	@ColumnType(length=50)
+	@ColumnComment("fileid")
 	private String fileid;
 
 	@Excel(name = "userid")
 	@TableField("userid")
+	@ColumnType(length=50)
+	@ColumnComment("userid")
 	private Integer userid;
 
 	@Excel(name = "username")
 	@TableField("username")
+	@ColumnType(length=255)
+	@ColumnComment("用户名")
 	private String username;
 
 	@Excel(name = "template")
 	@TableField("template")
+	@ColumnType(length=255)
+	@ColumnComment("样板")
 	private String template;
-
-	// getter and setter
-	public Integer getCreatAt() {
-		return this.creatAt;
-	}
-
-	public TemplateBakEntity setCreatAt(Integer arg) {
-		this.creatAt = arg;
-		return this;
-	}
-
-	public String getFileid() {
-		return this.fileid;
-	}
-
-	public TemplateBakEntity setFileid(String arg) {
-		this.fileid = arg;
-		return this;
-	}
-
-	public Integer getUserid() {
-		return this.userid;
-	}
-
-	public TemplateBakEntity setUserid(Integer arg) {
-		this.userid = arg;
-		return this;
-	}
-
-	public String getUsername() {
-		return this.username;
-	}
-
-	public TemplateBakEntity setUsername(String arg) {
-		this.username = arg;
-		return this;
-	}
-
-	public String getTemplate() {
-		return this.template;
-	}
-
-	public TemplateBakEntity setTemplate(String arg) {
-		this.template = arg;
-		return this;
-	}
 }

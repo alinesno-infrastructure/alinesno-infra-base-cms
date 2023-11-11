@@ -1,10 +1,13 @@
 package com.alinesno.infra.base.cms.entity;
 
+import cn.afterturn.easypoi.excel.annotation.Excel;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
-
-import cn.afterturn.easypoi.excel.annotation.Excel;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * 数据表：attachment 表备注：
@@ -14,6 +17,8 @@ import cn.afterturn.easypoi.excel.annotation.Excel;
  * @author luoxiaodong
  *@version 1.0.0
  */
+@EqualsAndHashCode(callSuper = true)
+@Data
 @TableName("attachment")
 public class AttachmentEntity extends InfraBaseEntity {
 
@@ -24,6 +29,8 @@ public class AttachmentEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "aid")
 	@TableField("aid")
+	@ColumnType
+	@ColumnComment("aid")
 	private Integer aid;
 
 	/**
@@ -31,6 +38,8 @@ public class AttachmentEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "module")
 	@TableField("module")
+	@ColumnType(length = 255)
+	@ColumnComment("module")
 	private String module;
 
 	/**
@@ -38,6 +47,8 @@ public class AttachmentEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "catid")
 	@TableField("catid")
+	@ColumnType
+	@ColumnComment("catid")
 	private Integer catid;
 
 	/**
@@ -45,6 +56,8 @@ public class AttachmentEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "filename")
 	@TableField("filename")
+	@ColumnType(length = 255)
+	@ColumnComment("filename")
 	private String filename;
 
 	/**
@@ -52,6 +65,8 @@ public class AttachmentEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "filepath")
 	@TableField("filepath")
+	@ColumnType(length = 255)
+	@ColumnComment("filepath")
 	private String filepath;
 
 	/**
@@ -59,6 +74,8 @@ public class AttachmentEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "filesize")
 	@TableField("filesize")
+	@ColumnType
+	@ColumnComment("filesize")
 	private Integer filesize;
 
 	/**
@@ -66,6 +83,8 @@ public class AttachmentEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "fileext")
 	@TableField("fileext")
+	@ColumnType(length = 255)
+	@ColumnComment("fileext")
 	private String fileext;
 
 	/**
@@ -73,6 +92,8 @@ public class AttachmentEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "isimage")
 	@TableField("isimage")
+	@ColumnType
+	@ColumnComment("isimage")
 	private Integer isimage;
 
 	/**
@@ -80,6 +101,8 @@ public class AttachmentEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "isthumb")
 	@TableField("isthumb")
+	@ColumnType
+	@ColumnComment("isthumb")
 	private Integer isthumb;
 
 	/**
@@ -87,6 +110,8 @@ public class AttachmentEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "downloads")
 	@TableField("downloads")
+	@ColumnType
+	@ColumnComment("downloads")
 	private Integer downloads;
 
 	/**
@@ -94,12 +119,17 @@ public class AttachmentEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "userid")
 	@TableField("userid")
+	@ColumnType
+	@ColumnComment("userid")
 	private Integer userid;
+
 	/**
 	 * uploadtime
 	 */
 	@Excel(name = "uploadtime")
 	@TableField("uploadtime")
+	@ColumnType
+	@ColumnComment("uploadtime")
 	private Integer uploadtime;
 
 	/**
@@ -107,6 +137,8 @@ public class AttachmentEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "uploadip")
 	@TableField("uploadip")
+	@ColumnType(length = 255)
+	@ColumnComment("uploadip")
 	private String uploadip;
 
 	/**
@@ -114,6 +146,8 @@ public class AttachmentEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "status")
 	@TableField("status")
+	@ColumnType
+	@ColumnComment("status")
 	private Integer status;
 
 	/**
@@ -121,6 +155,8 @@ public class AttachmentEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "authcode")
 	@TableField("authcode")
+	@ColumnType(length = 255)
+	@ColumnComment("authcode")
 	private String authcode;
 
 	/**
@@ -128,152 +164,8 @@ public class AttachmentEntity extends InfraBaseEntity {
 	 */
 	@Excel(name = "siteid")
 	@TableField("siteid")
+	@ColumnType
+	@ColumnComment("siteid")
 	private Integer siteid;
-
-	// getter and setter methods
-
-	public Integer getAid() {
-		return this.aid;
-	}
-
-	public AttachmentEntity setAid(Integer aid) {
-		this.aid = aid;
-		return this;
-	}
-
-	public String getModule() {
-		return this.module;
-	}
-
-	public AttachmentEntity setModule(String module) {
-		this.module = module;
-		return this;
-	}
-
-	public Integer getCatid() {
-		return this.catid;
-	}
-
-	public AttachmentEntity setCatid(Integer catid) {
-		this.catid = catid;
-		return this;
-	}
-
-	public String getFilename() {
-		return this.filename;
-	}
-
-	public AttachmentEntity setFilename(String filename) {
-		this.filename = filename;
-		return this;
-	}
-
-	public String getFilepath() {
-		return this.filepath;
-	}
-
-	public AttachmentEntity setFilepath(String filepath) {
-		this.filepath = filepath;
-		return this;
-	}
-
-	public Integer getFilesize() {
-		return this.filesize;
-	}
-
-	public AttachmentEntity setFilesize(Integer filesize) {
-		this.filesize = filesize;
-		return this;
-	}
-
-	public String getFileext() {
-		return this.fileext;
-	}
-
-	public AttachmentEntity setFileext(String fileext) {
-		this.fileext = fileext;
-		return this;
-	}
-
-	public Integer getIsimage() {
-		return this.isimage;
-	}
-
-	public AttachmentEntity setIsimage(Integer isimage) {
-		this.isimage = isimage;
-		return this;
-	}
-
-	public Integer getIsthumb() {
-		return this.isthumb;
-	}
-
-	public AttachmentEntity setIsthumb(Integer isthumb) {
-		this.isthumb = isthumb;
-		return this;
-	}
-
-	public Integer getDownloads() {
-		return this.downloads;
-	}
-
-	public AttachmentEntity setDownloads(Integer downloads) {
-		this.downloads = downloads;
-		return this;
-	}
-
-	public Integer getUserid() {
-		return this.userid;
-	}
-
-	public AttachmentEntity setUserid(Integer userid) {
-		this.userid = userid;
-		return this;
-	}
-
-	public Integer getUploadtime() {
-		return this.uploadtime;
-	}
-
-	public AttachmentEntity setUploadtime(Integer uploadtime) {
-		this.uploadtime = uploadtime;
-		return this;
-	}
-
-	public String getUploadip() {
-		return this.uploadip;
-	}
-
-	public AttachmentEntity setUploadip(String uploadip) {
-		this.uploadip = uploadip;
-		return this;
-	}
-
-	public Integer getStatus() {
-		return this.status;
-	}
-
-	public AttachmentEntity setStatus(Integer status) {
-		this.status = status;
-		return this;
-	}
-
-	public String getAuthcode() {
-		return this.authcode;
-	}
-
-	public AttachmentEntity setAuthcode(String authcode) {
-		this.authcode = authcode;
-		return this;
-	}
-
-	public Integer getSiteid() {
-		return this.siteid;
-	}
-
-	public AttachmentEntity setSiteid(Integer siteid) {
-		this.siteid = siteid;
-		return this;
-	}
 }
 

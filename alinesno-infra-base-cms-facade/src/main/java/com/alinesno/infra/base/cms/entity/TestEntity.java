@@ -1,5 +1,8 @@
 package com.alinesno.infra.base.cms.entity;
 
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
+import lombok.Data;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -40,69 +43,101 @@ import cn.afterturn.easypoi.excel.annotation.Excel;
  * @version 1.0.0
  */
 @TableName("test")
+@Data
 public class TestEntity extends InfraBaseEntity {
 
 	// fields
 	@TableField("catid")
+	@ColumnType(length=255)
+	@ColumnComment("catid")
 	private Integer catid;
 
 	@TableField("typeid")
+	@ColumnType(length=255)
+	@ColumnComment("typeid")
 	private Integer typeid;
 
 	@Excel(name = "title")
 	@TableField("title")
+	@ColumnType(length=255)
+	@ColumnComment("title")
 	private String title;
 
 	@Excel(name = "style")
 	@TableField("style")
+	@ColumnType(length=255)
+	@ColumnComment("style")
 	private String style;
 
 	@Excel(name = "thumb")
 	@TableField("thumb")
+	@ColumnType(length=255)
+	@ColumnComment("thumb")
 	private String thumb;
 
 	@Excel(name = "keywords")
 	@TableField("keywords")
+	@ColumnType(length=255)
+	@ColumnComment("keywords")
 	private String keywords;
 
 	@Excel(name = "description")
 	@TableField("description")
+	@ColumnType(length=255)
+	@ColumnComment("description")
 	private String description;
 
 	@Excel(name = "posids")
 	@TableField("posids")
+	@ColumnType(length=255)
+	@ColumnComment("posids")
 	private Integer posids;
 
 	@Excel(name = "url")
 	@TableField("url")
+	@ColumnType(length=255)
+	@ColumnComment("url")
 	private String url;
 
 	@Excel(name = "listorder")
 	@TableField("listorder")
+	@ColumnType(length=255)
+	@ColumnComment("listorder")
 	private Integer listorder;
 
 	@Excel(name = "status")
 	@TableField("status")
+	@ColumnType(length=255)
+	@ColumnComment("status")
 	private Integer status;
 
 	@Excel(name = "sysadd")
 	@TableField("sysadd")
+	@ColumnType(length=255)
+	@ColumnComment("sysadd")
 	private Integer sysadd;
 
 	@Excel(name = "islink")
 	@TableField("islink")
+	@ColumnType(length=255)
+	@ColumnComment("islink")
 	private Integer islink;
 
 	@Excel(name = "username")
 	@TableField("username")
+	@ColumnType(length=255)
+	@ColumnComment("username")
 	private String username;
 
 	@Excel(name = "inputtime")
 	@TableField("inputtime")
+	@ColumnType(length=255)
+	@ColumnComment("inputtime")
 	private Integer inputtime;
 
 	@Excel(name = "updatetime")
 	@TableField("updatetime")
+	@ColumnType(length=255)
+	@ColumnComment("updatetime")
 	private Integer updatetime;
-
 }

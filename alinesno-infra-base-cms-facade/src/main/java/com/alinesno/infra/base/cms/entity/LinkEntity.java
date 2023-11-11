@@ -1,5 +1,8 @@
 package com.alinesno.infra.base.cms.entity;
 
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
+import lombok.Data;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -25,6 +28,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
  * @version 1.0.0
  */
 @TableName("link")
+@Data
 public class LinkEntity extends InfraBaseEntity {
 
 	// 字段
@@ -33,155 +37,87 @@ public class LinkEntity extends InfraBaseEntity {
 	 * 链接ID
 	 */
 	@TableField("linkid")
+	@ColumnType(length=255)
+	@ColumnComment("链接ID")
 	private Integer linkid;
 
 	/**
 	 * 类型ID
 	 */
 	@TableField("typeid")
+	@ColumnType(length=255)
+	@ColumnComment("类型ID")
 	private Integer typeid;
 
 	/**
 	 * 链接类型
 	 */
 	@TableField("linktype")
+	@ColumnType(length=255)
+	@ColumnComment("链接类型")
 	private Integer linktype;
 
 	/**
 	 * 名称
 	 */
 	@TableField("name")
+	@ColumnType(length=255)
+	@ColumnComment("名称")
 	private String name;
 
 	/**
 	 * 链接地址
 	 */
 	@TableField("url")
+	@ColumnType(length=255)
+	@ColumnComment("链接地址")
 	private String url;
 
 	/**
 	 * logo
 	 */
 	@TableField("logo")
+	@ColumnType(length=255)
+	@ColumnComment("logo")
 	private String logo;
 
 	/**
 	 * 介绍
 	 */
 	@TableField("introduce")
+	@ColumnType(length=255)
+	@ColumnComment("介绍")
 	private String introduce;
 
 	/**
 	 * 用户名
 	 */
 	@TableField("username")
+	@ColumnType(length=255)
+	@ColumnComment("用户名")
 	private String username;
 
 	/**
 	 * 排序
 	 */
 	@TableField("listorder")
+	@ColumnType(length=255)
+	@ColumnComment("排序")
 	private Integer listorder;
 
 	/**
 	 * 是否精华
 	 */
 	@TableField("elite")
+	@ColumnType(length=255)
+	@ColumnComment("是否精华")
 	private Integer elite;
 
 	/**
 	 * 是否通过审核
 	 */
 	@TableField("passed")
+	@ColumnType(length=255)
+	@ColumnComment("是否通过审核")
 	private Integer passed;
-
-	// Getters and Setters
-
-	public Integer getLinkid() {
-		return linkid;
-	}
-
-	public void setLinkid(Integer linkid) {
-		this.linkid = linkid;
-	}
-
-	public Integer getTypeid() {
-		return typeid;
-	}
-
-	public void setTypeid(Integer typeid) {
-		this.typeid = typeid;
-	}
-
-	public Integer getLinktype() {
-		return linktype;
-	}
-
-	public void setLinktype(Integer linktype) {
-		this.linktype = linktype;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getUrl() {
-		return url;
-	}
-
-	public void setUrl(String url) {
-		this.url = url;
-	}
-
-	public String getLogo() {
-		return logo;
-	}
-
-	public void setLogo(String logo) {
-		this.logo = logo;
-	}
-
-	public String getIntroduce() {
-		return introduce;
-	}
-
-	public void setIntroduce(String introduce) {
-		this.introduce = introduce;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public Integer getListorder() {
-		return listorder;
-	}
-
-	public void setListorder(Integer listorder) {
-		this.listorder = listorder;
-	}
-
-	public Integer getElite() {
-		return elite;
-	}
-
-	public void setElite(Integer elite) {
-		this.elite = elite;
-	}
-
-	public Integer getPassed() {
-		return passed;
-	}
-
-	public void setPassed(Integer passed) {
-		this.passed = passed;
-	}
 }

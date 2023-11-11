@@ -1,8 +1,12 @@
 package com.alinesno.infra.base.cms.entity;
 
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
+import lombok.Data;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.EqualsAndHashCode;
 
 /**
  * 数据表：dbsource 表备注：
@@ -21,7 +25,9 @@ import com.baomidou.mybatisplus.annotation.TableName;
  * @author luoxiaodong
  * @version 1.0.0
  */
+@EqualsAndHashCode(callSuper = true)
 @TableName("dbsource")
+@Data
 public class DbsourceEntity extends InfraBaseEntity {
 
 	// 字段
@@ -30,121 +36,63 @@ public class DbsourceEntity extends InfraBaseEntity {
 	 * 名称
 	 */
 	@TableField("name")
+	@ColumnType(length=255)
+	@ColumnComment("名称")
 	private String name;
 
 	/**
 	 * 主机
 	 */
 	@TableField("host")
+	@ColumnType(length=255)
+	@ColumnComment("主机")
 	private String host;
 
 	/**
 	 * 端口
 	 */
 	@TableField("port")
+	@ColumnType(length=255)
+	@ColumnComment("端口")
 	private Integer port;
 
 	/**
 	 * 用户名
 	 */
 	@TableField("username")
+	@ColumnType(length=255)
+	@ColumnComment("用户名")
 	private String username;
 
 	/**
 	 * 密码
 	 */
 	@TableField("password")
+	@ColumnType(length=255)
+	@ColumnComment("密码")
 	private String password;
 
 	/**
 	 * 数据库名称
 	 */
 	@TableField("dbname")
+	@ColumnType(length=255)
+	@ColumnComment("数据库名称")
 	private String dbname;
 
 	/**
 	 * 表前缀
 	 */
 	@TableField("dbtablepre")
+	@ColumnType(length=20)
+	@ColumnComment("表前缀")
 	private String dbtablepre;
 
 	/**
 	 * 字符集
 	 */
 	@TableField("charset")
+	@ColumnType(length=4)
+	@ColumnComment("字符集")
 	private String charset;
-
-	// Getter and Setter methods
-
-	public String getName() {
-		return this.name;
-	}
-
-	public DbsourceEntity setName(String name) {
-		this.name = name;
-		return this;
-	}
-
-	public String getHost() {
-		return this.host;
-	}
-
-	public DbsourceEntity setHost(String host) {
-		this.host = host;
-		return this;
-	}
-
-	public Integer getPort() {
-		return this.port;
-	}
-
-	public DbsourceEntity setPort(Integer port) {
-		this.port = port;
-		return this;
-	}
-
-	public String getUsername() {
-		return this.username;
-	}
-
-	public DbsourceEntity setUsername(String username) {
-		this.username = username;
-		return this;
-	}
-
-	public String getPassword() {
-		return this.password;
-	}
-
-	public DbsourceEntity setPassword(String password) {
-		this.password = password;
-		return this;
-	}
-
-	public String getDbname() {
-		return this.dbname;
-	}
-
-	public DbsourceEntity setDbname(String dbname) {
-		this.dbname = dbname;
-		return this;
-	}
-
-	public String getDbtablepre() {
-		return this.dbtablepre;
-	}
-
-	public DbsourceEntity setDbtablepre(String dbtablepre) {
-		this.dbtablepre = dbtablepre;
-		return this;
-	}
-
-	public String getCharset() {
-		return this.charset;
-	}
-
-	public DbsourceEntity setCharset(String charset) {
-		this.charset = charset;
-		return this;
-	}
 }

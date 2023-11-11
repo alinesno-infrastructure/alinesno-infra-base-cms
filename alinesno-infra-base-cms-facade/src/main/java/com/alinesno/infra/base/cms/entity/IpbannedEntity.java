@@ -1,5 +1,8 @@
 package com.alinesno.infra.base.cms.entity;
 
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
+import lombok.Data;
 import java.util.Date;
 
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
@@ -18,6 +21,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
  * @version 1.0.0
  */
 @TableName("ipbanned")
+@Data
 public class IpbannedEntity extends InfraBaseEntity {
 
 	// 字段
@@ -26,29 +30,15 @@ public class IpbannedEntity extends InfraBaseEntity {
 	 * IP地址
 	 */
 	@TableField("ip")
+	@ColumnType(length=255)
+	@ColumnComment("IP地址")
 	private String ip;
 
 	/**
 	 * 过期时间
 	 */
 	@TableField("expires")
+	@ColumnType(length=255)
+	@ColumnComment("过期时间")
 	private Date expires;
-
-	// Getters and Setters
-
-	public String getIp() {
-		return ip;
-	}
-
-	public void setIp(String ip) {
-		this.ip = ip;
-	}
-
-	public Date getExpires() {
-		return expires;
-	}
-
-	public void setExpires(Date expires) {
-		this.expires = expires;
-	}
 }

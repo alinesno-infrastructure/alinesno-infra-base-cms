@@ -1,8 +1,12 @@
 package com.alinesno.infra.base.cms.entity;
 
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
+import lombok.Data;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.EqualsAndHashCode;
 
 /**
  * 数据表：poster_space 表备注：
@@ -10,7 +14,9 @@ import com.baomidou.mybatisplus.annotation.TableName;
  * @author luoxiaodong
  * @version 1.0.0
  */
+@EqualsAndHashCode(callSuper = true)
 @TableName("poster_space")
+@Data
 public class PosterSpaceEntity extends InfraBaseEntity {
 
 	// fields
@@ -19,155 +25,87 @@ public class PosterSpaceEntity extends InfraBaseEntity {
 	 * 空间ID
 	 */
 	@TableField("spaceid")
+	@ColumnType(length=255)
+	@ColumnComment("空间ID")
 	private Integer spaceid;
 
 	/**
 	 * 站点ID
 	 */
 	@TableField("siteid")
+	@ColumnType(length=255)
+	@ColumnComment("站点ID")
 	private Integer siteid;
 
 	/**
 	 * 名称
 	 */
 	@TableField("name")
+	@ColumnType(length=255)
+	@ColumnComment("名称")
 	private String name;
 
 	/**
 	 * 类型
 	 */
 	@TableField("type")
+	@ColumnType(length=255)
+	@ColumnComment("类型")
 	private String type;
 
 	/**
 	 * 路径
 	 */
 	@TableField("path")
+	@ColumnType(length=255)
+	@ColumnComment("路径")
 	private String path;
 
 	/**
 	 * 宽度
 	 */
 	@TableField("width")
+	@ColumnType(length=255)
+	@ColumnComment("宽度")
 	private Integer width;
 
 	/**
 	 * 高度
 	 */
 	@TableField("height")
+	@ColumnType(length=255)
+	@ColumnComment("高度")
 	private Integer height;
 
 	/**
 	 * 设置
 	 */
 	@TableField("setting")
+	@ColumnType(length=255)
+	@ColumnComment("设置")
 	private String setting;
 
 	/**
 	 * 描述
 	 */
 	@TableField("description")
+	@ColumnType(length=255)
+	@ColumnComment("描述")
 	private String description;
 
 	/**
 	 * 项数
 	 */
 	@TableField("items")
+	@ColumnType(length=255)
+	@ColumnComment("项数")
 	private Integer items;
 
 	/**
 	 * 是否禁用
 	 */
 	@TableField("disabled")
+	@ColumnType(length=255)
+	@ColumnComment("是否禁用")
 	private Integer disabled;
-
-	// getter and setter methods
-
-	public Integer getSpaceid() {
-		return this.spaceid;
-	}
-
-	public void setSpaceid(Integer spaceid) {
-		this.spaceid = spaceid;
-	}
-
-	public Integer getSiteid() {
-		return this.siteid;
-	}
-
-	public void setSiteid(Integer siteid) {
-		this.siteid = siteid;
-	}
-
-	public String getName() {
-		return this.name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getType() {
-		return this.type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	public String getPath() {
-		return this.path;
-	}
-
-	public void setPath(String path) {
-		this.path = path;
-	}
-
-	public Integer getWidth() {
-		return this.width;
-	}
-
-	public void setWidth(Integer width) {
-		this.width = width;
-	}
-
-	public Integer getHeight() {
-		return this.height;
-	}
-
-	public void setHeight(Integer height) {
-		this.height = height;
-	}
-
-	public String getSetting() {
-		return this.setting;
-	}
-
-	public void setSetting(String setting) {
-		this.setting = setting;
-	}
-
-	public String getDescription() {
-		return this.description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public Integer getItems() {
-		return this.items;
-	}
-
-	public void setItems(Integer items) {
-		this.items = items;
-	}
-
-	public Integer getDisabled() {
-		return this.disabled;
-	}
-
-	public void setDisabled(Integer disabled) {
-		this.disabled = disabled;
-	}
 }

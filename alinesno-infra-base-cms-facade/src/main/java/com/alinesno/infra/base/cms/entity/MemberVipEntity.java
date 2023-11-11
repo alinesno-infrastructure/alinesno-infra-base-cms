@@ -1,5 +1,8 @@
 package com.alinesno.infra.base.cms.entity;
 
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
+import lombok.Data;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -14,6 +17,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
  * @version 1.0.0
  */
 @TableName("member_vip")
+@Data
 public class MemberVipEntity extends InfraBaseEntity {
 
 	// 字段
@@ -21,15 +25,7 @@ public class MemberVipEntity extends InfraBaseEntity {
 	 * 用户ID
 	 */
 	@TableField("userid")
+	@ColumnType(length=255)
+	@ColumnComment("用户ID")
 	private Integer userId;
-
-	// getter and setter
-	public Integer getUserId() {
-		return this.userId;
-	}
-
-	public MemberVipEntity setUserId(Integer userId) {
-		this.userId = userId;
-		return this;
-	}
 }

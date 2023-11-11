@@ -1,5 +1,8 @@
 package com.alinesno.infra.base.cms.entity;
 
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
+import lombok.Data;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -12,6 +15,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
  * @version 1.0.0
  */
 @TableName("position")
+@Data
 public class PositionEntity extends InfraBaseEntity {
 
 	// fields
@@ -20,113 +24,63 @@ public class PositionEntity extends InfraBaseEntity {
 	 * 位置ID
 	 */
 	@TableField("posid")
+	@ColumnType(length=255)
+	@ColumnComment("位置ID")
 	private Integer posid;
 
 	/**
 	 * 模型ID
 	 */
 	@TableField("modelid")
+	@ColumnType(length=255)
+	@ColumnComment("模型ID")
 	private Integer modelid;
 
 	/**
 	 * 分类ID
 	 */
 	@TableField("catid")
+	@ColumnType(length=255)
+	@ColumnComment("分类ID")
 	private Integer catid;
 
 	/**
 	 * 名称
 	 */
 	@TableField("name")
+	@ColumnType(length=255)
+	@ColumnComment("名称")
 	private String name;
 
 	/**
 	 * 最大数量
 	 */
 	@TableField("maxnum")
+	@ColumnType(length=255)
+	@ColumnComment("最大数量")
 	private Integer maxnum;
 
 	/**
 	 * 扩展
 	 */
 	@TableField("extention")
+	@ColumnType(length=255)
+	@ColumnComment("扩展")
 	private String extention;
 
 	/**
 	 * 排序
 	 */
 	@TableField("listorder")
+	@ColumnType(length=255)
+	@ColumnComment("排序")
 	private Integer listorder;
 
 	/**
 	 * 缩略图
 	 */
 	@TableField("thumb")
+	@ColumnType(length=255)
+	@ColumnComment("缩略图")
 	private String thumb;
-
-	// getter and setter methods
-
-	public Integer getPosid() {
-		return posid;
-	}
-
-	public void setPosid(Integer posid) {
-		this.posid = posid;
-	}
-
-	public Integer getModelid() {
-		return modelid;
-	}
-
-	public void setModelid(Integer modelid) {
-		this.modelid = modelid;
-	}
-
-	public Integer getCatid() {
-		return catid;
-	}
-
-	public void setCatid(Integer catid) {
-		this.catid = catid;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public Integer getMaxnum() {
-		return maxnum;
-	}
-
-	public void setMaxnum(Integer maxnum) {
-		this.maxnum = maxnum;
-	}
-
-	public String getExtention() {
-		return extention;
-	}
-
-	public void setExtention(String extention) {
-		this.extention = extention;
-	}
-
-	public Integer getListorder() {
-		return listorder;
-	}
-
-	public void setListorder(Integer listorder) {
-		this.listorder = listorder;
-	}
-
-	public String getThumb() {
-		return thumb;
-	}
-
-	public void setThumb(String thumb) {
-		this.thumb = thumb;
-	}
 }

@@ -1,5 +1,8 @@
 package com.alinesno.infra.base.cms.entity;
 
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
+import lombok.Data;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -13,6 +16,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
  * @version 1.0.0
  */
 @TableName("search_keyword")
+@Data
 public class SearchKeywordEntity extends InfraBaseEntity {
 
 	// fields
@@ -21,97 +25,31 @@ public class SearchKeywordEntity extends InfraBaseEntity {
 	 * 关键词
 	 */
 	@TableField("keyword")
+	@ColumnType(length=255)
+	@ColumnComment("关键词")
 	private String keyword;
 
 	/**
 	 * 拼音
 	 */
 	@TableField("pinyin")
+	@ColumnType(length=255)
+	@ColumnComment("拼音")
 	private String pinyin;
 
 	/**
 	 * 搜索次数
 	 */
 	@TableField("searchnums")
+	@ColumnType(length=255)
+	@ColumnComment("搜索次数")
 	private Integer searchnums;
 
 	/**
 	 * 数据
 	 */
 	@TableField("data")
+	@ColumnType(length=255)
+	@ColumnComment("数据")
 	private String data;
-
-	// getter and setter methods
-
-	/**
-	 * 获取关键词
-	 *
-	 * @return 关键词
-	 */
-	public String getKeyword() {
-		return this.keyword;
-	}
-
-	/**
-	 * 设置关键词
-	 *
-	 * @param keyword 关键词
-	 */
-	public void setKeyword(String keyword) {
-		this.keyword = keyword;
-	}
-
-	/**
-	 * 获取拼音
-	 *
-	 * @return 拼音
-	 */
-	public String getPinyin() {
-		return this.pinyin;
-	}
-
-	/**
-	 * 设置拼音
-	 *
-	 * @param pinyin 拼音
-	 */
-	public void setPinyin(String pinyin) {
-		this.pinyin = pinyin;
-	}
-
-	/**
-	 * 获取搜索次数
-	 *
-	 * @return 搜索次数
-	 */
-	public Integer getSearchnums() {
-		return this.searchnums;
-	}
-
-	/**
-	 * 设置搜索次数
-	 *
-	 * @param searchnums 搜索次数
-	 */
-	public void setSearchnums(Integer searchnums) {
-		this.searchnums = searchnums;
-	}
-
-	/**
-	 * 获取数据
-	 *
-	 * @return 数据
-	 */
-	public String getData() {
-		return this.data;
-	}
-
-	/**
-	 * 设置数据
-	 *
-	 * @param data 数据
-	 */
-	public void setData(String data) {
-		this.data = data;
-	}
 }

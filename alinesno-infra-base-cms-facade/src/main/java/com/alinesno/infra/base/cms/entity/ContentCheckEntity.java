@@ -3,6 +3,10 @@ package com.alinesno.infra.base.cms.entity;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * 数据表：content_check 表备注：
@@ -20,7 +24,9 @@ import com.baomidou.mybatisplus.annotation.TableName;
  * @author luoxiaodong
  * @version 1.0.0
  */
+@EqualsAndHashCode(callSuper = true)
 @TableName("content_check")
+@Data
 public class ContentCheckEntity extends InfraBaseEntity {
 
 	// 字段
@@ -29,106 +35,55 @@ public class ContentCheckEntity extends InfraBaseEntity {
 	 * checkid
 	 */
 	@TableField("checkid")
+	@ColumnType(length=255)
+	@ColumnComment("checkid")
 	private String checkid;
 
 	/**
 	 * catid
 	 */
 	@TableField("catid")
+	@ColumnComment("catid")
+	@ColumnType(length=10)
 	private Integer catid;
 
 	/**
 	 * siteid
 	 */
 	@TableField("siteid")
+	@ColumnComment("siteid")
+	@ColumnType(length=10)
 	private Integer siteid;
 
 	/**
 	 * title
 	 */
 	@TableField("title")
+	@ColumnComment("title")
+	@ColumnType(length=255)
 	private String title;
 
 	/**
 	 * username
 	 */
 	@TableField("username")
+	@ColumnComment("username")
+	@ColumnType(length=255)
 	private String username;
 
 	/**
 	 * inputtime
 	 */
 	@TableField("inputtime")
+	@ColumnComment("inputtime")
+	@ColumnType(length=19)
 	private Integer inputtime;
 
 	/**
 	 * status
 	 */
 	@TableField("status")
+	@ColumnComment("status")
+	@ColumnType(length=255)
 	private Integer status;
-
-	// Getter and Setter methods
-
-	public String getCheckid() {
-		return this.checkid;
-	}
-
-	public ContentCheckEntity setCheckid(String checkid) {
-		this.checkid = checkid;
-		return this;
-	}
-
-	public Integer getCatid() {
-		return this.catid;
-	}
-
-	public ContentCheckEntity setCatid(Integer catid) {
-		this.catid = catid;
-		return this;
-	}
-
-	public Integer getSiteid() {
-		return this.siteid;
-	}
-
-	public ContentCheckEntity setSiteid(Integer siteid) {
-		this.siteid = siteid;
-		return this;
-	}
-
-	public String getTitle() {
-		return this.title;
-	}
-
-	public ContentCheckEntity setTitle(String title) {
-		this.title = title;
-		return this;
-	}
-
-	public String getUsername() {
-		return this.username;
-	}
-
-	public ContentCheckEntity setUsername(String username) {
-		this.username = username;
-		return this;
-	}
-
-	public Integer getInputtime() {
-		return this.inputtime;
-	}
-
-	public ContentCheckEntity setInputtime(Integer inputtime) {
-		this.inputtime = inputtime;
-		return this;
-	}
-
-	public Integer getStatus() {
-		return this.status;
-	}
-
-	public ContentCheckEntity setStatus(Integer status) {
-		this.status = status;
-		return this;
-	}
 }

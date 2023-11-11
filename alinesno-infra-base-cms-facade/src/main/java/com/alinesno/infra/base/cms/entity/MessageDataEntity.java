@@ -1,5 +1,8 @@
 package com.alinesno.infra.base.cms.entity;
 
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
+import lombok.Data;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -14,6 +17,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
  * @version 1.0.0
  */
 @TableName("message_data")
+@Data
 public class MessageDataEntity extends InfraBaseEntity {
 
 	// 字段
@@ -21,30 +25,15 @@ public class MessageDataEntity extends InfraBaseEntity {
 	 * 用户ID
 	 */
 	@TableField("userid")
+	@ColumnType(length=255)
+	@ColumnComment("用户ID")
 	private Integer userId;
 
 	/**
 	 * 群消息ID
 	 */
 	@TableField("group_message_id")
+	@ColumnType(length=255)
+	@ColumnComment("群消息ID")
 	private Integer groupMessageId;
-
-	// getter and setter
-	public Integer getUserId() {
-		return this.userId;
-	}
-
-	public MessageDataEntity setUserId(Integer userId) {
-		this.userId = userId;
-		return this;
-	}
-
-	public Integer getGroupMessageId() {
-		return this.groupMessageId;
-	}
-
-	public MessageDataEntity setGroupMessageId(Integer groupMessageId) {
-		this.groupMessageId = groupMessageId;
-		return this;
-	}
 }

@@ -1,5 +1,8 @@
 package com.alinesno.infra.base.cms.entity;
 
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
+import lombok.Data;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -18,6 +21,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
  * @version 1.0.0
  */
 @TableName("favorite")
+@Data
 public class FavoriteEntity extends InfraBaseEntity {
 
 	// 字段
@@ -26,57 +30,31 @@ public class FavoriteEntity extends InfraBaseEntity {
 	 * 用户ID
 	 */
 	@TableField("userid")
+	@ColumnType(length=255)
+	@ColumnComment("用户ID")
 	private Integer userid;
 
 	/**
 	 * 标题
 	 */
 	@TableField("title")
+	@ColumnType(length=255)
+	@ColumnComment("标题")
 	private String title;
 
 	/**
 	 * URL地址
 	 */
 	@TableField("url")
+	@ColumnType(length=255)
+	@ColumnComment("URL地址")
 	private String url;
 
 	/**
 	 * 添加日期
 	 */
 	@TableField("adddate")
+	@ColumnType(length=255)
+	@ColumnComment("添加日期")
 	private Integer adddate;
-
-	// Getters and Setters
-
-	public Integer getUserid() {
-		return this.userid;
-	}
-
-	public void setUserid(Integer userid) {
-		this.userid = userid;
-	}
-
-	public String getTitle() {
-		return this.title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getUrl() {
-		return this.url;
-	}
-
-	public void setUrl(String url) {
-		this.url = url;
-	}
-
-	public Integer getAdddate() {
-		return this.adddate;
-	}
-
-	public void setAdddate(Integer adddate) {
-		this.adddate = adddate;
-	}
 }
