@@ -25,12 +25,12 @@
         <module>alinesno-infra-base-cms-facade</module>  <!-- 接口和引用 -->
         <module>alinesno-infra-base-cms-domain</module>  <!-- 领域服务 -->
         <module>alinesno-infra-base-cms-adapter</module> <!-- 适配层 -->
-        <module>alinesno-infra-base-cms-api</module>  <!-- 接口服务 -->
+        <module>alinesno-infra-base-cms-gateway</module>  <!-- 接口服务 -->
         <module>alinesno-infra-base-cms-client</module>  <!-- 对外引用 -->
         <module>alinesno-infra-base-cms-boot</module>  <!-- 启动服务 -->
 
         <!-- 前端服务
-        <module>alinesno-infra-base-cms-admin</module>
+        <module>alinesno-infra-base-cms-ui</module>
         -->
     </modules>
 
