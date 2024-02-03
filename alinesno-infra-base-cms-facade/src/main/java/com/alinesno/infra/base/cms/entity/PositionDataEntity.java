@@ -2,10 +2,12 @@ package com.alinesno.infra.base.cms.entity;
 
 import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
 import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
+import com.gitee.sunchenbin.mybatis.actable.constants.MySqlTypeConstant;
 import lombok.Data;
 import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.EqualsAndHashCode;
 
 /**
  * 数据表：picture_data
@@ -14,6 +16,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
  * @author luoxiaodong
  * @version 1.0.0
  */
+@EqualsAndHashCode(callSuper = true)
 @TableName("position_data")
 @Data
 public class PositionDataEntity extends InfraBaseEntity {
@@ -24,7 +27,7 @@ public class PositionDataEntity extends InfraBaseEntity {
 	 * 内容
 	 */
 	@TableField("content")
-	@ColumnType(length=255)
+	@ColumnType(MySqlTypeConstant.LONGTEXT)
 	@ColumnComment("内容")
 	private String content;
 

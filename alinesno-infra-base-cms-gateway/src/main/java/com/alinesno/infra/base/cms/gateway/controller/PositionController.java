@@ -1,6 +1,7 @@
 package com.alinesno.infra.base.cms.gateway.controller;
 
 import com.alinesno.infra.base.cms.entity.PositionEntity;
+import com.alinesno.infra.base.cms.service.IPositionDataService;
 import com.alinesno.infra.base.cms.service.IPositionService;
 import com.alinesno.infra.common.core.constants.SpringInstanceScope;
 import com.alinesno.infra.common.facade.pageable.DatatablesPageBean;
@@ -8,6 +9,7 @@ import com.alinesno.infra.common.facade.pageable.TableDataInfo;
 import com.alinesno.infra.common.web.adapter.rest.BaseController;
 import io.swagger.annotations.Api;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,14 +28,12 @@ import org.springframework.web.bind.annotation.RestController;
  * @author luoxiaodong
  * @version 1.0.0
  */
+@Slf4j
 @Api(tags = "Position")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
 @RequestMapping("/api/infra/simple/crm/position")
 public class PositionController extends BaseController<PositionEntity, IPositionService> {
-
-    // 日志记录
-    private static final Logger log = LoggerFactory.getLogger(PositionController.class);
 
     @Autowired
     private IPositionService service;
