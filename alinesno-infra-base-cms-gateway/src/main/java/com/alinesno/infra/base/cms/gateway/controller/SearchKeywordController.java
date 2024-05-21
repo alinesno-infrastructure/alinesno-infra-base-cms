@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "SearchKeyword")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/search_keyword")
+@RequestMapping("/api/infra/base/cms/search_keyword")
 public class SearchKeywordController extends BaseController<SearchKeywordEntity, ISearchKeywordService> {
 
     // 日志记录

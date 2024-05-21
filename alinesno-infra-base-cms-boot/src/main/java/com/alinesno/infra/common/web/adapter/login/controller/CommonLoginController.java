@@ -130,20 +130,19 @@ public class CommonLoginController {
                 new Menu("Dashboard", "index", false, false , "dashboard", new Menu.Meta("仪盘表", "dashboard", false, null))
         ));
 
-        Menu contentMenu = new Menu("Content", "/content", false, "noRedirect", "Layout", true, new Menu.Meta("内容管理", "post", false, null),
+        Menu contentMenu = new Menu("Content", "/Content", false, "noRedirect", "Layout", true, new Menu.Meta("内容管理", "post", false, null),
                 List.of(
-                        new Menu("Post", "base/cms/post/index", false,false,  "base/cms/post/index", new Menu.Meta("内容管理", "tree", false, null)),
+                        new Menu("PostManager", "base/cms/post/index", false,false,  "base/cms/post/index", new Menu.Meta("内容管理", "tree", false, null)),
                         new Menu("Attachment", "base/cms/attachment/index", false,false,  "base/cms/attachment/index", new Menu.Meta("附件管理", "user", false, null)),
                         new Menu("Special", "base/cms/special/index", false,false,  "base/cms/special/index", new Menu.Meta("专题", "tree", false, null)),
                         new Menu("Collection", "base/cms/collection/index", false,false,  "base/cms/collection/index", new Menu.Meta("采集管理", "tree", false, null)),
                         new Menu("Comment", "base/cms/comment/index", false,false,  "base/cms/comment/index", new Menu.Meta("评论管理", "tree", false, null)),
-                        new Menu("Link", "base/cms/link/index", false,false,  "base/cms/link/index", new Menu.Meta("友情链接", "tree", false, null))
-
+                        new Menu("Link", "base/cms/link/index", false,false, "base/cms/link/index", new Menu.Meta("友情链接", "cate", false, null))
                 ));
 
         Menu postMenu = new Menu("Post", "/Post", false, "noRedirect", "Layout", true, new Menu.Meta("发布管理", "monitor", false, null),
                 List.of(
-                        new Menu("Content", "base/cms/add/index", false,false, "base/cms/add/index", new Menu.Meta("文章发布", "content", false, null)),
+                        new Menu("ContentAdd", "base/cms/add/index", false,false, "base/cms/add/index", new Menu.Meta("文章发布", "content", false, null)),
                         new Menu("Tag", "base/cms/tag/index", false,false, "base/cms/tag/index", new Menu.Meta("标签管理", "Tag", false, null)),
                         new Menu("Template", "base/cms/template/index", false,false, "base/cms/template/index", new Menu.Meta("模板管理", "template", false, null))
                 ));

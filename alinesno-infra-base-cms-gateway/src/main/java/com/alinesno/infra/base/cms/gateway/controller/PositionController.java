@@ -1,7 +1,6 @@
 package com.alinesno.infra.base.cms.gateway.controller;
 
 import com.alinesno.infra.base.cms.entity.PositionEntity;
-import com.alinesno.infra.base.cms.service.IPositionDataService;
 import com.alinesno.infra.base.cms.service.IPositionService;
 import com.alinesno.infra.common.core.constants.SpringInstanceScope;
 import com.alinesno.infra.common.facade.pageable.DatatablesPageBean;
@@ -11,8 +10,6 @@ import io.swagger.annotations.Api;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.builder.ToStringBuilder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.ui.Model;
@@ -32,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "Position")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/position")
+@RequestMapping("/api/infra/base/cms/position")
 public class PositionController extends BaseController<PositionEntity, IPositionService> {
 
     @Autowired

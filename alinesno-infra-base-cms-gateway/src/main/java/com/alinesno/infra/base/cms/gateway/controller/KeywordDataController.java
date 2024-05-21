@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "KeywordData")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/keyword_data")
+@RequestMapping("/api/infra/base/cms/keyword_data")
 public class KeywordDataController extends BaseController<KeywordDataEntity, IKeywordDataService> {
 
     // 日志记录

@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "CommentTable")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/comment_table")
+@RequestMapping("/api/infra/base/cms/comment_table")
 public class CommentTableController extends BaseController<CommentTableEntity, ICommentTableService> {
 
     // 日志记录

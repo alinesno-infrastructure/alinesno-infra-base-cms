@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "Dbsource")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/dbsource")
+@RequestMapping("/api/infra/base/cms/dbsource")
 public class DbsourceController extends BaseController<DbsourceEntity, IDbsourceService> {
 
     // 日志记录

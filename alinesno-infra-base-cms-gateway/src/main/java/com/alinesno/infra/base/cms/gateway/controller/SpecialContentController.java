@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "SpecialContent")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/special_content")
+@RequestMapping("/api/infra/base/cms/special_content")
 public class SpecialContentController extends BaseController<SpecialContentEntity, ISpecialContentService> {
 
     // 日志记录

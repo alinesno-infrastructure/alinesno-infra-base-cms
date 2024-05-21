@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "Urlrule")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/urlrule")
+@RequestMapping("/api/infra/base/cms/urlrule")
 public class UrlruleController extends BaseController<UrlruleEntity, IUrlruleService> {
 
     // 日志记录

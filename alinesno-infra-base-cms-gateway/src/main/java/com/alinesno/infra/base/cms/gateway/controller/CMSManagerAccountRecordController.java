@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "CMSManagerAccountRecord")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/cms_manager_account_record")
+@RequestMapping("/api/infra/base/cms/cms_manager_account_record")
 public class CMSManagerAccountRecordController extends BaseController<CMSManagerAccountRecordEntity, ICMSManagerAccountRecordService> {
 
     // 日志记录

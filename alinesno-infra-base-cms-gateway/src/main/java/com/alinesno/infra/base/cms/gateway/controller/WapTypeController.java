@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "WapType")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/wap_type")
+@RequestMapping("/api/infra/base/cms/wap_type")
 public class WapTypeController extends BaseController<WapTypeEntity, IWapTypeService> {
 
     // 日志记录

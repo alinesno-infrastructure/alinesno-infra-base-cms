@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "PositionData")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/position_data")
+@RequestMapping("/api/infra/base/cms/position_data")
 public class PositionDataController extends BaseController<PositionDataEntity, IPositionDataService> {
 
     // 日志记录

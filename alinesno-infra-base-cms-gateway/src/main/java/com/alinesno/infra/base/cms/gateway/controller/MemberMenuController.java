@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "MemberMenu")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/member_menu")
+@RequestMapping("/api/infra/base/cms/member_menu")
 public class MemberMenuController extends BaseController<MemberMenuEntity, IMemberMenuService> {
 
     // 日志记录

@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "SpecialCData")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/special_cdata")
+@RequestMapping("/api/infra/base/cms/special_cdata")
 public class SpecialCDataController extends BaseController<SpecialCDataEntity, ISpecialCDataService> {
 
     // 日志记录

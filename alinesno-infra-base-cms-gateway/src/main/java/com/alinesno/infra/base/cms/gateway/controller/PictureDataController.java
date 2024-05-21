@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "PictureData")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/picture_data")
+@RequestMapping("/api/infra/base/cms/picture_data")
 public class PictureDataController extends BaseController<PictureDataEntity, IPictureDataService> {
 
     // 日志记录

@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "VideoData")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/video_data")
+@RequestMapping("/api/infra/base/cms/video_data")
 public class VideoDataController extends BaseController<VideoDataEntity, IVideoDataService> {
 
     // 日志记录

@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "Cache")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/cache")
+@RequestMapping("/api/infra/base/cms/cache")
 public class CacheController extends BaseController<CacheEntity, ICacheService> {
 
     // 日志记录

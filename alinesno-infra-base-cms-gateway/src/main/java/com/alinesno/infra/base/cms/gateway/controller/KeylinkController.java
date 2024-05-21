@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "Keylink")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/keylink")
+@RequestMapping("/api/infra/base/cms/keylink")
 public class KeylinkController extends BaseController<KeylinkEntity, IKeylinkService> {
 
     // 日志记录

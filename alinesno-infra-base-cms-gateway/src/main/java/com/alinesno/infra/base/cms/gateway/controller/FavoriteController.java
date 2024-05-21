@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "Favorite")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/favorite")
+@RequestMapping("/api/infra/base/cms/favorite")
 public class FavoriteController extends BaseController<FavoriteEntity, IFavoriteService> {
 
     // 日志记录

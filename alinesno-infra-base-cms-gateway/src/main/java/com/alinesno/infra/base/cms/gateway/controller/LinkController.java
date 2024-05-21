@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "Link")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/link")
+@RequestMapping("/api/infra/base/cms/link")
 public class LinkController extends BaseController<LinkEntity, ILinkService> {
 
     // 日志记录

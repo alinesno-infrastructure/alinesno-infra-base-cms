@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "Attachment")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/attachment")
+@RequestMapping("/api/infra/base/cms/attachment")
 public class AttachmentController extends BaseController<AttachmentEntity, IAttachmentService> {
 
     // 日志记录

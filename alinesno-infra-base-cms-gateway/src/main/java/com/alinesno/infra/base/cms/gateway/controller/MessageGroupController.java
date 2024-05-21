@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "MessageGroup")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/message_group")
+@RequestMapping("/api/infra/base/cms/message_group")
 public class MessageGroupController extends BaseController<MessageGroupEntity, IMessageGroupService> {
 
     // 日志记录

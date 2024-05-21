@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "TestData")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/test_data")
+@RequestMapping("/api/infra/base/cms/test_data")
 public class TestDataController extends BaseController<TestDataEntity, ITestDataService> {
 
     // 日志记录

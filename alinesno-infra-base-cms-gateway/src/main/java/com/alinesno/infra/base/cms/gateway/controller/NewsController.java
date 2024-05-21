@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "News")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/news")
+@RequestMapping("/api/infra/base/cms/news")
 public class NewsController extends BaseController<NewsEntity, INewsService> {
 
     // 日志记录

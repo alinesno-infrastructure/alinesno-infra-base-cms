@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "VoteData")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/vote_data")
+@RequestMapping("/api/infra/base/cms/vote_data")
 public class VoteDataController extends BaseController<VoteDataEntity, IVoteDataService> {
 
     // 日志记录

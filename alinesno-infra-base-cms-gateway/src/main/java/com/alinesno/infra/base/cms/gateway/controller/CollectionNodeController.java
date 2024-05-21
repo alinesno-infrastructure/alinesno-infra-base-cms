@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "CollectionNode")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/collection_node")
+@RequestMapping("/api/infra/base/cms/collection_node")
 public class CollectionNodeController extends BaseController<CollectionNodeEntity, ICollectionNodeService> {
 
     // 日志记录

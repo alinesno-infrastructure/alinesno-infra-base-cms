@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "TemplateBak")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/template_bak")
+@RequestMapping("/api/infra/base/cms/template_bak")
 public class TemplateBakController extends BaseController<TemplateBakEntity, ITemplateBakService> {
 
     // 日志记录

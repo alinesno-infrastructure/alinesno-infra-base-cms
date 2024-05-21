@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "Datacall")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/datacall")
+@RequestMapping("/api/infra/base/cms/datacall")
 public class DatacallController extends BaseController<DatacallEntity, IDatacallService> {
 
     // 日志记录

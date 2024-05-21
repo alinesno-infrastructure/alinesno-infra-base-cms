@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "Page")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/page")
+@RequestMapping("/api/infra/base/cms/page")
 public class PageController extends BaseController<PageEntity, IPageService> {
 
     // 日志记录

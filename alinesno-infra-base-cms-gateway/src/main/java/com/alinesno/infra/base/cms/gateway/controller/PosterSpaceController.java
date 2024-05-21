@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "PosterSpace")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/poster_space")
+@RequestMapping("/api/infra/base/cms/poster_space")
 public class PosterSpaceController extends BaseController<PosterSpaceEntity, IPosterSpaceService> {
 
     // 日志记录

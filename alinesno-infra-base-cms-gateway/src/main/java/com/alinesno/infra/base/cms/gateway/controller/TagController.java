@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "Tag")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/tag")
+@RequestMapping("/api/infra/base/cms/tag")
 public class TagController extends BaseController<TagEntity, ITagService> {
 
     // 日志记录

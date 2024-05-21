@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "Menu")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/menu")
+@RequestMapping("/api/infra/base/cms/menu")
 public class MenuController extends BaseController<MenuEntity, IMenuService> {
 
     // 日志记录

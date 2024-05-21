@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "MemberVip")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/member_vip")
+@RequestMapping("/api/infra/base/cms/member_vip")
 public class MemberVipController extends BaseController<MemberVipEntity, IMemberVipService> {
 
     // 日志记录

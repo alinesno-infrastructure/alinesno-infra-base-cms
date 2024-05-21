@@ -31,7 +31,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "Workflow")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/workflow")
+@RequestMapping("/api/infra/base/cms/workflow")
 public class WorkflowController extends BaseController<WorkflowEntity, IWorkflowService> {
 
     // 日志记录

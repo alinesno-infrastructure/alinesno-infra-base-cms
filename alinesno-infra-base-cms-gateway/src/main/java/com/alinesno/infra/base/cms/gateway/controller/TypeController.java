@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "Type")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/type")
+@RequestMapping("/api/infra/base/cms/type")
 public class TypeController extends BaseController<TypeEntity, ITypeService> {
 
     // 日志记录

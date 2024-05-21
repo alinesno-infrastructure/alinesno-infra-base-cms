@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "Copyfrom")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/copyfrom")
+@RequestMapping("/api/infra/base/cms/copyfrom")
 public class CopyfromController extends BaseController<CopyfromEntity, ICopyfromService> {
 
     // 日志记录

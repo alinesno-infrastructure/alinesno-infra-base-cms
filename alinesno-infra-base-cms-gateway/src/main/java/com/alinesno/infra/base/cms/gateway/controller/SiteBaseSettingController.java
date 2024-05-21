@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "SiteBaseSetting")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/site_base_setting")
+@RequestMapping("/api/infra/base/cms/site_base_setting")
 public class SiteBaseSettingController extends BaseController<SiteBaseSettingEntity, ISiteBaseSettingService> {
 
     // 日志记录

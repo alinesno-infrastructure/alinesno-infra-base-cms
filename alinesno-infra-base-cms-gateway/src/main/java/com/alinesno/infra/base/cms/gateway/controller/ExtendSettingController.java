@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "ExtendSetting")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/extend_setting")
+@RequestMapping("/api/infra/base/cms/extend_setting")
 public class ExtendSettingController extends BaseController<ExtendSettingEntity, IExtendSettingService> {
 
     // 日志记录

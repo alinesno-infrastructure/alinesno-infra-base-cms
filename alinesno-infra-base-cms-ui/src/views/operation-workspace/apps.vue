@@ -9,14 +9,16 @@
           <div class="panel-body" style="height: auto;position: relative;">
               <div class="direct-box">
                 <ul>
-                  <li class="box-item" v-for="item in directContent" :key="item">
+                  <li class="box-item" v-for="item in advantages" :key="item">
                     <div class="dire-panel">
                       <div class="panel-title">
-                        <img class="dire-panel-icon" :src="item.icon" :alt="item.name" />
-                        {{ item.name }} 
+                        <i class="dire-panel-icon" :class="item.icon" :alt="item.name" />
+                        {{ item.title }}
                       </div>
-                      <div class="panel-describe">通过简单几步，图中7种主流开发环境轻松部署，摆脱海量文档搜索之苦。</div>
-                      <div class="panel-tip">访问链接</div>
+                      <div class="panel-describe">
+                        {{ item.description }}
+                      </div>
+                      <!-- <div class="panel-tip">访问链接</div> -->
                     </div>
                   </li>
                 </ul>
@@ -27,19 +29,18 @@
       <el-col :span="5">
         <div class="grid-content">
           <div class="panel-header">
-            <div class="header-title"><i class="fa-solid fa-link"></i> 构建解决方案</div>
+            <div class="header-title"><i class="fa-solid fa-link"></i> 应用场景</div>
           </div>
           <div class="panel-body" style="height: auto;position: relative;">
             <div class="acp-app-list">
               <ul>
-                <li class="app-items" style="width:100%" v-for="item in apps" :key="item">
-                  <div class="app-icon">
-                    <img :src="item.icon" :alt="item.name" />
-                  </div>
+                <li class="app-items" style="width:100%" v-for="item in selectedPermissionScenarios" :key="item">
                   <div class="app-info">
-                    <div class="app-item-title">{{ item.name }} <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <div class="app-item-title">
+                        <i :class="item.icon" :alt="item.name" />
+                        {{ item.name }}
                     </div>
-                    <div class="app-item desc">{{ item.desc }}</div>
+                    <div class="app-item desc">{{ item.description }}</div>
                   </div>
                 </li>
               </ul>
@@ -55,20 +56,19 @@
 
 <script setup>
 
-const directContent = ref([
-  { icon: 'https://d1by4p17n947rt.cloudfront.net/icon/d88319dfa5d204f019b4284149886c59-7d586ea82f792b61a8c87de60565133d.svg', name: '快速搭建网站', desc: 'With EC2 (2 分钟)' },
-  { icon: 'https://d1by4p17n947rt.cloudfront.net/icon/f5d2c00d40914bff4f82f29f9ef768bc-53a84099cf556710383a52b4612a8612.svg', name: '部署开发环境', desc: 'With Route 53 (3 分钟)' },
-  { icon: 'https://d1by4p17n947rt.cloudfront.net/icon/3da5e8169d2f1426f99fbef54575fe96-6382cb2dfdd2f74c99bc8a64a338358e.svg', name: '搭建云上博客', desc: 'With Route 53 (3 分钟)' },
-  { icon: 'https://d1by4p17n947rt.cloudfront.net/icon/fb0cde6228b21d89ec222b45efec54e7-0856e92285f4e7ed254b2588d1fe1829.svg', name: '搭建小程序', desc: 'With Route 53 (3 分钟)' },
-  { icon: 'https://d1by4p17n947rt.cloudfront.net/icon/a5ffe5487f62ef75d8e5cf78c18525a5-d4867f9d4adcd749f0c5aff987232847.svg', name: '云上高可用架构', desc: 'With Route 53 (3 分钟)' },
-]);
+const advantages = [
+  { icon: 'fa-solid fa-shield-alt', title: '系统安全性提升', description: '通过灵活的权限管理和细粒度的权限控制，有效保护系统免受未授权访问和恶意行为的侵害。' },
+  { icon: 'fa-solid fa-chart-line', title: '精准的权限管理', description: '支持不同角色和岗位的个性化权限设置，实现精准的权限管理，确保用户只能访问其具备权限的功能和资源。' },
+  { icon: 'fa-solid fa-clipboard-list', title: '全面的日志记录', description: '提供完善的日志记录功能，包括登陆日志、业务操作日志和系统操作日志，帮助追踪和审计系统的使用情况。' },
+  { icon: 'fa-solid fa-chart-bar', title: '实时应用监控', description: '强大的应用监控功能可以实时监控系统的运行状态和性能指标，及时发现和解决问题，确保系统稳定运行。' },
+  { icon: 'fa-solid fa-cogs', title: '灵活的企业定制', description: '允许企业进行主题配置和企业配置，定制系统的外观和行为，提升用户体验，增强企业形象。' },
+  { icon: 'fa-solid fa-users-cog', title: '高效的权限管理', description: '帮助企业和机构高效管理系统中的权限，确保只有授权用户能够访问系统的功能和资源，提升系统安全性和用户体验。' }
+];
 
-const apps = ref([
-  { icon: 'https://d1by4p17n947rt.cloudfront.net/icon/051de32597041e41f73b97d61c67a13b-9cbdaf85e3bcf29b656fdedd8e6d1305.svg', name: '构建 Web 应用程序', desc: 'With Route 53 (3 分钟)' },
-  { icon: 'https://d1by4p17n947rt.cloudfront.net/icon/fb0cde6228b21d89ec222b45efec54e7-0856e92285f4e7ed254b2588d1fe1829.svg', name: '部署无服务器微服务', desc: 'With Route 53 (3 分钟)' },
-  { icon: 'https://d1by4p17n947rt.cloudfront.net/icon/7177e919b32ad97825f95e902595014b-1594766d92813b5baeb706c453f91de0.svg', name: '使用虚拟服务器构建', desc: 'With Route 53 (3 分钟)' },
-  { icon: 'https://d1by4p17n947rt.cloudfront.net/icon/fb0cde6228b21d89ec222b45efec54e7-0856e92285f4e7ed254b2588d1fe1829.svg', name: '开始迁移到 AIP', desc: 'With Route 53 (3 分钟)' },
-  { icon: 'https://d1by4p17n947rt.cloudfront.net/icon/9da5a168cf8194c8ee5ed192a443d563-674375b53bc8ae94f48cfdb5c81e8363.svg', name: '托管静态 Web 应用程序', desc: 'With Route 53 (3 分钟)' },
-]);
+const selectedPermissionScenarios = [
+  { icon: 'fa-solid fa-building', name: '集团权限管理', description: '用于管理集团内部各个子公司或部门的权限，实现集中式权限管理和跨机构权限控制。' },
+  { icon: 'fa-solid fa-cogs', name: '系统级权限控制', description: '用于管理系统级别的权限，包括系统功能的权限设置、管理员权限控制等，确保系统安全和稳定运行。' },
+  { icon: 'fa-solid fa-users-cog', name: '角色权限分配', description: '用于将权限按角色进行分配和管理，实现灵活的权限控制和便捷的权限调整，提高系统的安全性和管理效率。' },
+];
 
 </script>

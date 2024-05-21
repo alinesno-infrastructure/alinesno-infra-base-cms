@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "Times")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/times")
+@RequestMapping("/api/infra/base/cms/times")
 public class TimesController extends BaseController<TimesEntity, ITimesService> {
 
     // 日志记录

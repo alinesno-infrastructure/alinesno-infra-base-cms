@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "Linkage")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/linkage")
+@RequestMapping("/api/infra/base/cms/linkage")
 public class LinkageController extends BaseController<LinkageEntity, ILinkageService> {
 
     // 日志记录

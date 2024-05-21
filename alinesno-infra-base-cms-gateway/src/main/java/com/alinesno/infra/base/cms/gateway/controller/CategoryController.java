@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "Category")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/category")
+@RequestMapping("/api/infra/base/cms/category")
 public class CategoryController extends BaseController<CategoryEntity, ICategoryService> {
 
     // 日志记录

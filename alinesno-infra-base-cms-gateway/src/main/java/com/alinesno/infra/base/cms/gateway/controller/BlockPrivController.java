@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "BlockPriv")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/block_priv")
+@RequestMapping("/api/infra/base/cms/block_priv")
 public class BlockPrivController extends BaseController<BlockPrivEntity, IBlockPrivService> {
 
     // 日志记录

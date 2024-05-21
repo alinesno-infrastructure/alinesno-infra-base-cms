@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "DownloadData")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/download_data")
+@RequestMapping("/api/infra/base/cms/download_data")
 public class DownloadDataController extends BaseController<DownloadDataEntity, IDownloadDataService> {
 
     // 日志记录

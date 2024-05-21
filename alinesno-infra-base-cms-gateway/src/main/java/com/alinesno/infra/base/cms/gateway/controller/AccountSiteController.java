@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "AccountSite")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/account_site")
+@RequestMapping("/api/infra/base/cms/account_site")
 public class AccountSiteController extends BaseController<AccountSiteEntity, IAccountSiteService> {
 
     // 日志记录

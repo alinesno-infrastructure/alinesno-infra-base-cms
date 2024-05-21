@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "ContentCheck")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/content_check")
+@RequestMapping("/api/infra/base/cms/content_check")
 public class ContentCheckController extends BaseController<ContentCheckEntity, IContentCheckService> {
 
     // 日志记录

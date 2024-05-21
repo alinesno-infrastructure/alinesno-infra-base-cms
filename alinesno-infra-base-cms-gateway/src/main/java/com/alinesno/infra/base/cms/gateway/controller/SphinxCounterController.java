@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "SphinxCounter")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/sphinx_counter")
+@RequestMapping("/api/infra/base/cms/sphinx_counter")
 public class SphinxCounterController extends BaseController<SphinxCounterEntity, ISphinxCounterService> {
 
     // 日志记录

@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Api(tags = "Announce")
 @RestController
-@RequestMapping("/api/infra/simple/crm/announce")
+@RequestMapping("/api/infra/base/cms/announce")
 public class AnnounceController extends BaseController<AnnounceEntity, IAnnounceService> {
 
     private static final Logger log = LoggerFactory.getLogger(AnnounceController.class);

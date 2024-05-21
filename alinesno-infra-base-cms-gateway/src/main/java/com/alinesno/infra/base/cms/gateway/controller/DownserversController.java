@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "Downservers")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/downservers")
+@RequestMapping("/api/infra/base/cms/downservers")
 public class DownserversController extends BaseController<DownserversEntity, IDownserversService> {
 
     // 日志记录

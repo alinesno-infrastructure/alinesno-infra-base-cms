@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "ReleasePoint")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/release_point")
+@RequestMapping("/api/infra/base/cms/release_point")
 public class ReleasePointController extends BaseController<ReleasePointEntity, IReleasePointService> {
 
     // 日志记录

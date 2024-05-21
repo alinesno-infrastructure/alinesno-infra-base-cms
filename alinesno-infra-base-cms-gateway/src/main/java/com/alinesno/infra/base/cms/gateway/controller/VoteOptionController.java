@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "VoteOption")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/vote_option")
+@RequestMapping("/api/infra/base/cms/vote_option")
 public class VoteOptionController extends BaseController<VoteOptionEntity, IVoteOptionService> {
 
     // 日志记录

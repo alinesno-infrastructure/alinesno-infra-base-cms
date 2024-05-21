@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "CategoryPriv")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/category_priv")
+@RequestMapping("/api/infra/base/cms/category_priv")
 public class CategoryPrivController extends BaseController<CategoryPrivEntity, ICategoryPrivService> {
 
     // 日志记录

@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "MessageData")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/message_data")
+@RequestMapping("/api/infra/base/cms/message_data")
 public class MessageDataController extends BaseController<MessageDataEntity, IMessageDataService> {
 
     // 日志记录

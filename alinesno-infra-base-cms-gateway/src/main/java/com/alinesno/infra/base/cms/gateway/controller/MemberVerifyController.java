@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "MemberVerify")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/member_verify")
+@RequestMapping("/api/infra/base/cms/member_verify")
 public class MemberVerifyController extends BaseController<MemberVerifyEntity, IMemberVerifyService> {
 
     // 日志记录

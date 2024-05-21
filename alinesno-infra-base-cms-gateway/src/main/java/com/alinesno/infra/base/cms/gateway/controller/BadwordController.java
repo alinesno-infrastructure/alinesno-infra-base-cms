@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "Badword")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/badword")
+@RequestMapping("/api/infra/base/cms/badword")
 public class BadwordController extends BaseController<BadwordEntity, IBadwordService> {
 
     // 日志记录

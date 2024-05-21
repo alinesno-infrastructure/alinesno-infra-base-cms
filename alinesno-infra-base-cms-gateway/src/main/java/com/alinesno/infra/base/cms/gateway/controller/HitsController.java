@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "Hits")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/hits")
+@RequestMapping("/api/infra/base/cms/hits")
 public class HitsController extends BaseController<HitsEntity, IHitsService> {
 
     // 日志记录

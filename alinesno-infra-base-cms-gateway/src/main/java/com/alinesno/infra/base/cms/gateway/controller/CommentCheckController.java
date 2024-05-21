@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "CommentCheck")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/comment_check")
+@RequestMapping("/api/infra/base/cms/comment_check")
 public class CommentCheckController extends BaseController<CommentCheckEntity, ICommentCheckService> {
 
     // 日志记录

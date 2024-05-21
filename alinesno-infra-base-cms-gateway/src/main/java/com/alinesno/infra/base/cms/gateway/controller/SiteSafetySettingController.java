@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "SiteSafetySetting")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/site_safety_setting")
+@RequestMapping("/api/infra/base/cms/site_safety_setting")
 public class SiteSafetySettingController extends BaseController<SiteSafetySettingEntity, ISiteSafetySettingService> {
 
     // 日志记录

@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "Ipbanned")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/ipbanned")
+@RequestMapping("/api/infra/base/cms/ipbanned")
 public class IpbannedController extends BaseController<IpbannedEntity, IIpbannedService> {
 
     // 日志记录

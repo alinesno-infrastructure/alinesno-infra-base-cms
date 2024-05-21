@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "Queue")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/simple/crm/queue")
+@RequestMapping("/api/infra/base/cms/queue")
 public class QueueController extends BaseController<QueueEntity, IQueueService> {
 
     // 日志记录
