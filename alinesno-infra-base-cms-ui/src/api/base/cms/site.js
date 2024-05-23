@@ -2,7 +2,7 @@ import request from '@/utils/request'
 import { parseStrEmpty } from "@/utils/ruoyi";
 
 // 接口配置项
-var prefix = '/api/infra/base/cms/site/';
+var prefix = '/api/infra/base/cms/managerApplication/';
 var managerUrl = {
     datatables: prefix + "datatables",
     createUrl: prefix + 'add',
@@ -23,7 +23,7 @@ var managerUrl = {
 // 获取最新的应用列表
 export function getLatestList(){
     return request({
-        url: managerUrl.latestList , 
+        url: managerUrl.latestList ,
         method: 'get'
     })
 }
@@ -31,7 +31,7 @@ export function getLatestList(){
 // 选择当前应用
 export function getCurrentApplication(){
     return request({
-        url: managerUrl.currentApplication , 
+        url: managerUrl.currentApplication ,
         method: 'get'
     })
 }

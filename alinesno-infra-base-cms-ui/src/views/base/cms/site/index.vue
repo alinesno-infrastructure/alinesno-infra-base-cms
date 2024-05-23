@@ -42,13 +42,13 @@
 
     <el-row :gutter="10" class="mb8">
       <el-col :span="1.5">
-          <el-button
-              plain
-              type="primary"
-              icon="Plus"
-              @click="handleAdd()"
-              v-hasPermi="['system:dept:add']"
-          >新增</el-button>
+        <el-button
+            plain
+            type="primary"
+            icon="Plus"
+            @click="handleAdd()"
+            v-hasPermi="['system:dept:add']"
+        >新增</el-button>
         <el-button
             type="danger"
             plain
@@ -73,11 +73,11 @@
     <el-table ref="operlogRef" v-loading="loading" :data="operlogList" @selection-change="handleSelectionChange" :default-sort="defaultSort" @sort-change="handleSortChange">
       <el-table-column type="selection" width="55" align="center" />
       <el-table-column label="图标" align="center" width="70" key="icon" >
-          <template #default="scope">
-              <div class="role-icon">
-                <img style="width:40px;height:40px;border-radius:5px;" :src="'http://data.linesno.com/icons/sepcialist/dataset_' + ((scope.$index + 1)%10 + 5) + '.png'" />
-              </div>
-          </template>
+        <template #default="scope">
+          <div class="role-icon">
+            <img style="width:40px;height:40px;border-radius:5px;" :src="'http://data.linesno.com/icons/sepcialist/dataset_' + ((scope.$index + 1)%10 + 5) + '.png'" />
+          </div>
+        </template>
       </el-table-column>
       <el-table-column label="应用名称" align="left" prop="applicationName">
         <template #default="scope">
@@ -87,7 +87,7 @@
           <div style="font-size: 13px;color: #a5a5a5;cursor: pointer;" v-copyText="scope.row.promptId">
             调用码: {{ scope.row.applicationCode }} <el-icon><CopyDocument /></el-icon>
           </div>
-      </template>
+        </template>
       </el-table-column>
       <el-table-column label="应用描述" align="left" prop="applicationDesc" />
       <el-table-column label="应用链接" align="center" width="150" prop="businessType">
@@ -97,17 +97,17 @@
       </el-table-column>
       <el-table-column label="状态" width="100" align="center" prop="status">
         <template #default="scope">
-            <el-switch
+          <el-switch
               v-model="scope.row.hasStatus"
               active-value="0"
               inactive-value="1"
-            />
+          />
         </template>
       </el-table-column>
       <el-table-column label="菜单配置" align="center" width="200" key="requestCount" prop="requestCount" :show-overflow-tooltip="true">
-          <template #default="scope">
-                <el-button type="danger" bg link @click="openMenu(scope.row)"> <i class="fa-solid fa-link"></i> 配置</el-button>
-          </template>
+        <template #default="scope">
+          <el-button type="danger" bg link @click="openMenu(scope.row)"> <i class="fa-solid fa-link"></i> 配置</el-button>
+        </template>
       </el-table-column>
       <el-table-column label="添加日期" align="center" prop="operTime" sortable="custom" :sort-orders="['descending', 'ascending']" width="180">
         <template #default="scope">
@@ -143,30 +143,30 @@
     <!-- 操作日志详细 -->
     <el-dialog :title="title" v-model="open" width="700px" append-to-body>
       <el-form ref="applicationFormRef" :model="form" :rules="rules" label-width="80px">
-          <el-col :span="24">
-            <el-form-item label="菜单图标" prop="applicationIcons">
-              <el-popover
-                  placement="bottom-start"
-                  :width="540"
-                  trigger="click"
-                  @show="showSelectIcon">
-                <template #reference>
-                  <el-input v-model="form.applicationIcons" placeholder="点击选择图标" @click="showSelectIcon" v-click-outside="hideSelectIcon" readonly>
-                    <template #prefix>
-                      <svg-icon
-                          v-if="form.applicationIcons"
-                          :icon-class="form.applicationIcons"
-                          class="el-input__icon"
-                          style="height: 32px;width: 16px;"
-                      />
-                      <el-icon v-else style="height: 32px;width: 16px;"><search /></el-icon>
-                    </template>
-                  </el-input>
-                </template>
-                <icon-select ref="iconSelectRef" @selected="selected" />
-              </el-popover>
-            </el-form-item>
-          </el-col>
+        <el-col :span="24">
+          <el-form-item label="菜单图标" prop="applicationIcons">
+            <el-popover
+                placement="bottom-start"
+                :width="540"
+                trigger="click"
+                @show="showSelectIcon">
+              <template #reference>
+                <el-input v-model="form.applicationIcons" placeholder="点击选择图标" @click="showSelectIcon" v-click-outside="hideSelectIcon" readonly>
+                  <template #prefix>
+                    <svg-icon
+                        v-if="form.applicationIcons"
+                        :icon-class="form.applicationIcons"
+                        class="el-input__icon"
+                        style="height: 32px;width: 16px;"
+                    />
+                    <el-icon v-else style="height: 32px;width: 16px;"><search /></el-icon>
+                  </template>
+                </el-input>
+              </template>
+              <icon-select ref="iconSelectRef" @selected="selected" />
+            </el-popover>
+          </el-form-item>
+        </el-col>
         <el-form-item label="应用名称" prop="applicationName">
           <el-input v-model="form.applicationName" placeholder="请输入应用名称" />
         </el-form-item>
@@ -189,16 +189,16 @@
 
 <script setup name="Application">
 
-import { 
-  listApplication, 
-  delApplication , 
+import {
+  listApplication,
+  delApplication ,
   getApplication ,
-  updateApplication , 
+  updateApplication ,
   addApplication
-} from "@/api/base/cms/cate";
+} from "@/api/base/cms/site";
 
-import SvgIcon from "@/components/SvgIcon";
-import IconSelect from "@/components/IconSelect";
+import SvgIcon from "@/components/SvgIcon/index.vue";
+import IconSelect from "@/components/IconSelect/index.vue";
 import { ClickOutside as vClickOutside } from 'element-plus'
 
 const { proxy } = getCurrentInstance();

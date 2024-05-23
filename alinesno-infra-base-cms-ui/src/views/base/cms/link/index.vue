@@ -1,16 +1,16 @@
 <template>
   <div class="app-container">
     <el-form :model="queryParams" ref="queryRef" :inline="true" v-show="showSearch" label-width="68px">
-      <el-form-item label="应用名称" prop="title">
+      <el-form-item label="友情链接名称" prop="title">
         <el-input
             v-model="queryParams.title"
-            placeholder="请输入应用名称"
+            placeholder="请输入友情链接名称"
             clearable
             style="width: 240px;"
             @keyup.enter="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="应用代码" prop="operName">
+      <el-form-item label="友情链接代码" prop="operName">
         <el-input
             v-model="queryParams.operName"
             placeholder="请输入操作人员"
@@ -72,43 +72,9 @@
 
     <el-table ref="operlogRef" v-loading="loading" :data="operlogList" @selection-change="handleSelectionChange" :default-sort="defaultSort" @sort-change="handleSortChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="图标" align="center" width="70" key="icon" >
-          <template #default="scope">
-              <div class="role-icon">
-                <img style="width:40px;height:40px;border-radius:5px;" :src="'http://data.linesno.com/icons/sepcialist/dataset_' + ((scope.$index + 1)%10 + 5) + '.png'" />
-              </div>
-          </template>
-      </el-table-column>
-      <el-table-column label="应用名称" align="left" prop="LinkName">
-        <template #default="scope">
-          <div>
-            {{ scope.row.LinkName }}
-          </div>
-          <div style="font-size: 13px;color: #a5a5a5;cursor: pointer;" v-copyText="scope.row.promptId">
-            调用码: {{ scope.row.LinkCode }} <el-icon><CopyDocument /></el-icon>
-          </div>
-      </template>
-      </el-table-column>
-      <el-table-column label="应用描述" align="left" prop="LinkDesc" />
-      <el-table-column label="应用链接" align="center" width="150" prop="businessType">
-        <template #default="scope">
-          <el-button type="primary" bg link @click="enterAppHome(scope.row)"> <i class="fa-solid fa-link"></i> 打开配置</el-button>
-        </template>
-      </el-table-column>
-      <el-table-column label="状态" width="100" align="center" prop="status">
-        <template #default="scope">
-            <el-switch
-              v-model="scope.row.hasStatus"
-              active-value="0"
-              inactive-value="1"
-            />
-        </template>
-      </el-table-column>
-      <el-table-column label="菜单配置" align="center" width="200" key="requestCount" prop="requestCount" :show-overflow-tooltip="true">
-          <template #default="scope">
-                <el-button type="danger" bg link @click="openMenu(scope.row)"> <i class="fa-solid fa-link"></i> 配置</el-button>
-          </template>
-      </el-table-column>
+      <el-table-column label="id" align="left" prop="id" />
+      <el-table-column label="链接名称" align="left" prop="LinkName"/>
+      <el-table-column label="链接URL" align="left" prop="LinkDesc" />
       <el-table-column label="添加日期" align="center" prop="operTime" sortable="custom" :sort-orders="['descending', 'ascending']" width="180">
         <template #default="scope">
           <span>{{ parseTime(scope.row.addTime) }}</span>
@@ -167,14 +133,14 @@
               </el-popover>
             </el-form-item>
           </el-col>
-        <el-form-item label="应用名称" prop="LinkName">
-          <el-input v-model="form.LinkName" placeholder="请输入应用名称" />
+        <el-form-item label="友情链接名称" prop="LinkName">
+          <el-input v-model="form.LinkName" placeholder="请输入友情链接名称" />
         </el-form-item>
-        <el-form-item label="应用描述" prop="LinkDesc">
-          <el-input v-model="form.LinkDesc" placeholder="请输入应用描述" />
+        <el-form-item label="友情链接描述" prop="LinkDesc">
+          <el-input v-model="form.LinkDesc" placeholder="请输入友情链接描述" />
         </el-form-item>
-        <el-form-item label="应用代码" prop="LinkCode">
-          <el-input v-model="form.LinkCode" placeholder="请输入应用代码" />
+        <el-form-item label="友情链接代码" prop="LinkCode">
+          <el-input v-model="form.LinkCode" placeholder="请输入友情链接代码" />
         </el-form-item>
       </el-form>
       <template #footer>
@@ -239,13 +205,9 @@ const { queryParams, form } = toRefs(data);
 function reset() {
   form.value = {
     id: undefined,
-    parentId: undefined,
-    deptName: undefined,
-    orderNum: 0,
-    leader: undefined,
-    phone: undefined,
-    email: undefined,
-    status: "0"
+    name: undefined,
+    listorder: undefined,
+    addTime: undefined,
   };
   proxy.resetForm("deptRef");
 }
@@ -333,7 +295,7 @@ function handleDelete(row) {
 function handleAdd() {
   reset();
   open.value = true;
-  title.value = "添加应用";
+  title.value = "添加友情链接";
 }
 /** 修改按钮操作 */
 async function handleUpdate(row) {
@@ -341,7 +303,7 @@ async function handleUpdate(row) {
   getLink(row.id).then(response => {
     form.value = response.data;
     open.value = true;
-    title.value = "修改应用";
+    title.value = "修改友情链接";
   });
 }
 /** 导出按钮操作 */
