@@ -3,7 +3,8 @@ import { createApp } from 'vue'
 import Cookies from 'js-cookie'
 
 import ElementPlus from 'element-plus'
-import locale from 'element-plus/lib/locale/lang/zh-cn' // 中文语言
+// import locale from 'element-plus/lib/locale/lang/zh-cn' // 中文语言
+import i18n from './i18n';
 
 import '@/assets/styles/index.scss' // global css
 
@@ -71,12 +72,13 @@ app.use(store)
 app.use(plugins)
 app.use(elementIcons)
 app.component('svg-icon', SvgIcon)
+app.use(i18n)
 
 directive(app)
 
 // 使用element-plus 并且设置全局的大小
 app.use(ElementPlus, {
-  locale: locale,
+  // locale: locale,
   // 支持 large、default、small
   size: Cookies.get('size') || 'default'
 })

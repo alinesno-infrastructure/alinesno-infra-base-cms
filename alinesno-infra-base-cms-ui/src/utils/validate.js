@@ -91,3 +91,23 @@ export function isArray(arg) {
   }
   return Array.isArray(arg)
 }
+
+/**
+ *
+ * @param {String} code
+ * @returns {Boolean}
+ */
+export function validCode(code) {
+  const reg = /^[A-Za-z0-9_]+$/
+  return reg.test(code);
+}
+
+export function codeValidator(rule, value, callback) {
+  if (!value || value.length == 0) {
+    return callback(new Error(i18n.t('Common.RuleTips.NotEmpty')));
+  }
+  if (!validCode(value)) {
+    return callback(new Error(i18n.t('Common.RuleTips.Code')));
+  }
+  callback();
+}

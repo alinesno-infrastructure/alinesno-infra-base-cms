@@ -137,7 +137,7 @@ public class CommonLoginController {
                         new Menu("Special", "base/cms/special/index", false,false,  "base/cms/special/index", new Menu.Meta("专题", "tree", false, null)),
                         new Menu("Collection", "base/cms/collection/index", false,false,  "base/cms/collection/index", new Menu.Meta("采集管理", "tree", false, null)),
                         new Menu("Comment", "base/cms/comment/index", false,false,  "base/cms/comment/index", new Menu.Meta("评论管理", "tree", false, null)),
-                        new Menu("Link", "base/cms/link/index", false,false, "base/cms/link/index", new Menu.Meta("友情链接", "cate", false, null))
+                        new Menu("Link", "base/cms/link/linkGroup", false,false, "base/cms/link/linkGroup", new Menu.Meta("友情链接", "cate", false, null))
                 ));
 
         Menu postMenu = new Menu("Post", "/Post", false, "noRedirect", "Layout", true, new Menu.Meta("发布管理", "monitor", false, null),

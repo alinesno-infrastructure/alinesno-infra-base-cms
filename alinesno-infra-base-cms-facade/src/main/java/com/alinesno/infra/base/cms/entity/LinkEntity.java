@@ -50,6 +50,22 @@ public class LinkEntity extends InfraBaseEntity {
 	private Integer typeid;
 
 	/**
+	 * 所属站点ID
+	 */
+	@TableField("siteId")
+	@ColumnType(length=255)
+	@ColumnComment("所属站点ID")
+	private Integer siteId;
+
+	/**
+	 * 所属分组ID
+	 */
+	@TableField("groupId")
+	@ColumnType(length=255)
+	@ColumnComment("所属分组ID")
+	private Integer groupId;
+
+	/**
 	 * 链接类型
 	 */
 	@TableField("linktype")

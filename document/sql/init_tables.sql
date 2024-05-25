@@ -1,0 +1,23 @@
+CREATE TABLE `link_group` (
+     `link_group_id` int DEFAULT NULL COMMENT '链接分组id',
+     `site_id` int DEFAULT NULL COMMENT '所属站点ID',
+     `name` varchar(255) DEFAULT NULL COMMENT '链接名称',
+     `code` varchar(255) DEFAULT NULL COMMENT '链接编码',
+     `sort_flag` int DEFAULT NULL COMMENT '排序标识',
+     `has_delete` int DEFAULT NULL COMMENT '是否删除',
+     `delete_manager` varchar(32) DEFAULT NULL COMMENT '删除人员',
+     `application_id` bigint DEFAULT NULL COMMENT '所属应用',
+     `application_name` varchar(64) DEFAULT NULL COMMENT '应用名称',
+     `tenant_id` varchar(32) DEFAULT NULL COMMENT '所属租户',
+     `field_id` varchar(128) DEFAULT NULL COMMENT '字段权限',
+     `department_id` varchar(32) DEFAULT NULL COMMENT '部门权限',
+     `id` bigint NOT NULL COMMENT '主键',
+     `field_prop` varchar(128) DEFAULT NULL COMMENT '字段属性',
+     `add_time` datetime DEFAULT NULL COMMENT '添加时间',
+     `delete_time` datetime DEFAULT NULL COMMENT '删除时间',
+     `has_status` int DEFAULT NULL COMMENT '状态',
+     `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+     `operator_id` bigint DEFAULT NULL COMMENT '操作员',
+     `last_update_operator_id` bigint DEFAULT NULL COMMENT '最后更新操作员',
+     PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
