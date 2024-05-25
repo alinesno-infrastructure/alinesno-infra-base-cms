@@ -39,7 +39,7 @@ public class LinkEntity extends InfraBaseEntity {
 	@TableField("linkid")
 	@ColumnType(length=255)
 	@ColumnComment("链接ID")
-	private Integer linkid;
+	private Long linkid;
 
 	/**
 	 * 类型ID
@@ -47,7 +47,7 @@ public class LinkEntity extends InfraBaseEntity {
 	@TableField("typeid")
 	@ColumnType(length=255)
 	@ColumnComment("类型ID")
-	private Integer typeid;
+	private Long typeid;
 
 	/**
 	 * 所属站点ID
@@ -55,7 +55,7 @@ public class LinkEntity extends InfraBaseEntity {
 	@TableField("siteId")
 	@ColumnType(length=255)
 	@ColumnComment("所属站点ID")
-	private Integer siteId;
+	private Long siteId;
 
 	/**
 	 * 所属分组ID
@@ -63,7 +63,7 @@ public class LinkEntity extends InfraBaseEntity {
 	@TableField("groupId")
 	@ColumnType(length=255)
 	@ColumnComment("所属分组ID")
-	private Integer groupId;
+	private Long groupId;
 
 	/**
 	 * 链接类型
@@ -71,7 +71,7 @@ public class LinkEntity extends InfraBaseEntity {
 	@TableField("linktype")
 	@ColumnType(length=255)
 	@ColumnComment("链接类型")
-	private Integer linktype;
+	private Long linktype;
 
 	/**
 	 * 名称
@@ -106,6 +106,14 @@ public class LinkEntity extends InfraBaseEntity {
 	private String introduce;
 
 	/**
+	 * 备注
+	 */
+	@TableField("remark")
+	@ColumnType(length=255)
+	@ColumnComment("备注")
+	private String remark;
+
+	/**
 	 * 用户名
 	 */
 	@TableField("username")
@@ -116,10 +124,10 @@ public class LinkEntity extends InfraBaseEntity {
 	/**
 	 * 排序
 	 */
-	@TableField("listorder")
+	@TableField("sort_flag")
 	@ColumnType(length=255)
 	@ColumnComment("排序")
-	private Integer listorder;
+	private Integer sortFlag;
 
 	/**
 	 * 是否精华

@@ -1,33 +1,65 @@
 import request from '@/utils/request'
+import { parseStrEmpty } from "@/utils/ruoyi";
 
-export function getLinkList(params) {
-  return request({
-    url: '/cms/link',
-    method: 'get',
-    params: params
-  })
+// 接口配置项
+var prefix = '/api/infra/base/cms/link/';
+var managerUrl = {
+  datatables: prefix + "datatables",
+  createUrl: prefix + 'add',
+  saveUrl: prefix + 'save',
+  updateUrl: prefix + "modify",
+  statusUrl: prefix + "changeStatus",
+  cleanUrl: prefix + "clean",
+  detailUrl: prefix + "detail",
+  removeUrl: prefix + "delete",
+  choiceLink: prefix + "choiceLink",
+  exportUrl: prefix + "exportExcel",
+  changeField: prefix + "changeField",
+  currentLink: prefix + "currentLink",
+  downloadfile: prefix + "downloadfile" ,
+  latestList: prefix + "latestList"
 }
 
-export function addLink(params) {
+
+// 查询友情链接列表
+export function listLink(query) {
   return request({
-    url: '/cms/link',
+    url: managerUrl.datatables,
     method: 'post',
-    data: params
+    params: query
   })
 }
 
-export function editLink(params) {
+// 查询友情链接详细
+export function getLink(id) {
   return request({
-    url: '/cms/link',
+    url: managerUrl.detailUrl + '/' + parseStrEmpty(id),
+    method: 'get'
+  })
+}
+
+// 新增友情链接
+export function addLink(data) {
+  return request({
+    url: managerUrl.saveUrl,
+    method: 'post',
+    data: data
+  })
+}
+
+// 修改友情链接
+export function updateLink(data) {
+  return request({
+    url: managerUrl.updateUrl,
     method: 'put',
-    data: params
+    data: data
   })
 }
 
-export function deleteLink(params) {
+// 删除友情链接
+export function delLink(id) {
   return request({
-    url: '/cms/link',
-    method: 'delete',
-    data: params
+    url: managerUrl.removeUrl + '/' + parseStrEmpty(id),
+    method: 'delete'
   })
 }

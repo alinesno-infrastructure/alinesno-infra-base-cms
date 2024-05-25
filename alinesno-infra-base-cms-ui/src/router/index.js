@@ -2,6 +2,7 @@ import { createWebHistory, createRouter } from 'vue-router'
 /* Layout */
 //import Layout from '@/layout/SaaSLayout'
 import Layout from '@/layout'
+import i18n from '@/i18n'
 
 /**
  * Note: 路由配置项
@@ -98,6 +99,19 @@ export const constantRoutes = [
         component: () => import('@/views/system/user/profile/index'),
         name: 'Profile',
         meta: { title: '个人中心', icon: 'user' }
+      }
+    ]
+  },
+  {
+    path: '/Content/base/cms/link',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: 'list',
+        component: () => import('@/views/base/cms/link/link'),
+        name: 'CmsLink',
+        meta: { noCache: true, title: i18n.global.t('CMS.FriendLink.RouteLinkList'), activeMenu: '/Content/base/cms/link/linkGroup'}
       }
     ]
   }

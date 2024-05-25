@@ -5,7 +5,6 @@ import Cache from '@/plugins/cache'
 import zhCNLocale from './lang/zh-CN'
 import zhTWLocale from './lang/zh-TW'
 import enLocale from './lang/en'
-import App from "@/App.vue";
 
 
 const messages = {

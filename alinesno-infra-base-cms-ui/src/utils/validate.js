@@ -1,3 +1,5 @@
+import i18n from '@/i18n'
+
 /**
  * 判断url是否是http或https 
  * @param {string} path
@@ -104,10 +106,20 @@ export function validCode(code) {
 
 export function codeValidator(rule, value, callback) {
   if (!value || value.length == 0) {
-    return callback(new Error(i18n.t('Common.RuleTips.NotEmpty')));
+    return callback(new Error(i18n.global.t('Common.RuleTips.NotEmpty')));
   }
   if (!validCode(value)) {
-    return callback(new Error(i18n.t('Common.RuleTips.Code')));
+    return callback(new Error(i18n.global.t('Common.RuleTips.Code')));
+  }
+  callback();
+}
+
+export function urlValidator(rule, value, callback) {
+  if (!value || value.length == 0) {
+    return callback(new Error(i18n.global.t('Common.RuleTips.NotEmpty')));
+  }
+  if (!validURL(value)) {
+    return callback(new Error(i18n.global.t('Common.RuleTips.Url')));
   }
   callback();
 }

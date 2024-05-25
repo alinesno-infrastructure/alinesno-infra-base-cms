@@ -21,7 +21,7 @@ var managerUrl = {
 }
 
 
-// 查询友情链接列表
+// 查询友情链接分组列表
 export function listLinkGroup(query) {
   return request({
     url: managerUrl.datatables,
@@ -30,7 +30,7 @@ export function listLinkGroup(query) {
   })
 }
 
-// 查询友情链接详细
+// 查询友情链接分组详细
 export function getLinkGroup(id) {
   return request({
     url: managerUrl.detailUrl + '/' + parseStrEmpty(id),
@@ -38,7 +38,7 @@ export function getLinkGroup(id) {
   })
 }
 
-// 新增友情链接
+// 新增友情链接分组
 export function addLinkGroup(data) {
   return request({
     url: managerUrl.saveUrl,
@@ -47,7 +47,7 @@ export function addLinkGroup(data) {
   })
 }
 
-// 修改友情链接
+// 修改友情链接分组
 export function updateLinkGroup(data) {
   return request({
     url: managerUrl.updateUrl,
@@ -56,7 +56,7 @@ export function updateLinkGroup(data) {
   })
 }
 
-// 删除友情链接
+// 删除友情链接分组
 export function delLinkGroup(id) {
   return request({
     url: managerUrl.removeUrl + '/' + parseStrEmpty(id),
