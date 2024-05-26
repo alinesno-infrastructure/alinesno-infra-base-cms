@@ -67,12 +67,12 @@
             clearable
             style="width: 100px"
         >
-          <!--          <el-option-->
-          <!--            v-for="dict in dict.type.CommentAuditStatus"-->
-          <!--            :key="dict.value"-->
-          <!--            :label="dict.label"-->
-          <!--            :value="dict.value"-->
-          <!--          />-->
+<!--          <el-option-->
+<!--              v-for="dict in dict.type.CommentAuditStatus"-->
+<!--              :key="dict.value"-->
+<!--              :label="dict.label"-->
+<!--              :value="dict.value"-->
+<!--          />-->
         </el-select>
       </el-form-item>
       <el-form-item>
@@ -87,7 +87,7 @@
       <el-table-column :label="$t('Comment.SourceType')" prop="sourceType" width="120" :show-overflow-tooltip="true"/>
       <el-table-column :label="$t('Comment.SourceId')" prop="sourceId" width="140" :show-overflow-tooltip="true"/>
       <el-table-column :label="$t('Comment.Content')" prop="content" :show-overflow-tooltip="true"/>
-      <el-table-column :label="$t('Comment.AuditStatus')" align="center" width="100">
+      <el-table-column :label="$t('Comment.AuditStatus')" prop="auditStatus" align="center" width="100">
         <template #default="scope">
           <!--          <dict-tag :options="dict.type.CommentAuditStatus" :value="scope.row.auditStatus"/>-->
         </template>
@@ -107,9 +107,9 @@
           <el-link type="primary" @click="handleReplyList(scope.row)">{{ scope.row.replyCount }}</el-link>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('Comment.Time')" align="center" prop="commentTime" width="150">
+      <el-table-column :label="$t('Comment.Time')" align="center" prop="addTime" width="150">
         <template #default="scope">
-          <span>{{ parseTime(scope.row.commentTime) }}</span>
+          <span>{{ parseTime(scope.row.addTime) }}</span>
         </template>
       </el-table-column>
       <el-table-column :label="$t('Comment.Location')" prop="location" align="center" width="120" :show-overflow-tooltip="true"/>
@@ -156,7 +156,7 @@
         direction="rtl"
         size="60%"
         :with-header="false"
-        :visible.sync="replyVisible"
+        v-mode="replyVisible"
         :before-close="handleReplyListClose">
       <el-table v-loading="replyLoading" :data="replyList" @selection-change="handleReplySelectionChange">
         <el-table-column type="selection" width="55" align="center"/>
@@ -171,9 +171,9 @@
             <el-link type="primary" @click="handleLikeList(scope.row)">{{ scope.row.likeCount }}</el-link>
           </template>
         </el-table-column>
-        <el-table-column :label="$t('Comment.ReplyTime')" align="center" prop="commentTime" width="150">
+        <el-table-column :label="$t('Comment.ReplyTime')" align="center" prop="addTime" width="150">
           <template #default="scope">
-            <span>{{ parseTime(scope.row.commentTime) }}</span>
+            <span>{{ parseTime(scope.row.addTime) }}</span>
           </template>
         </el-table-column>
         <el-table-column :label="$t('Comment.Location')" prop="location" align="center" width="120" :show-overflow-tooltip="true"/>
@@ -214,19 +214,19 @@
           @pagination="loadReplyList"
       />
     </el-drawer>
-    <!--    <comment-like-dialog :open.sync="likeVisible" :commentId="likeCommentId"></comment-like-dialog>-->
+        <comment-like-dialog :open.sync="likeVisible" :id="likeCommentId"></comment-like-dialog>
   </div>
 </template>
 
 <script>
 import {listComment, getCommentReplyList, getCommentLikeList, delComment, updateComment} from "@/api/base/cms/comment";
-// import CommentLikeDialog from '@/views/base/cms/comment/commentLike';
+import CommentLikeDialog from '@/views/base/cms/comment/commentLike';
 
 export default {
   name: "CommentList",
-  // components: {
-  //   "comment-like-dialog": CommentLikeDialog
-  // },
+  components: {
+    "comment-like-dialog": CommentLikeDialog
+  },
   dicts: ['CommentAuditStatus'],
   data() {
     return {
@@ -275,9 +275,9 @@ export default {
           }
       );
     },
-    loadReplyList(commentId) {
+    loadReplyList(id) {
       this.replyLoading = true;
-      getCommentReplyList(commentId, this.replyQueryParams).then(response => {
+      getCommentReplyList(id, this.replyQueryParams).then(response => {
             this.replyList = response.rows;
             this.replyTotal = parseInt(response.total);
             this.replyLoading = false;
@@ -301,25 +301,25 @@ export default {
       this.handleQuery();
     },
     handleSelectionChange(selection) {
-      this.selectedCommentIds = selection.map(item => item.commentId)
+      this.selectedCommentIds = selection.map(item => item.id)
       this.commentMultiple = !selection.length
     },
     handleReplySelectionChange(selection) {
-      this.selectedReplyIds = selection.map(item => item.commentId)
+      this.selectedReplyIds = selection.map(item => item.id)
       this.replyMultiple = !selection.length
     },
     handleReplyList(row) {
-      this.replyCommentId = row.commentId;
+      this.replyCommentId = row.id;
       this.replyVisible = true;
       this.replyQueryParams.pageNum = 1;
-      this.loadReplyList(row.commentId);
+      this.loadReplyList(row.id);
     },
     handleReplyListClose() {
       this.replyVisible = false;
       this.replyCommentId = "0";
     },
     handleLikeList(row) {
-      this.likeCommentId = row.commentId;
+      this.likeCommentId = row.id;
       this.likeVisible = true;
     },
     handleCommentLikeDialogClose() {
@@ -338,24 +338,24 @@ export default {
     },
     handleAuditPass(row) {
       if (this.replyVisible) {
-        const commentIds = row.commentId ? [row.commentId] : this.selectedReplyIds;
+        const commentIds = row.id || this.selectedReplyIds;
         this.handleAudit(commentIds, 'Y');
       } else {
-        const commentIds = row.commentId ? [row.commentId] : this.selectedCommentIds;
+        const commentIds = row.id || this.selectedCommentIds;
         this.handleAudit(commentIds, 'Y');
       }
     },
     handleAuditNotPass(row) {
       if (this.replyVisible) {
-        const commentIds = row.commentId ? [row.commentId] : this.selectedReplyIds;
+        const commentIds = row.id || this.selectedReplyIds;
         this.handleAudit(commentIds, 'N');
       } else {
-        const commentIds = row.commentId ? [row.commentId] : this.selectedCommentIds;
+        const commentIds = row.id || this.selectedCommentIds;
         this.handleAudit(commentIds, 'N');
       }
     },
     handleDelete(row) {
-      const commentIds = row.commentId ? [row.commentId] : this.selectedCommentIds;
+      const commentIds = row.id || this.selectedCommentIds;
       this.$modal.confirm(this.$t('Common.ConfirmDelete')).then(function () {
         return delComment(commentIds);
       }).then(() => {

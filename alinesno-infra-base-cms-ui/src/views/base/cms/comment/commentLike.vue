@@ -58,7 +58,7 @@ import { getCommentLikeList } from "@/api/base/cms/comment";
 export default {
   name: "CommentLikeListDialog",
   props: {
-    commentId: {
+    id: {
       type: String,
       required: true
     },
@@ -99,9 +99,9 @@ export default {
         return;
       }
       this.loading = true;
-      getCommentLikeList(this.commentId, this.queryParams).then(response => {
-        this.likeList = response.data.rows;
-        this.total = parseInt(response.data.total);
+      getCommentLikeList(this.id, this.queryParams).then(response => {
+        this.likeList = response.rows;
+        this.total = parseInt(response.total);
         this.loading = false;
       });
     },
