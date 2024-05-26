@@ -17,35 +17,15 @@ var managerUrl = {
     changeField: prefix + "changeField",
     currentApplication: prefix + "currentApplication",
     downloadfile: prefix + "downloadfile" ,
-    latestList: prefix + "latestList"
+    latestList: prefix + "latestList",
+    reply: prefix + "reply",
+    like: prefix + "like"
+
 }
 
-// 获取最新的应用列表
-export function getLatestList(){
-    return request({
-        url: managerUrl.latestList , 
-        method: 'get'
-    })
-}
 
-// 选择当前应用
-export function getCurrentApplication(){
-    return request({
-        url: managerUrl.currentApplication , 
-        method: 'get'
-    })
-}
-
-// 配置当前应用
-export function choiceApplication(id){
-    return request({
-        url: managerUrl.choiceApplication + '?applicationId=' + parseStrEmpty(id),
-        method: 'get'
-    })
-}
-
-// 查询用户列表
-export function listApplication(query) {
+// 查询评论列表
+export function listComment(query) {
     return request({
         url: managerUrl.datatables,
         method: 'post',
@@ -53,16 +33,16 @@ export function listApplication(query) {
     })
 }
 
-// 查询用户详细
-export function getApplication(id) {
+// 查询评论详细
+export function getComment(id) {
     return request({
         url: managerUrl.detailUrl + '/' + parseStrEmpty(id),
         method: 'get'
     })
 }
 
-// 新增用户
-export function addApplication(data) {
+// 新增评论
+export function addComment(data) {
     return request({
         url: managerUrl.saveUrl,
         method: 'post',
@@ -70,8 +50,8 @@ export function addApplication(data) {
     })
 }
 
-// 修改用户
-export function updateApplication(data) {
+// 修改评论
+export function updateComment(data) {
     return request({
         url: managerUrl.updateUrl,
         method: 'put',
@@ -79,92 +59,28 @@ export function updateApplication(data) {
     })
 }
 
-// 删除用户
-export function delApplication(id) {
+// 删除评论
+export function delComment(id) {
     return request({
         url: managerUrl.removeUrl + '/' + parseStrEmpty(id),
         method: 'delete'
     })
 }
 
-// 用户密码重置
-export function resetApplicationPwd(userId, password) {
-    const data = {
-        userId,
-        password
-    }
+// 获取评论回复列表
+export function getCommentReplyList(id, params) {
     return request({
-        url: '/system/user/resetPwd',
-        method: 'put',
-        data: data
+        url: managerUrl.reply + '/' + parseStrEmpty(id),
+        method: 'get',
+        params: params
     })
 }
 
-// 用户状态修改
-export function changeApplicationStatus(userId, status) {
-    const data = {
-        userId,
-        status
-    }
+// 获取评论点赞列表
+export function getCommentLikeList(id, params) {
     return request({
-        url: '/system/user/changeStatus',
-        method: 'put',
-        data: data
-    })
-}
-
-// 查询用户个人信息
-export function getApplicationProfile() {
-    return request({
-        url: '/system/user/profile',
-        method: 'get'
-    })
-}
-
-// 修改用户个人信息
-export function updateApplicationProfile(data) {
-    return request({
-        url: '/system/user/profile',
-        method: 'put',
-        data: data
-    })
-}
-
-// 用户密码重置
-export function updateApplicationPwd(oldPassword, newPassword) {
-    const data = {
-        oldPassword,
-        newPassword
-    }
-    return request({
-        url: '/system/user/profile/updatePwd',
-        method: 'put',
-        params: data
-    })
-}
-
-// 用户头像上传
-export function uploadAvatar(data) {
-    return request({
-        url: '/system/user/profile/avatar',
-        method: 'post',
-        data: data
-    })
-}
-
-// 查询授权角色
-export function getAuthRole(userId) {
-    return request({
-        url: '/system/user/authRole/' + userId,
-        method: 'get'
-    })
-}
-
-// 保存授权角色
-export function updateAuthRole(data) {
-    return request({
-        url: '/system/user/authRole',
-        method: 'put',
-        params: data
+        url: managerUrl.like + '/' + parseStrEmpty(id),
+        method: 'get',
+        params: params
     })
 }

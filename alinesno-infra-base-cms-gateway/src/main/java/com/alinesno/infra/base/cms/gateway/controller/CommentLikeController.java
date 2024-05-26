@@ -1,8 +1,7 @@
 package com.alinesno.infra.base.cms.gateway.controller;
 
-import com.alinesno.infra.base.cms.entity.CommentEntity;
+import com.alinesno.infra.base.cms.entity.CommentLikeEntity;
 import com.alinesno.infra.base.cms.service.ICommentLikeService;
-import com.alinesno.infra.base.cms.service.ICommentService;
 import com.alinesno.infra.common.core.constants.SpringInstanceScope;
 import com.alinesno.infra.common.facade.pageable.DatatablesPageBean;
 import com.alinesno.infra.common.facade.pageable.TableDataInfo;
@@ -21,30 +20,26 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * 处理与CommentEntity相关的请求的Controller。
- * 继承自BaseController类并实现ICommentService接口。
+ * 处理与CommentLikeEntity相关的请求的Controller。
+ * 继承自BaseController类并实现ICommentLikeService接口。
  *
  * @version 1.0.0
  * @author luoxiaodong
  */
-@Api(tags = "Comment")
+@Api(tags = "CommentLike")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/base/cms/comment")
-public class CommentController extends BaseController<CommentEntity, ICommentService> {
+@RequestMapping("/api/infra/base/cms/comment_like")
+public class CommentLikeController extends BaseController<CommentLikeEntity, ICommentLikeService> {
 
     // 日志记录
-    private static final Logger log = LoggerFactory.getLogger(CommentController.class);
+    private static final Logger log = LoggerFactory.getLogger(CommentLikeController.class);
 
     @Autowired
-    private ICommentService commentService;
-
-    @Autowired
-    private ICommentLikeService commentLikeService;
-
+    private ICommentLikeService service;
 
     /**
-     * 获取CommentEntity的DataTables数据。
+     * 获取CommentLikeEntity的DataTables数据。
      *
      * @param request HttpServletRequest对象。
      * @param model   Model对象。
@@ -59,7 +54,7 @@ public class CommentController extends BaseController<CommentEntity, ICommentSer
     }
 
     @Override
-    public ICommentService getFeign() {
-        return this.commentService;
+    public ICommentLikeService getFeign() {
+        return this.service;
     }
 }
