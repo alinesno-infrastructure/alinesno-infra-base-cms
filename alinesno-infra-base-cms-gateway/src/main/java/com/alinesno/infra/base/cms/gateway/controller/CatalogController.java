@@ -1,23 +1,26 @@
 package com.alinesno.infra.base.cms.gateway.controller;
 
+import com.alinesno.infra.base.cms.core.IContentType;
 import com.alinesno.infra.base.cms.entity.CatalogEntity;
 import com.alinesno.infra.base.cms.service.ICatalogService;
 import com.alinesno.infra.common.core.constants.SpringInstanceScope;
 import com.alinesno.infra.common.facade.pageable.DatatablesPageBean;
 import com.alinesno.infra.common.facade.pageable.TableDataInfo;
+import com.alinesno.infra.common.facade.response.AjaxResult;
 import com.alinesno.infra.common.web.adapter.rest.BaseController;
 import io.swagger.annotations.Api;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 处理与栏目相关的请求的Controller。
@@ -28,6 +31,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Api(tags = "Category")
 @RestController
+@RequiredArgsConstructor
 @Scope(SpringInstanceScope.PROTOTYPE)
 @RequestMapping("/api/infra/base/cms/catalog")
 public class CatalogController extends BaseController<CatalogEntity, ICatalogService> {
@@ -35,10 +39,9 @@ public class CatalogController extends BaseController<CatalogEntity, ICatalogSer
     // 日志记录
     private static final Logger log = LoggerFactory.getLogger(CatalogController.class);
 
-    @Autowired
-    private ICatalogService service;
+    private ICatalogService catalogService;
 
-//    private final List<IContentType> contentTypes;
+    private final List<IContentType> contentTypes;
 
     /**
      * 获取栏目的DataTables数据。
@@ -57,17 +60,17 @@ public class CatalogController extends BaseController<CatalogEntity, ICatalogSer
 
     @Override
     public ICatalogService getFeign() {
-        return this.service;
+        return this.catalogService;
     }
 
 
-//    /**
-//     * 内容类型数据
-//     */
-//    @GetMapping("/getContentTypes")
-//    public AjaxResult getContentTypes() {
-//        List<Map<String, String>> list = this.contentTypes.stream().sorted(Comparator.comparingInt(IContentType::getOrder))
-//                .map(ct -> Map.of("id", ct.getId(), "name", I18nUtils.get(ct.getName()))).toList();
-//        return this.toAjax(list);
-//    }
+    /**
+     * 内容类型数据
+     */
+    @GetMapping("/getContentTypes")
+    public AjaxResult getContentTypes() {
+        List<Map<String, String>> list = this.contentTypes.stream().sorted(Comparator.comparingInt(IContentType::getOrder))
+                .map(ct -> Map.of("id", ct.getId(), "name", ct.getName())).toList();
+        return this.toAjax(list);
+    }
 }
