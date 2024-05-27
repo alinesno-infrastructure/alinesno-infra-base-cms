@@ -1,6 +1,6 @@
 package com.alinesno.infra.base.cms.service;
 
-import com.alinesno.infra.base.cms.entity.CategoryEntity;
+import com.alinesno.infra.base.cms.entity.CatalogEntity;
 import com.alinesno.infra.common.facade.services.IBaseService;
 
 /**
@@ -9,5 +9,6 @@ import com.alinesno.infra.common.facade.services.IBaseService;
  * @version 1.0.0
  * @author luoxiaodong
  */
-public interface ICategoryService extends IBaseService<CategoryEntity> {
+public interface ICatalogService extends IBaseService<CatalogEntity> {
+
 }

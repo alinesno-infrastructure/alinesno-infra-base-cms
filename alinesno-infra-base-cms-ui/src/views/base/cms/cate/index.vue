@@ -1,376 +1,628 @@
 <template>
-  <div class="app-container">
-    <el-form :model="queryParams" ref="queryRef" :inline="true" v-show="showSearch" label-width="68px">
-      <el-form-item label="应用名称" prop="title">
-        <el-input
-            v-model="queryParams.title"
-            placeholder="请输入应用名称"
-            clearable
-            style="width: 240px;"
-            @keyup.enter="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="应用代码" prop="operName">
-        <el-input
-            v-model="queryParams.operName"
-            placeholder="请输入操作人员"
-            clearable
-            style="width: 240px;"
-            @keyup.enter="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="状态" prop="status">
-        <el-select
-            v-model="queryParams.status"
-            placeholder="操作状态"
-            clearable
-            style="width: 240px"
-        >
-          <el-option
-              v-for="dict in sys_common_status"
-              :key="dict.value"
-              :label="dict.label"
-              :value="dict.value"
-          />
-        </el-select>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" icon="Search" @click="handleQuery">搜索</el-button>
-        <el-button icon="Refresh" @click="resetQuery">重置</el-button>
-      </el-form-item>
-    </el-form>
-
-    <el-row :gutter="10" class="mb8">
+  <div class="catalog-info-container">
+    <el-row :gutter="10" class="mb12 btn-row">
       <el-col :span="1.5">
-          <el-button
-              plain
-              type="primary"
-              icon="Plus"
-              @click="handleAdd()"
-              v-hasPermi="['system:dept:add']"
-          >新增</el-button>
-        <el-button
-            type="danger"
-            plain
-            icon="Delete"
-            :disabled="multiple"
-            @click="handleDelete"
-            v-hasPermi="['monitor:operlog:remove']"
-        >删除</el-button>
+        <el-button 
+          plain
+          type="success"
+          icon="el-icon-edit"
+          size="mini"
+          :disabled="!this.catalogId"
+          v-hasPermi="[ $p('Catalog:Edit:{0}', [ catalogId ]) ]"
+          @click="handleUpdate">{{ $t("Common.Save") }}</el-button>
       </el-col>
       <el-col :span="1.5">
-        <el-button
-            type="warning"
-            plain
-            icon="Download"
-            @click="handleExport"
-            v-hasPermi="['monitor:operlog:export']"
-        >导出</el-button>
+        <el-button 
+          plain
+          type="primary"
+          size="mini"
+          :disabled="!this.catalogId"
+          @click="handlePreview"><svg-icon icon-class="eye-open" class="mr5"></svg-icon>{{ $t('CMS.ContentCore.Preview') }}</el-button>
       </el-col>
-      <right-toolbar v-model:showSearch="showSearch" @queryTable="getList"></right-toolbar>
+      <el-col :span="1.5">
+        <el-dropdown class="btn-permi" v-hasPermi="[ $p('Catalog:Publish:{0}', [ catalogId ]) ]">
+          <el-button 
+            plain
+            size="mini" 
+            type="primary"
+            icon="el-icon-s-promotion"
+            :disabled="!this.catalogId"
+            @click="handlePublish(-1)">
+            {{ $t('CMS.ContentCore.Publish') }}<i class="el-icon-arrow-down el-icon--right"></i>
+          </el-button>
+          <el-dropdown-menu slot="dropdown" :key="'btn-publish2-' + catalogId">
+            <el-dropdown-item 
+              v-for="dict in dict.type.CMSContentStatus" 
+              :key="dict.value" 
+              icon="el-icon-s-promotion" 
+              @click.native="handlePublish(dict.value)"
+            >{{dict.label}}{{ $t('CMS.Catalog.Content') }}</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+      </el-col>
+      <el-col :span="1.5">
+        <el-button 
+          plain
+          type="warning"
+          :icon="catalogVisible?'el-icon-circle-close':'el-icon-circle-check'"
+          size="mini"
+          :disabled="!this.catalogId"
+          v-hasPermi="[ $p('Catalog:ShowHide:{0}', [ catalogId ]) ]"
+          @click="handleChangeVisible">{{ catalogVisible ? $t("Common.Hide") : $t("Common.Show") }}</el-button>
+      </el-col>
+      <el-col :span="1.5">
+        <el-button 
+          type="primary"
+          icon="el-icon-rank"
+          size="mini"
+          plain
+          :disabled="!this.catalogId"
+          v-hasPermi="[ $p('Catalog:Move:{0}', [ catalogId ]) ]"
+          @click="handleMoveCatalog">{{ $t('Common.Move') }}</el-button>
+      </el-col>
+      <el-col :span="1.5">
+        <el-popover
+          width="226"
+          :disabled="!this.catalogId"
+          class="btn-permi"
+          v-hasPermi="[ $p('Catalog:Sort:{0}', [ catalogId ]) ]"
+          v-model="showSortPop">
+          <el-input-number v-model="sortValue" size="small" style="width:200px;" />
+          <div style="color: #909399;font-size:12px;line-height: 30px;">
+            <i class="el-icon-info mr5"></i>{{ $t('CMS.Catalog.SortTip') }}
+          </div>
+          <div style="text-align: right; margin-top: 5px;">
+            <el-button size="mini" type="text" @click="handleSortCatalogCancel">{{ $t('Common.Cancel') }}</el-button>
+            <el-button type="primary" size="mini" @click="handleSortCatalog">{{ $t('Common.Confirm') }}</el-button>
+          </div>
+          <el-button 
+            slot="reference" 
+            size="mini"
+            plain
+            type="primary"
+            icon="el-icon-sort"
+          >{{ $t('Common.Sort') }}</el-button>
+        </el-popover>
+      </el-col>
+      <el-col :span="1.5">
+        <el-popconfirm :title="$t('CMS.Catalog.DeleteTip')" @confirm="handleDelete" class="btn-permi" v-hasPermi="[ $p('Catalog:Delete:{0}', [ catalogId ]) ]">
+          <el-button 
+            type="danger" 
+            icon="el-icon-delete"
+            size="mini"
+            plain
+            :disabled="!this.catalogId"
+            slot="reference">{{ $t("Common.Delete") }}</el-button>
+        </el-popconfirm>
+      </el-col>
     </el-row>
-
-    <el-table ref="operlogRef" v-loading="loading" :data="operlogList" @selection-change="handleSelectionChange" :default-sort="defaultSort" @sort-change="handleSortChange">
-      <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="图标" align="center" width="70" key="icon" >
-          <template #default="scope">
-              <div class="role-icon">
-                <img style="width:40px;height:40px;border-radius:5px;" :src="'http://data.linesno.com/icons/sepcialist/dataset_' + ((scope.$index + 1)%10 + 5) + '.png'" />
-              </div>
-          </template>
-      </el-table-column>
-      <el-table-column label="应用名称" align="left" prop="applicationName">
-        <template #default="scope">
-          <div>
-            {{ scope.row.applicationName }}
-          </div>
-          <div style="font-size: 13px;color: #a5a5a5;cursor: pointer;" v-copyText="scope.row.promptId">
-            调用码: {{ scope.row.applicationCode }} <el-icon><CopyDocument /></el-icon>
-          </div>
-      </template>
-      </el-table-column>
-      <el-table-column label="应用描述" align="left" prop="applicationDesc" />
-      <el-table-column label="应用链接" align="center" width="150" prop="businessType">
-        <template #default="scope">
-          <el-button type="primary" bg link @click="enterAppHome(scope.row)"> <i class="fa-solid fa-link"></i> 打开配置</el-button>
-        </template>
-      </el-table-column>
-      <el-table-column label="状态" width="100" align="center" prop="status">
-        <template #default="scope">
-            <el-switch
-              v-model="scope.row.hasStatus"
-              active-value="0"
-              inactive-value="1"
-            />
-        </template>
-      </el-table-column>
-      <el-table-column label="菜单配置" align="center" width="200" key="requestCount" prop="requestCount" :show-overflow-tooltip="true">
-          <template #default="scope">
-                <el-button type="danger" bg link @click="openMenu(scope.row)"> <i class="fa-solid fa-link"></i> 配置</el-button>
-          </template>
-      </el-table-column>
-      <el-table-column label="添加日期" align="center" prop="operTime" sortable="custom" :sort-orders="['descending', 'ascending']" width="180">
-        <template #default="scope">
-          <span>{{ parseTime(scope.row.addTime) }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="操作" align="center" width="150" class-name="small-padding fixed-width">
-        <template #default="scope">
-          <el-button
-              type="text"
-              icon="Edit"
-              @click="handleUpdate(scope.row)"
-              v-hasPermi="['system:menu:edit']"
-          >修改</el-button>
-          <el-button
-              type="text"
-              icon="Delete"
-              @click="handleDelete(scope.row)"
-              v-hasPermi="['system:menu:remove']"
-          >删除</el-button>
-        </template>
-      </el-table-column>
-    </el-table>
-
-    <pagination
-        v-show="total > 0"
-        :total="total"
-        v-model:page="queryParams.pageNum"
-        v-model:limit="queryParams.pageSize"
-        @pagination="getList"
-    />
-
-    <!-- 操作日志详细 -->
-    <el-dialog :title="title" v-model="open" width="700px" append-to-body>
-      <el-form ref="applicationFormRef" :model="form" :rules="rules" label-width="80px">
-          <el-col :span="24">
-            <el-form-item label="菜单图标" prop="applicationIcons">
-              <el-popover
-                  placement="bottom-start"
-                  :width="540"
-                  trigger="click"
-                  @show="showSelectIcon">
-                <template #reference>
-                  <el-input v-model="form.applicationIcons" placeholder="点击选择图标" @click="showSelectIcon" v-click-outside="hideSelectIcon" readonly>
-                    <template #prefix>
-                      <svg-icon
-                          v-if="form.applicationIcons"
-                          :icon-class="form.applicationIcons"
-                          class="el-input__icon"
-                          style="height: 32px;width: 16px;"
-                      />
-                      <el-icon v-else style="height: 32px;width: 16px;"><search /></el-icon>
-                    </template>
-                  </el-input>
-                </template>
-                <icon-select ref="iconSelectRef" @selected="selected" />
-              </el-popover>
-            </el-form-item>
-          </el-col>
-        <el-form-item label="应用名称" prop="applicationName">
-          <el-input v-model="form.applicationName" placeholder="请输入应用名称" />
-        </el-form-item>
-        <el-form-item label="应用描述" prop="applicationDesc">
-          <el-input v-model="form.applicationDesc" placeholder="请输入应用描述" />
-        </el-form-item>
-        <el-form-item label="应用代码" prop="applicationCode">
-          <el-input v-model="form.applicationCode" placeholder="请输入应用代码" />
-        </el-form-item>
-      </el-form>
-      <template #footer>
-        <div class="dialog-footer">
-          <el-button :loading="buttonLoading" type="primary" @click="submitForm">确 定</el-button>
-          <el-button @click="cancel">取 消</el-button>
+    <el-form 
+      ref="form_info"
+      v-loading="loading"
+      :model="form_info"
+      :rules="rules"
+      :disabled="!this.catalogId"
+      label-width="165px">
+      <el-card shadow="hover">
+        <div slot="header" class="clearfix">
+          <span>{{ $t('CMS.Catalog.Basic') }}</span>
         </div>
-      </template>
+        <el-form-item :label="$t('CMS.Catalog.CatalogId')" prop="catalogId">
+          <span class="span_catalogid" v-if="form_info.catalogId!=undefined">{{form_info.catalogId}}</span>
+        </el-form-item>
+        <el-form-item :label="$t('CMS.Catalog.Name')" prop="name">
+          <el-input v-model="form_info.name" />
+        </el-form-item>
+        <el-form-item :label="$t('CMS.Catalog.Alias')" prop="alias">
+          <el-input v-model="form_info.alias" />
+        </el-form-item>
+        <el-form-item :label="$t('CMS.Catalog.Path')" prop="path">
+          <el-input v-model="form_info.path" />
+        </el-form-item>
+        <el-form-item :label="$t('CMS.Catalog.CatalogType')" prop="catalogType">
+          <el-select v-model="form_info.catalogType" :placeholder="$t('CMS.Catalog.CatalogType')">
+            <el-option 
+              v-for="ct in catalogTypeOptions"
+              :key="ct.id"
+              :label="ct.name"
+              :value="ct.id" />
+          </el-select>
+        </el-form-item>
+        <el-form-item
+          :label="$t('CMS.Catalog.RedirectUrl')"
+          v-if="form_info.catalogType==='link'"
+          prop="redirectUrl">
+          <el-input v-model="form_info.redirectUrl" placeholder="http(s)://">
+            <el-dropdown slot="append" @command="handleLinkTo">
+              <el-button>
+                {{ $t('CMS.ContentCore.InternalUrl') }}<i class="el-icon-arrow-down el-icon--right"></i>
+              </el-button>
+              <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item command="content">{{ $t('CMS.ContentCore.SelectContent') }}</el-dropdown-item>
+                <el-dropdown-item command="catalog">{{ $t('CMS.ContentCore.SelectCatalog') }}</el-dropdown-item>
+              </el-dropdown-menu>
+            </el-dropdown>
+          </el-input>
+        </el-form-item>
+        <el-form-item :label="$t('CMS.Catalog.Desc')" prop="description">
+          <el-input v-model="form_info.description" type="textarea" maxlength="100" />
+        </el-form-item>
+        <el-form-item :label="$t('CMS.Catalog.StaticFlag')" prop="staticFlag">
+          <el-switch
+            v-model="form_info.staticFlag"
+            :active-text="$t('Common.Yes')"
+            :inactive-text="$t('Common.No')"
+            active-value="Y"
+            inactive-value="N">
+          </el-switch>
+        </el-form-item>
+        <el-form-item :label="$t('CMS.Catalog.Logo')" prop="logo">
+<!--          <cms-logo-view v-model="form_info.logo" :src="form_info.logoSrc" :height="150"></cms-logo-view>-->
+        </el-form-item>
+      </el-card>
+      <el-card shadow="hover">
+        <div slot="header" class="clearfix">
+          <span>{{ $t('CMS.Catalog.PublishPipeConf') }}</span>
+        </div>
+        <el-tabs v-model="publishPipeActiveName">
+          <el-tab-pane 
+            v-for="pp in this.form_info.publishPipeDatas"
+            :key="pp.pipeCode"
+            :command="pp"
+            :name="pp.pipeCode"
+            :label="pp.pipeName">
+            <el-divider content-position="left">{{ $t('CMS.Catalog.TemplateConfig') }}</el-divider>
+            <el-form-item :label="$t('CMS.Catalog.IndexTemplate')" prop="indexTemplate">
+              <el-input v-model="pp.props.indexTemplate">
+                <el-button 
+                  slot="append"
+                  type="primary"
+                  @click="handleSelectTemplate('indexTemplate')"
+                >{{ $t("Common.Select") }}</el-button>
+              </el-input>
+            </el-form-item>
+            <el-form-item :label="$t('CMS.Catalog.ListTemplate')" prop="listTemplate">
+              <el-input v-model="pp.props.listTemplate">
+                <el-button 
+                  slot="append"
+                  type="primary"
+                  @click="handleSelectTemplate('listTemplate')"
+                >{{ $t("Common.Select") }}</el-button>
+              </el-input>
+              <el-button 
+                plain 
+                class="ml5"
+                icon="el-icon-bottom-right" 
+                type="primary" 
+                @click="handleApplyToChildren('listTemplate')">{{ $t('CMS.Catalog.ApplyToChildren') }}</el-button>
+            </el-form-item>
+            <el-form-item 
+              v-for="ct of contentTypes" 
+              :key="ct.id" 
+              :command="ct"
+              :label="ct.name + $t('CMS.Catalog.DetailTemplate')"
+              :prop="`detailTemplate_${ct.id}`">
+              <el-input v-model="pp.props[`detailTemplate_${ct.id}`]">
+                <el-button 
+                  slot="append"
+                  type="primary"
+                  @click="handleSelectTemplate(`detailTemplate_${ct.id}`)"
+                >{{ $t("Common.Select") }}</el-button>
+              </el-input>
+              <el-button 
+                class="ml5"
+                icon="el-icon-bottom-right" 
+                type="primary" 
+                plain 
+                @click="handleApplyToChildren(`detailTemplate_${ct.id}`)"
+              >{{ $t('CMS.Catalog.ApplyToChildren') }}</el-button>
+            </el-form-item>
+            <el-form-item :label="$t('CMS.Catalog.ContentExTemplate')" prop="contentExTemplate">
+              <el-input v-model="pp.props.contentExTemplate">
+                <el-button 
+                  slot="append"
+                  type="primary"
+                  @click="handleSelectTemplate('contentExTemplate')"
+                >{{ $t("Common.Select") }}</el-button>
+              </el-input>
+              <el-button 
+                plain 
+                class="ml5"
+                icon="el-icon-bottom-right" 
+                type="primary" 
+                @click="handleApplyToChildren('contentExTemplate')">{{ $t('CMS.Catalog.ApplyToChildren') }}</el-button>
+            </el-form-item>
+            <el-divider content-position="left">{{ $t('CMS.Catalog.OtherConfig') }}</el-divider>
+            <el-form-item :label="$t('CMS.Site.UEditorCss')">
+              <el-input v-model="pp.props.ueditorCss">
+                <el-button 
+                  slot="append"
+                  type="primary"
+                  @click="handleSelectFile()"
+                >{{ $t("Common.Select") }}</el-button>
+              </el-input>
+            </el-form-item>
+          </el-tab-pane>
+        </el-tabs>
+      </el-card>
+      <el-card shadow="hover">
+        <div slot="header" class="clearfix">
+          <span>{{ $t('CMS.ContentCore.SEOConfig') }}</span>
+        </div>
+        <el-form-item :label="$t('CMS.ContentCore.SEOTitle')" prop="seoTitle">
+          <el-input v-model="form_info.seoTitle" />
+        </el-form-item>
+        <el-form-item :label="$t('CMS.ContentCore.SEOKeyword')" prop="seoKeywords">
+          <el-input v-model="form_info.seoKeywords" />
+        </el-form-item>
+        <el-form-item :label="$t('CMS.ContentCore.SEODescription')" prop="seoDescription">
+          <el-input v-model="form_info.seoDescription" type="textarea" :maxlength="100" />
+        </el-form-item>
+      </el-card>
+      <el-card v-if="showEXModel" shadow="hover">
+        <div slot="header" class="clearfix">
+          <span>{{ $t('CMS.Catalog.ExModelProps') }}</span>
+        </div>
+        
+<!--        <cms-exmodel-editor -->
+<!--          ref="EXModelEditor"-->
+<!--          :xmodel="form_info.configProps.CatalogExtendModel" -->
+<!--          type="catalog"-->
+<!--          :id="form_info.catalogId">-->
+<!--        </cms-exmodel-editor>-->
+      </el-card>
+    </el-form>
+    <el-dialog 
+      :title="$t('CMS.Catalog.PublishDialogTitle')"
+      :visible.sync="publishDialogVisible"
+      width="500px"
+      class="publish-dialog">
+      <div>
+        <p>{{ $t('Common.Tips') }}</p>
+        <p>{{ $t('CMS.Catalog.PublishTips') }}</p>
+        <el-checkbox v-model="publishChild">{{ $t('CMS.Catalog.ContainsChildren') }}</el-checkbox>
+      </div>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="publishDialogVisible = false">{{ $t("Common.Cancel") }}</el-button>
+        <el-button type="primary" @click="handleDoPublish">{{ $t("Common.Confirm") }}</el-button>
+      </span>
     </el-dialog>
+    <!-- 模板选择组件 -->
+<!--    <cms-template-selector -->
+<!--      :open="openTemplateSelector" -->
+<!--      :publishPipeCode="publishPipeActiveName"-->
+<!--      @ok="handleTemplateSelected"-->
+<!--      @cancel="handleTemplateSelectorCancel" />-->
+    <!-- 栏目选择组件 -->
+<!--    <cms-catalog-selector-->
+<!--      :open="openCatalogSelector"-->
+<!--      :showRootNode="showCatalogSelectorRootNode"-->
+<!--      :disableLink="disableLinkCatalog"-->
+<!--      @ok="handleCatalogSelectorOk"-->
+<!--      @close="handleCatalogSelectorClose"></cms-catalog-selector>-->
+    <!-- 内容选择组件 -->
+<!--    <cms-content-selector-->
+<!--      :open="openContentSelector"-->
+<!--      @ok="handleContentSelectorOk"-->
+<!--      @close="handleContentSelectorClose"></cms-content-selector>-->
+    <!-- 站点文件选择组件 -->
+<!--    <cms-file-selector :open.sync="openFileSelector" suffix="css" @ok="handleSetUEditorStyle" @close="openFileSelector=false"></cms-file-selector>-->
+    <!-- 进度条 -->
+<!--    <cms-progress :title="progressTitle" :open.sync="openProgress" :taskId="taskId" @close="handleCloseProgress"></cms-progress>-->
   </div>
 </template>
+<script>
+import * as catalogApi from "@/api/base/cms/catalog";
+// import CMSCatalogSelector from "@/views/cms/contentcore/catalogSelector";
+// import CMSContentSelector from "@/views/cms/contentcore/contentSelector";
+// import CMSTemplateSelector from '@/views/cms/contentcore/templateSelector';
+// import CMSProgress from '@/views/components/Progress';
+// import CMSLogoView from '@/views/cms/components/LogoView';
+// import CMSEXModelEditor from '@/views/cms/components/EXModelEditor';
+// import CMSFileSelector from '@/views/cms/components/FileSelector';
 
-<script setup name="Application">
-
-import { 
-  listApplication, 
-  delApplication , 
-  getApplication ,
-  updateApplication , 
-  addApplication
-} from "@/api/base/cms/cate";
-
-import SvgIcon from "@/components/SvgIcon";
-import IconSelect from "@/components/IconSelect";
-import { ClickOutside as vClickOutside } from 'element-plus'
-
-const { proxy } = getCurrentInstance();
-const { sys_oper_type, sys_common_status } = proxy.useDict("sys_oper_type","sys_common_status");
-
-const router = useRouter();
-const operlogList = ref([]);
-const open = ref(false);
-const loading = ref(true);
-const showSearch = ref(true);
-const ids = ref([]);
-const single = ref(true);
-const multiple = ref(true);
-const total = ref(0);
-const title = ref("");
-const showChooseIcon = ref(false);
-const iconSelectRef = ref(null);
-const dateRange = ref([]);
-const defaultSort = ref({ prop: "operTime", order: "descending" });
-
-const data = reactive({
-  form: {
-    applicationIcons: ''
+export default {
+  name: "CMSCatalogInfo",
+  components: {
+    // "cms-exmodel-editor": CMSEXModelEditor,
+    // 'cms-template-selector': CMSTemplateSelector,
+    // 'cms-catalog-selector': CMSCatalogSelector,
+    // 'cms-content-selector': CMSContentSelector,
+    // 'cms-progress': CMSProgress,
+    // "cms-logo-view": CMSLogoView,
+    // "cms-file-selector": CMSFileSelector
   },
-  queryParams: {
-    pageNum: 1,
-    pageSize: 10,
-    title: undefined,
-    operName: undefined,
-    businessType: undefined,
-    status: undefined
-  }
-});
-
-const { queryParams, form } = toRefs(data);
-
-/** 表单重置 */
-function reset() {
-  form.value = {
-    id: undefined,
-    parentId: undefined,
-    deptName: undefined,
-    orderNum: 0,
-    leader: undefined,
-    phone: undefined,
-    email: undefined,
-    status: "0"
-  };
-  proxy.resetForm("deptRef");
-}
-
-/** 查询登录日志 */
-function getList() {
-  loading.value = true;
-  listApplication(proxy.addDateRange(queryParams.value, dateRange.value)).then(response => {
-    operlogList.value = response.rows;
-    total.value = response.total;
-    loading.value = false;
-  });
-}
-/** 取消按钮 */
-function cancel() {
-  open.value = false;
-  reset();
-}
-/** 展示下拉图标 */
-function showSelectIcon() {
-  iconSelectRef.value.reset();
-  showChooseIcon.value = true;
-}
-/** 打开菜单 */
-function openMenu(row){
-  let path =  '/application/system/menu/'
-  router.push({ path: path + row.id });
-}
-/** 选择图标 */
-function selected(name) {
-  form.value.icon = name;
-  showChooseIcon.value = false;
-}
-/** 图标外层点击隐藏下拉列表 */
-function hideSelectIcon(event) {
-  var elem = event.relatedTarget || event.srcElement || event.target || event.currentTarget;
-  var className = elem.className;
-  if (className !== "el-input__inner") {
-    showChooseIcon.value = false;
-  }
-}
-/** 操作日志类型字典翻译 */
-function typeFormat(row, column) {
-  return proxy.selectDictLabel(sys_oper_type.value, row.businessType);
-}
-/** 搜索按钮操作 */
-function handleQuery() {
-  queryParams.value.pageNum = 1;
-  getList();
-}
-/** 重置按钮操作 */
-function resetQuery() {
-  dateRange.value = [];
-  proxy.resetForm("queryRef");
-  proxy.$refs["operlogRef"].sort(defaultSort.value.prop, defaultSort.value.order);
-  handleQuery();
-}
-/** 多选框选中数据 */
-function handleSelectionChange(selection) {
-  ids.value = selection.map(item => item.id);
-  multiple.value = !selection.length;
-}
-/** 排序触发事件 */
-function handleSortChange(column, prop, order) {
-  queryParams.value.orderByColumn = column.prop;
-  queryParams.value.isAsc = column.order;
-  getList();
-}
-/** 详细按钮操作 */
-function handleView(row) {
-  open.value = true;
-  form.value = row;
-}
-/** 删除按钮操作 */
-function handleDelete(row) {
-  const operIds = row.id || ids.value;
-  proxy.$modal.confirm('是否确认删除日志编号为"' + operIds + '"的数据项?').then(function () {
-    return delApplication(operIds);
-  }).then(() => {
-    getList();
-    proxy.$modal.msgSuccess("删除成功");
-  }).catch(() => {});
-}
-/** 新增按钮操作 */
-function handleAdd() {
-  reset();
-  open.value = true;
-  title.value = "添加应用";
-}
-/** 修改按钮操作 */
-async function handleUpdate(row) {
-  reset();
-  getApplication(row.id).then(response => {
-    form.value = response.data;
-    open.value = true;
-    title.value = "修改应用";
-  });
-}
-/** 导出按钮操作 */
-function handleExport() {
-  proxy.download("monitor/operlog/export",{
-    ...queryParams.value,
-  }, `config_${new Date().getTime()}.xlsx`);
-}
-
-/** 提交按钮 */
-function submitForm() {
-  proxy.$refs["applicationFormRef"].validate(valid => {
-    if (valid) {
-      if (form.value.id != undefined) {
-        updateApplication(form.value).then(response => {
-          proxy.$modal.msgSuccess("修改成功");
-          open.value = false;
-          getList();
-        });
+  dicts: ['CMSStaticSuffix', 'CMSContentStatus'],
+  props: {
+    cid: {
+      type: String, 
+      default: undefined,
+      required: false,
+    },
+  },
+  computed: {
+    showEXModel() {
+      return this.form_info.configProps && this.form_info.configProps.CatalogExtendModel != null && this.form_info.configProps.CatalogExtendModel.length > 0;
+    },
+    catalogVisible() {
+      return this.form_info.visibleFlag == "Y";
+    }
+  },
+  data () {
+    return {
+      // 遮罩层
+      loading: false,
+      activeName: 'basicInfo',
+      openCatalogSelector: false,
+      catalogSelectorFor: undefined,
+      showCatalogSelectorRootNode: false,
+      disableLinkCatalog: false,
+      openContentSelector: false,
+      openTemplateSelector: false, // 是否显示模板选择弹窗
+      propKey: "", // 选择模板时记录变更的模板对应属性Key
+      openProgress: false, // 是否显示任务进度条
+      progressTitle: "",
+      progressType: "",
+      taskId: "", // 任务ID
+      // 发布选项弹窗
+      publishDialogVisible: false,
+      publishChild: false,
+      publishStatus: -1,
+      publishPipeActiveName: "", // 当前选中的发布通道Tab
+      catalogId: parseInt(this.cid),
+      showSortPop: false,
+      sortValue: 0,
+      // 栏目信息表单
+      form_info: {
+        siteId: ""
+      },
+      catalogTypeOptions: [],
+      publishPipes: [], // 栏目发布通道数据
+      // 表单校验
+      rules: {
+        name: [
+          { required: true, message: this.$t('CMS.Catalog.RuleTips.Name'), trigger: "blur" }
+        ],
+        alias: [
+          { required: true, pattern: "^[A-Za-z0-9_]+$", message: this.$t('CMS.Catalog.RuleTips.Alias'), trigger: "blur" }
+        ],
+        path: [
+          { required: true, pattern: "^[A-Za-z0-9_\/]+$", message: this.$t('CMS.Catalog.RuleTips.Path'), trigger: "blur" }
+        ],
+        catalogType: [
+          { required: true, message: this.$t('CMS.Catalog.RuleTips.CatalogType'), trigger: "blur" }
+        ]
+      },
+      openFileSelector: false,
+    };
+  },
+  created() {
+    this.loadCatalogTypes();
+    this.loadContentTypes();
+    this.loadCatalogInfo();
+  },
+  watch: {
+    cid(newVal) {
+      this.catalogId = newVal;
+    },
+    catalogId(newVal) {
+      if (newVal && newVal > 0) {
+        this.loadCatalogInfo();
       } else {
-        addApplication(form.value).then(response => {
-          proxy.$modal.msgSuccess("新增成功");
-          open.value = false;
-          getList();
-        });
+        this.form_info = { siteId: "" };
       }
     }
-  });
-}
-
-getList();
+  },
+  methods: {
+    loadContentTypes() {
+      catalogApi.getContentTypes().then(response => {
+        this.contentTypes = response.data;
+      });
+    },
+    loadCatalogTypes () {
+      catalogApi.getCatalogTypes().then(response => {
+        this.catalogTypeOptions = response.data;
+      });
+    },
+    loadCatalogInfo () {
+      if (!this.catalogId) {
+        // this.$modal.msgError(this.$t('CMS.Catalog.SelectCatalogFirst'));
+        return;
+      }
+      this.loading = true;
+      catalogApi.getCatalogData(this.catalogId).then(response => {
+        this.form_info = response.data;
+        if (this.form_info.publishPipeDatas.length > 0) {
+          this.publishPipeActiveName = this.form_info.publishPipeDatas[0].pipeCode;
+        }
+        this.loading = false;
+      });
+    },
+    handleUpdate () {
+      this.$refs["form_info"].validate(valid => {
+        if (valid) {
+          if (this.showEXModel) {
+            this.form_info.params = this.$refs.EXModelEditor.getDatas();
+          }
+          catalogApi.updateCatalog(this.form_info).then(response => {
+            this.$modal.msgSuccess(this.$t('Common.SaveSuccess'));
+            this.$emit("update", response.data);
+          });
+        }
+      });
+    },
+    handleChangeVisible () {
+        const visible = this.form_info.visibleFlag == "Y" ? "N" : "Y";
+        catalogApi.changeVisible(this.form_info.catalogId, visible).then(response => {
+          this.$modal.msgSuccess(response.msg);
+          this.form_info.visibleFlag = visible;
+        });
+    },
+    handlePreview () {
+      let routeData = this.$router.resolve({
+        path: "/cms/preview",
+        query: { type: "catalog", dataId: this.form_info.catalogId },
+      });
+      window.open(routeData.href, '_blank');
+    },
+    handlePublish (publishStatus) {
+      this.publishStatus = publishStatus;
+      this.publishDialogVisible = true;
+    },
+    handleDoPublish() {
+      const data = {
+        catalogId: this.form_info.catalogId,
+        publishDetail: this.publishStatus != -1,
+        publishStatus: this.publishStatus,
+        publishChild: this.publishChild
+      };
+      this.publishDialogVisible = false;
+      this.publishChild = false;
+      catalogApi.publishCatalog(data).then(response => {
+        this.taskId = response.data;
+        this.progressTitle = this.$t('CMS.Catalog.PublishProgressTitle');
+        this.progressType = "Publish";
+        this.openProgress = true;
+        this.$cache.local.set('publish_flag', "true")
+      }); 
+    },
+    handleDelete () {
+      if (!this.catalogId) {
+        this.msgError(this.$t('CMS.Catalog.SelectCatalogFirst'));
+        retrun;
+      }
+      catalogApi.delCatalog(this.catalogId).then(response => {
+        if (response.data && response.data != "") {
+          this.taskId = response.data;
+          this.progressTitle = this.$t('CMS.Catalog.DeleteProgressTitle');
+          this.progressType = "Delete";
+          this.openProgress = true;
+        }
+      });
+    },
+    handleMoveCatalog() {
+      this.catalogSelectorFor = "MoveCatalog";
+      this.openCatalogSelector = true;
+      this.showCatalogSelectorRootNode = true;
+      this.disableLinkCatalog = false;
+    },
+    handleCloseProgress() {
+      if (this.progressType == 'Delete' || this.progressType == 'Move') {
+          this.resetForm("form_info");
+          this.$emit("remove", this.catalogId); 
+      }
+    },
+    handleSelectTemplate (propKey) {
+      this.propKey = propKey;
+      this.openTemplateSelector = true;
+    },
+    handleTemplateSelected (template) {
+      this.form_info.publishPipeDatas.map(item => {
+        if (item.pipeCode == this.publishPipeActiveName) {
+          item.props[this.propKey] = template;
+        }
+      });
+      this.openTemplateSelector = false;
+    },
+    handleTemplateSelectorCancel () {
+      this.openTemplateSelector = false;
+    },
+    handleApplyToChildren (propKey) {
+      const data = { 
+        catalogId: this.catalogId,
+        publishPipeCode: this.publishPipeActiveName,
+        publishPipePropKeys: [ propKey ]
+       }
+       catalogApi.applyPublishPipeToChildren(data).then(res => {
+         this.$modal.msgSuccess(res.msg);
+       });
+    },
+    handleLinkTo(type) {
+      if (type === 'content') {
+        this.openContentSelector = true;
+      } else if (type === 'catalog') {
+        this.openCatalogSelector = true;
+        this.showCatalogSelectorRootNode = false;
+        this.disableLinkCatalog = true;
+        this.catalogSelectorFor = "";
+      }
+    },
+    handleCatalogSelectorOk(catalogs) {
+      if (this.catalogSelectorFor == 'MoveCatalog') {
+        let toCatalog = "0";
+        if (catalogs && catalogs.length > 0) {
+          toCatalog = catalogs[0].id;
+        }
+        catalogApi.moveCatalog(this.catalogId, toCatalog).then(response => {
+          if (response.data && response.data != "") {
+            this.taskId = response.data;
+            this.progressTitle = this.$t('CMS.Catalog.MoveProgressTitle');;
+            this.progressType = "Move";
+            this.openProgress = true;
+          }
+        })
+      } else {
+        if (catalogs && catalogs.length > 0) {
+          this.form_info.redirectUrl = catalogs[0].props.internalUrl;
+        }
+      }
+      this.openCatalogSelector = false;
+      this.catalogSelectorFor = undefined;
+    },
+    handleCatalogSelectorClose() {
+      this.openCatalogSelector = false;
+    },
+    handleContentSelectorOk(contents) {
+      if (contents && contents.length > 0) {
+        this.form_info.redirectUrl = contents[0].internalUrl;
+      }
+      this.openContentSelector = false;
+    },
+    handleContentSelectorClose() {
+      this.openContentSelector = false;
+    },
+    handleSortCatalog() {
+      if (this.sortValue == 0) {
+        this.$modal.msgWarning("排序值不能为0");
+        return;
+      }
+      let data = { catalogId: this.catalogId, sort: this.sortValue }
+      catalogApi.sortCatalog(data).then(response => {
+          this.$modal.msgSuccess(response.msg);
+          this.showSortPop = false;
+          this.sortValue = 0;
+          this.$emit("update"); 
+      });
+    },
+    handleSortCatalogCancel() {
+      this.showSortPop = false;
+      this.sortValue = 0;
+    },
+    handleSelectFile() {
+      this.openFileSelector = true;
+    },
+    handleSetUEditorStyle(files) {
+      if (files.length > 0) {
+        this.form_info.publishPipeDatas.map(item => {
+          if (item.pipeCode == this.publishPipeActiveName) {
+            item.props.ueditorCss = files[0].filePath;
+          }
+        });
+      }
+      this.openFileSelector = false;
+    }
+  }
+};
 </script>
+<style scoped>
+.el-form-item {
+  margin-bottom: 18px;
+  width: 700px;
+}
+.el-input, .el-select, .el-textarea {
+  width: 330px;
+}
+.el-card {
+  margin-bottom: 10px;
+}
+</style>

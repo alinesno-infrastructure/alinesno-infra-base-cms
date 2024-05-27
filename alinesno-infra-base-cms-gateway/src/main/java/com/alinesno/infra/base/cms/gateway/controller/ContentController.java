@@ -1,7 +1,7 @@
 package com.alinesno.infra.base.cms.gateway.controller;
 
-import com.alinesno.infra.base.cms.entity.CategoryEntity;
-import com.alinesno.infra.base.cms.service.ICategoryService;
+import com.alinesno.infra.base.cms.entity.ContentEntity;
+import com.alinesno.infra.base.cms.service.IContentService;
 import com.alinesno.infra.common.core.constants.SpringInstanceScope;
 import com.alinesno.infra.common.facade.pageable.DatatablesPageBean;
 import com.alinesno.infra.common.facade.pageable.TableDataInfo;
@@ -29,14 +29,16 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "Category")
 @RestController
 @Scope(SpringInstanceScope.PROTOTYPE)
-@RequestMapping("/api/infra/base/cms/category")
-public class CategoryController extends BaseController<CategoryEntity, ICategoryService> {
+@RequestMapping("/api/infra/base/cms/content")
+public class ContentController extends BaseController<ContentEntity, IContentService> {
 
     // 日志记录
-    private static final Logger log = LoggerFactory.getLogger(CategoryController.class);
+    private static final Logger log = LoggerFactory.getLogger(ContentController.class);
 
     @Autowired
-    private ICategoryService service;
+    private IContentService service;
+
+//    private final List<IContentType> contentTypes;
 
     /**
      * 获取栏目的DataTables数据。
@@ -54,7 +56,8 @@ public class CategoryController extends BaseController<CategoryEntity, ICategory
     }
 
     @Override
-    public ICategoryService getFeign() {
+    public IContentService getFeign() {
         return this.service;
     }
+
 }
