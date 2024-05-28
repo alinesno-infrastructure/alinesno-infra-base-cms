@@ -249,10 +249,8 @@ export default {
             this.form.parentId = 0;
           }
           addCatalog(this.form).then(response => {
-              this.$cache.local.set("LastSelectedCatalogId", response.data.id);
               this.diagOpen = false;
               this.$modal.msgSuccess(this.$t('Common.AddSuccess'));
-              this.loadCatalogTreeData();
           });
         }
       });

@@ -27,12 +27,12 @@ import java.util.Map;
 
 /**
  * 处理与栏目相关的请求的Controller。
- * 继承自BaseController类并实现ICategoryService接口。
+ * 继承自BaseController类并实现ICatalogService接口。
  *
  * @version 1.0.0
  * @author luoxiaodong
  */
-@Api(tags = "Category")
+@Api(tags = "Catalog")
 @RestController
 @RequiredArgsConstructor
 @Scope(SpringInstanceScope.PROTOTYPE)
