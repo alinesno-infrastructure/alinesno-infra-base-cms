@@ -20,7 +20,7 @@ import java.util.Map;
  *@version 1.0.0
  */
 @EqualsAndHashCode(callSuper = true)
-@TableName("category")
+@TableName("catalog")
 @Data
 public class CatalogEntity extends InfraBaseEntity {
 

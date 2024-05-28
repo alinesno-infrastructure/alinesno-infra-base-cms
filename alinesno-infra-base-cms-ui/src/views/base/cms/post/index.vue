@@ -2,6 +2,11 @@
   <div class="app-container">
     <el-row :gutter="20" v-loading="loading">
       <el-col :span="4" :xs="24">
+        <cms-catalog-tree
+          ref="catalogTree"
+          :new-btn="true"
+          @node-click="handleTreeNodeClick">
+        </cms-catalog-tree>
       </el-col>
       <el-col :span="20" :xs="24">
         <el-tabs v-model="activeName" @tab-click="handleTabClick">
@@ -18,11 +23,13 @@
   </div>
 </template>
 <script>
+import CMSCatalogTree from '@/views/base/cms/cate/catalogTree';
 import CMSContentList from '@/views/base/cms/post/contentList';
 
 export default {
   name: "CMSContent",
   components: {
+    'cms-catalog-tree': CMSCatalogTree,
     'cms-content-list': CMSContentList,
   },
   data () {

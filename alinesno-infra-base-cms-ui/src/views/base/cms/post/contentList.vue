@@ -202,9 +202,7 @@
       <el-table-column :label="$t('CMS.Content.Title')" :show-overflow-tooltip="true">
         <template #default="scope">
           <span class="content_attr" v-if="scope.row.topFlag>0" :title="$t('CMS.Content.SetTop')">[<svg-icon icon-class="top"/>]</span>
-
           {{ scope.row.title }}
-
         </template>
       </el-table-column>
       <el-table-column :label="$t('CMS.Content.ContentType')" width="110" align="center" prop="contentType" :formatter="contentTypeFormat"/>
@@ -290,6 +288,7 @@
         <el-button @click="this.topDialogVisible=false">{{ $t("Common.Cancel") }}</el-button>
       </div>
     </el-dialog>
+
   </div>
 </template>
 <script>

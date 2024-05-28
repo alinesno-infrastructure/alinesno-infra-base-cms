@@ -1,8 +1,10 @@
 package com.alinesno.infra.base.cms.gateway.controller;
 
+import com.alinesno.infra.base.cms.core.ICatalogType;
 import com.alinesno.infra.base.cms.core.IContentType;
 import com.alinesno.infra.base.cms.entity.CatalogEntity;
 import com.alinesno.infra.base.cms.service.ICatalogService;
+import com.alinesno.infra.base.cms.service.ISiteService;
 import com.alinesno.infra.common.core.constants.SpringInstanceScope;
 import com.alinesno.infra.common.facade.pageable.DatatablesPageBean;
 import com.alinesno.infra.common.facade.pageable.TableDataInfo;
@@ -14,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -39,9 +42,15 @@ public class CatalogController extends BaseController<CatalogEntity, ICatalogSer
     // 日志记录
     private static final Logger log = LoggerFactory.getLogger(CatalogController.class);
 
+    @Autowired
     private ICatalogService catalogService;
 
+    private final ISiteService siteService;
+
     private final List<IContentType> contentTypes;
+
+    private final List<ICatalogType> catalogTypes;
+
 
     /**
      * 获取栏目的DataTables数据。
@@ -73,4 +82,15 @@ public class CatalogController extends BaseController<CatalogEntity, ICatalogSer
                 .map(ct -> Map.of("id", ct.getId(), "name", ct.getName())).toList();
         return this.toAjax(list);
     }
+
+    /**
+     * 栏目类型数据
+     */
+    @GetMapping("/getCatalogTypes")
+    public AjaxResult getCatalogTypes() {
+        List<Map<String, String>> list = this.catalogTypes.stream()
+                .map(ct -> Map.of("id", ct.getId(), "name", ct.getName())).toList();
+        return this.toAjax(list);
+    }
+
 }

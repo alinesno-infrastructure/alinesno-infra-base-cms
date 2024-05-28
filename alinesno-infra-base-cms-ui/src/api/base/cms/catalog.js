@@ -22,7 +22,6 @@ var managerUrl = {
   contentTypes: prefix + "getContentTypes",
   treeData: prefix + "treeData",
   catalogData: prefix + "detail", // 注意：假设detailUrl是获取栏目信息的接口
-  addCatalog: prefix + "add",
   updateCatalog: prefix + "modify",
   delCatalog: prefix + "delete",
   moveCatalog: prefix + "move",
@@ -71,7 +70,7 @@ export function getCatalogData(catalogId) {
 // 新增栏目
 export function addCatalog(data) {
   return request({
-    url: managerUrl.addCatalog,
+    url: managerUrl.saveUrl,
     method: 'post',
     data: data
   })
