@@ -2,7 +2,10 @@ package com.alinesno.infra.base.cms.gateway.controller;
 
 import com.alinesno.infra.base.cms.core.ICatalogType;
 import com.alinesno.infra.base.cms.core.IContentType;
+import com.alinesno.infra.base.cms.core.impl.CatalogType_Link;
 import com.alinesno.infra.base.cms.entity.CatalogEntity;
+import com.alinesno.infra.base.cms.entity.SiteEntity;
+import com.alinesno.infra.base.cms.entity.TreeNode;
 import com.alinesno.infra.base.cms.service.ICatalogService;
 import com.alinesno.infra.base.cms.service.ISiteService;
 import com.alinesno.infra.common.core.constants.SpringInstanceScope;
@@ -91,6 +94,22 @@ public class CatalogController extends BaseController<CatalogEntity, ICatalogSer
         List<Map<String, String>> list = this.catalogTypes.stream()
                 .map(ct -> Map.of("id", ct.getId(), "name", ct.getName())).toList();
         return this.toAjax(list);
+    }
+
+    /**
+     * 栏目树结构数据
+     */
+    @GetMapping("/treeData")
+    public AjaxResult treeData(HttpServletRequest request, @RequestParam(required = false, defaultValue = "false") Boolean disableLink) {
+        SiteEntity site = this.siteService.getCurrentSite(request);
+        List<CatalogEntity> catalogs = this.catalogService.lambdaQuery().eq(CatalogEntity::getSiteId, site.getId())
+                .orderByAsc(CatalogEntity::getSortFlag).list().stream().toList();
+        List<TreeNode<String>> treeData = catalogService.buildCatalogTreeData(catalogs, (catalog, node) -> {
+            if (disableLink) {
+                node.setDisabled(CatalogType_Link.ID.equals(catalog.getCatalogType()));
+            }
+        });
+        return this.toAjax(Map.of("rows", treeData, "siteName", site.getName()));
     }
 
 }

@@ -32,7 +32,7 @@
         ref="tree"
         highlight-current
         @node-click="handleNodeClick">
-        <span class="tree-node" slot-scope="{ node, data }">
+        <template class="tree-node" #default="{ node, data }">
           <span>{{ node.label }}</span>
           <span class="node-tool">
             <el-dropdown size="small" type="primary">
@@ -45,7 +45,7 @@
               </el-dropdown-menu>
             </el-dropdown>
           </span>
-        </span>
+        </template>
       </el-tree>
     </div>
     <!-- 添加栏目对话框 -->
@@ -178,6 +178,7 @@ export default {
     }
   },
   created () {
+    this.loadCatalogTreeData();
     // 加载栏目类型数据
     getCatalogTypes().then(response => {
       this.catalogTypeOptions = response.data;
@@ -188,7 +189,7 @@ export default {
     loadCatalogTreeData () {
       this.loading = true;
       getCatalogTreeData().then(response => {
-        this.catalogOptions = response.data;
+        this.catalogOptions = response.data.rows;
         if (this.catalogOptions.length == 0) {
           this.$cache.local.remove("LastSelectedCatalogId");
         }
@@ -251,6 +252,7 @@ export default {
           addCatalog(this.form).then(response => {
               this.diagOpen = false;
               this.$modal.msgSuccess(this.$t('Common.AddSuccess'));
+              this.loadCatalogTreeData();
           });
         }
       });

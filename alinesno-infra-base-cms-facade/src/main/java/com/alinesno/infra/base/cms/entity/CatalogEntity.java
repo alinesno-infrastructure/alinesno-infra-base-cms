@@ -103,7 +103,7 @@ public class CatalogEntity extends InfraBaseEntity {
 	/**
 	 * 所属部门编码
 	 */
-	@TableField("deptCode")
+	@TableField("dept_code")
 	@ColumnType(length=255)
 	@ColumnComment("所属部门编码")
 	private String deptCode;
@@ -111,7 +111,7 @@ public class CatalogEntity extends InfraBaseEntity {
 	/**
 	 * 栏目类型
 	 */
-	@TableField("catalogType")
+	@TableField("catalog_type")
 	@ColumnType(length=255)
 	@ColumnComment("栏目类型")
 	private String catalogType;
@@ -127,7 +127,7 @@ public class CatalogEntity extends InfraBaseEntity {
 	/**
 	 * 跳转地址，标题栏目跳转地址
 	 */
-	@TableField("redirectUrl")
+	@TableField("redirect_url")
 	@ColumnType(length=255)
 	@ColumnComment("跳转地址，标题栏目跳转地址")
 	private String redirectUrl;
@@ -135,7 +135,7 @@ public class CatalogEntity extends InfraBaseEntity {
 	/**
 	 * 是否生成静态页面
 	 */
-	@TableField("staticFlag")
+	@TableField("static_flag")
 	@ColumnType(length=255)
 	@ColumnComment("是否生成静态页面")
 	private String staticFlag;

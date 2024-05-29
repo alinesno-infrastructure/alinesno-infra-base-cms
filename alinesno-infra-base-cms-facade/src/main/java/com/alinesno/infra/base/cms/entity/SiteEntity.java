@@ -1,12 +1,11 @@
 package com.alinesno.infra.base.cms.entity;
 
+import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
 import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
 import lombok.Data;
-import com.alinesno.infra.common.facade.mapper.entity.InfraBaseEntity;
-import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.EqualsAndHashCode;
 
 /**
@@ -32,6 +31,14 @@ public class SiteEntity extends InfraBaseEntity {
 	@ColumnType(length=255)
 	@ColumnComment("站点名称")
 	private String name;
+
+	/**
+	 * 父级站点ID
+	 */
+	@TableField("parent_id")
+	@ColumnType(length=255)
+	@ColumnComment("父级站点ID")
+	private Long parentId;
 
 	/**
 	 * 目录名称
@@ -72,4 +79,12 @@ public class SiteEntity extends InfraBaseEntity {
 	@ColumnType(length=255)
 	@ColumnComment("描述")
 	private String description;
+
+	/**
+	 * 排序标识
+	 */
+	@TableField("sort_flag")
+	@ColumnType(length=255)
+	@ColumnComment("排序标识")
+	private Long sortFlag;
 }
