@@ -2,18 +2,17 @@ import request from '@/utils/request'
 import { parseStrEmpty } from "@/utils/ruoyi";
 
 // 接口配置项
-var prefix = '/api/infra/base/cms/site/';
+var prefix = '/api/infra/base/cms/tag/';
 var managerUrl = {
     datatables: prefix + "datatables",
     detailUrl: prefix + "detail",
     saveUrl: prefix + 'save',
     updateUrl: prefix + "modify",
     removeUrl: prefix + "delete",
-    publish: prefix + "publish"
 }
 
-// 查询站点列表
-export function listSite(query) {
+// 查询标签列表
+export function listTag(query) {
     return request({
         url: managerUrl.datatables,
         method: 'post',
@@ -21,16 +20,16 @@ export function listSite(query) {
     })
 }
 
-// 查询站点详细
-export function getSite(id) {
+// 查询标签详细
+export function getTag(id) {
     return request({
         url: managerUrl.detailUrl + '/' + parseStrEmpty(id),
         method: 'get'
     })
 }
 
-// 新增站点
-export function addSite(data) {
+// 新增标签
+export function addTag(data) {
     return request({
         url: managerUrl.saveUrl,
         method: 'post',
@@ -38,8 +37,8 @@ export function addSite(data) {
     })
 }
 
-// 修改站点
-export function updateSite(data) {
+// 修改标签
+export function updateTag(data) {
     return request({
         url: managerUrl.updateUrl,
         method: 'put',
@@ -47,8 +46,8 @@ export function updateSite(data) {
     })
 }
 
-// 删除站点
-export function delSite(id) {
+// 删除标签
+export function delTag(id) {
     return request({
         url: managerUrl.removeUrl + '/' + parseStrEmpty(id),
         method: 'delete'
@@ -56,11 +55,3 @@ export function delSite(id) {
 }
 
 
-// 发布站点
-export function publishSite(data) {
-    return request({
-        url: '/cms/site/publish',
-        method: 'post',
-        data: data // { siteId:long, publishIndex:boolean, contentStatus:int }
-    })
-}

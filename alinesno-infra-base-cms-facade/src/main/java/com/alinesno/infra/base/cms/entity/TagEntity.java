@@ -27,11 +27,11 @@ public class TagEntity extends InfraBaseEntity {
 	/**
 	 * 站点ID
 	 */
-	@Excel(name = "siteid")
-	@TableField("siteid")
+	@Excel(name = "site_id")
+	@TableField("site_id")
 	@ColumnType(length=10)
 	@ColumnComment("站点ID")
-	private Integer siteid;
+	private Integer siteId;
 
 	/**
 	 * 标签
@@ -58,7 +58,7 @@ public class TagEntity extends InfraBaseEntity {
 	@TableField("type")
 	@ColumnType(length=255)
 	@ColumnComment("类型")
-	private Integer type;
+	private String type;
 
 	/**
 	 * 模块
