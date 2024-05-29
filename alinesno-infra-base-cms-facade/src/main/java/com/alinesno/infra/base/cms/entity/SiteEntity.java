@@ -43,10 +43,10 @@ public class SiteEntity extends InfraBaseEntity {
 	/**
 	 * 目录名称
 	 */
-	@TableField("dirname")
+	@TableField("path")
 	@ColumnType(length=255)
 	@ColumnComment("目录名称")
-	private String dirname;
+	private String path;
 
 	/**
 	 * 域名
