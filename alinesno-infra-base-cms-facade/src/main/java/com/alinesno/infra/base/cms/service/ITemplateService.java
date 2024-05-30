@@ -1,6 +1,6 @@
 package com.alinesno.infra.base.cms.service;
 
-import com.alinesno.infra.base.cms.entity.TemplateBakEntity;
+import com.alinesno.infra.base.cms.entity.TemplateEntity;
 import com.alinesno.infra.common.facade.services.IBaseService;
 
 /**
@@ -9,5 +9,5 @@ import com.alinesno.infra.common.facade.services.IBaseService;
  * @version 1.0.0
  * @author luoxiaodong
  */
-public interface ITemplateBakService extends IBaseService<TemplateBakEntity> {
+public interface ITemplateService extends IBaseService<TemplateEntity> {
 }

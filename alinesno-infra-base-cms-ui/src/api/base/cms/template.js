@@ -2,50 +2,20 @@ import request from '@/utils/request'
 import { parseStrEmpty } from "@/utils/ruoyi";
 
 // 接口配置项
-var prefix = '/api/infra/base/cms/link/';
+var prefix = '/api/infra/base/cms/template/';
 var managerUrl = {
     datatables: prefix + "datatables",
-    createUrl: prefix + 'add',
-    saveUrl: prefix + 'save',
-    updateUrl: prefix + "modify",
-    statusUrl: prefix + "changeStatus",
-    cleanUrl: prefix + "clean",
     detailUrl: prefix + "detail",
+    add: prefix + 'add',
+    updateUrl: prefix + "modify",
     removeUrl: prefix + "delete",
-    choiceApplication: prefix + "choiceApplication",
-    exportUrl: prefix + "exportExcel",
-    changeField: prefix + "changeField",
-    currentApplication: prefix + "currentApplication",
-    downloadfile: prefix + "downloadfile" ,
-    latestList: prefix + "latestList"
+    rename: prefix + "rename",
+    clearIncludeCache: prefix + "clearIncludeCache"
+    
 }
 
-// 获取最新的应用列表
-export function getLatestList(){
-    return request({
-        url: managerUrl.latestList , 
-        method: 'get'
-    })
-}
-
-// 选择当前应用
-export function getCurrentApplication(){
-    return request({
-        url: managerUrl.currentApplication , 
-        method: 'get'
-    })
-}
-
-// 配置当前应用
-export function choiceApplication(id){
-    return request({
-        url: managerUrl.choiceApplication + '?applicationId=' + parseStrEmpty(id),
-        method: 'get'
-    })
-}
-
-// 查询用户列表
-export function listApplication(query) {
+// 查询模板文件数据集合
+export function getTemplateList(query) {
     return request({
         url: managerUrl.datatables,
         method: 'post',
@@ -53,25 +23,34 @@ export function listApplication(query) {
     })
 }
 
-// 查询用户详细
-export function getApplication(id) {
+// 查询模板文件内容
+export function getTemplateDetail(id) {
     return request({
         url: managerUrl.detailUrl + '/' + parseStrEmpty(id),
         method: 'get'
     })
 }
 
-// 新增用户
-export function addApplication(data) {
+// 模板文件重命名
+export function renameTemplate(data) {
     return request({
-        url: managerUrl.saveUrl,
+        url: managerUrl.rename,
         method: 'post',
         data: data
     })
 }
 
-// 修改用户
-export function updateApplication(data) {
+// 新增模板文件
+export function addTemplate(data) {
+    return request({
+        url: managerUrl.add,
+        method: 'post',
+        data: data
+    })
+}
+
+// 修改模板
+export function editTemplate(data) {
     return request({
         url: managerUrl.updateUrl,
         method: 'put',
@@ -79,92 +58,19 @@ export function updateApplication(data) {
     })
 }
 
-// 删除用户
-export function delApplication(id) {
+// 删除模板
+export function delTemplate(id) {
     return request({
         url: managerUrl.removeUrl + '/' + parseStrEmpty(id),
         method: 'delete'
     })
 }
 
-// 用户密码重置
-export function resetApplicationPwd(userId, password) {
-    const data = {
-        userId,
-        password
-    }
+// 删除区块模板缓存
+export function clearIncludeCache(templates) {
     return request({
-        url: '/system/user/resetPwd',
-        method: 'put',
-        data: data
-    })
-}
-
-// 用户状态修改
-export function changeApplicationStatus(userId, status) {
-    const data = {
-        userId,
-        status
-    }
-    return request({
-        url: '/system/user/changeStatus',
-        method: 'put',
-        data: data
-    })
-}
-
-// 查询用户个人信息
-export function getApplicationProfile() {
-    return request({
-        url: '/system/user/profile',
-        method: 'get'
-    })
-}
-
-// 修改用户个人信息
-export function updateApplicationProfile(data) {
-    return request({
-        url: '/system/user/profile',
-        method: 'put',
-        data: data
-    })
-}
-
-// 用户密码重置
-export function updateApplicationPwd(oldPassword, newPassword) {
-    const data = {
-        oldPassword,
-        newPassword
-    }
-    return request({
-        url: '/system/user/profile/updatePwd',
-        method: 'put',
-        params: data
-    })
-}
-
-// 用户头像上传
-export function uploadAvatar(data) {
-    return request({
-        url: '/system/user/profile/avatar',
-        method: 'post',
-        data: data
-    })
-}
-
-// 查询授权角色
-export function getAuthRole(userId) {
-    return request({
-        url: '/system/user/authRole/' + userId,
-        method: 'get'
-    })
-}
-
-// 保存授权角色
-export function updateAuthRole(data) {
-    return request({
-        url: '/system/user/authRole',
-        method: 'put',
-        params: data
+        url: '/cms/template/clearIncludeCache',
+        method: 'delete',
+        data: templates
     })
 }
