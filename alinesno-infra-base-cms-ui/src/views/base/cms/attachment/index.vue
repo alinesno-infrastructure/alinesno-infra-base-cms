@@ -1,376 +1,316 @@
 <template>
   <div class="app-container">
-    <el-form :model="queryParams" ref="queryRef" :inline="true" v-show="showSearch" label-width="68px">
-      <el-form-item label="应用名称" prop="title">
-        <el-input
-            v-model="queryParams.title"
-            placeholder="请输入应用名称"
-            clearable
-            style="width: 240px;"
-            @keyup.enter="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="应用代码" prop="operName">
-        <el-input
-            v-model="queryParams.operName"
-            placeholder="请输入操作人员"
-            clearable
-            style="width: 240px;"
-            @keyup.enter="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="状态" prop="status">
-        <el-select
-            v-model="queryParams.status"
-            placeholder="操作状态"
-            clearable
-            style="width: 240px"
-        >
-          <el-option
-              v-for="dict in sys_common_status"
-              :key="dict.value"
-              :label="dict.label"
-              :value="dict.value"
-          />
-        </el-select>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" icon="Search" @click="handleQuery">搜索</el-button>
-        <el-button icon="Refresh" @click="resetQuery">重置</el-button>
-      </el-form-item>
-    </el-form>
-
-    <el-row :gutter="10" class="mb8">
-      <el-col :span="1.5">
-          <el-button
-              plain
-              type="primary"
-              icon="Plus"
-              @click="handleAdd()"
-              v-hasPermi="['system:dept:add']"
-          >新增</el-button>
-        <el-button
-            type="danger"
-            plain
-            icon="Delete"
-            :disabled="multiple"
-            @click="handleDelete"
-            v-hasPermi="['monitor:operlog:remove']"
-        >删除</el-button>
+    <el-row :gutter="24" class="mb12">
+      <el-col :span="8">
+        <el-row :gutter="10">
+          <el-col :span="1.5">
+            <el-button
+                plain
+                type="primary"
+                icon="el-icon-plus"
+                size="mini"
+                @click="handleAdd">{{ $t("Common.Add") }}</el-button>
+          </el-col>
+          <el-col :span="1.5">
+            <el-button
+                plain
+                type="success"
+                icon="el-icon-edit"
+                size="mini"
+                :disabled="single"
+                @click="handleUpdate">{{ $t("Common.Edit") }}</el-button>
+          </el-col>
+          <el-col :span="1.5">
+            <el-button
+                plain
+                type="danger"
+                icon="el-icon-delete"
+                size="mini"
+                :disabled="multiple"
+                @click="handleDelete">{{ $t("Common.Delete") }}</el-button>
+          </el-col>
+        </el-row>
       </el-col>
-      <el-col :span="1.5">
-        <el-button
-            type="warning"
-            plain
-            icon="Download"
-            @click="handleExport"
-            v-hasPermi="['monitor:operlog:export']"
-        >导出</el-button>
+      <el-col :span="16">
+        <el-form
+            :model="queryParams"
+            ref="queryForm"
+            :inline="true"
+            size="mini"
+            style="text-align:right"
+            class="el-form-search">
+          <el-form-item prop="name">
+            <el-input :placeholder="$t('CMS.Resource.Name')" v-model="queryParams.name">
+              <el-select v-model="queryParams.resourceType" slot="prepend" :placeholder="$t('CMS.Resource.Type')" style="width:80px;">
+                <el-option
+                    v-for="rt in resourceTypes"
+                    :key="rt.id"
+                    :label="rt.name"
+                    :value="rt.id"
+                />
+              </el-select>
+            </el-input>
+          </el-form-item>
+          <el-form-item :label="$t('Common.CreateTime')">
+            <el-date-picker
+                v-model="dateRange"
+                style="width: 240px"
+                value-format="yyyy-MM-dd"
+                type="daterange"
+                range-separator="-"
+                :start-placeholder="$t('Common.BeginDate')"
+                :end-placeholder="$t('Common.EndDate')"
+            ></el-date-picker>
+          </el-form-item>
+          <el-form-item>
+            <el-button-group>
+              <el-button
+                  type="primary"
+                  icon="el-icon-search"
+                  @click="handleQuery">{{ $t("Common.Search") }}</el-button>
+              <el-button
+                  icon="el-icon-refresh"
+                  @click="resetQuery">{{ $t("Common.Reset") }}</el-button>
+            </el-button-group>
+          </el-form-item>
+        </el-form>
       </el-col>
-      <right-toolbar v-model:showSearch="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
 
-    <el-table ref="operlogRef" v-loading="loading" :data="operlogList" @selection-change="handleSelectionChange" :default-sort="defaultSort" @sort-change="handleSortChange">
+    <el-table v-loading="loading" size="small" :data="resourceList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="图标" align="center" width="70" key="icon" >
-          <template #default="scope">
-              <div class="role-icon">
-                <img style="width:40px;height:40px;border-radius:5px;" :src="'http://data.linesno.com/icons/sepcialist/dataset_' + ((scope.$index + 1)%10 + 5) + '.png'" />
-              </div>
-          </template>
-      </el-table-column>
-      <el-table-column label="应用名称" align="left" prop="applicationName">
-        <template #default="scope">
-          <div>
-            {{ scope.row.applicationName }}
-          </div>
-          <div style="font-size: 13px;color: #a5a5a5;cursor: pointer;" v-copyText="scope.row.promptId">
-            调用码: {{ scope.row.applicationCode }} <el-icon><CopyDocument /></el-icon>
-          </div>
-      </template>
-      </el-table-column>
-      <el-table-column label="应用描述" align="left" prop="applicationDesc" />
-      <el-table-column label="应用链接" align="center" width="150" prop="businessType">
-        <template #default="scope">
-          <el-button type="primary" bg link @click="enterAppHome(scope.row)"> <i class="fa-solid fa-link"></i> 打开配置</el-button>
+      <el-table-column label="ID" prop="resourceId" align="center" width="180" />
+      <el-table-column :label="$t('CMS.Resource.Type')" prop="resourceTypeName" width="80" />
+      <el-table-column :label="$t('CMS.Resource.Name')" prop="name" align="left">
+        <template slot-scope="scope">
+          <svg-icon :icon-class="scope.row.iconClass" /> <el-link type="primary" target="_blank" :href="scope.row.src">{{ scope.row.name }}</el-link>
         </template>
       </el-table-column>
-      <el-table-column label="状态" width="100" align="center" prop="status">
-        <template #default="scope">
-            <el-switch
-              v-model="scope.row.hasStatus"
-              active-value="0"
-              inactive-value="1"
-            />
+      <el-table-column :label="$t('CMS.Resource.StorageType')" prop="storageType" align="center" width="120" />
+      <el-table-column :label="$t('CMS.Resource.FileSize')" prop="fileSizeName" align="center" width="120" />
+      <el-table-column :label="$t('Common.CreateTime')" prop="createTime" align="center" width="180">
+        <template slot-scope="scope">
+          <span>{{ parseTime(scope.row.createTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="菜单配置" align="center" width="200" key="requestCount" prop="requestCount" :show-overflow-tooltip="true">
-          <template #default="scope">
-                <el-button type="danger" bg link @click="openMenu(scope.row)"> <i class="fa-solid fa-link"></i> 配置</el-button>
-          </template>
-      </el-table-column>
-      <el-table-column label="添加日期" align="center" prop="operTime" sortable="custom" :sort-orders="['descending', 'ascending']" width="180">
-        <template #default="scope">
-          <span>{{ parseTime(scope.row.addTime) }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="操作" align="center" width="150" class-name="small-padding fixed-width">
-        <template #default="scope">
+      <el-table-column
+          :label="$t('Common.Operation')"
+          align="center"
+          width="180"
+          class-name="small-padding fixed-width">
+        <template slot-scope="scope">
           <el-button
+              size="small"
               type="text"
-              icon="Edit"
-              @click="handleUpdate(scope.row)"
-              v-hasPermi="['system:menu:edit']"
-          >修改</el-button>
+              icon="el-icon-edit"
+              @click="handleUpdate(scope.row)">{{ $t("Common.Edit") }}</el-button>
           <el-button
+              size="small"
               type="text"
-              icon="Delete"
-              @click="handleDelete(scope.row)"
-              v-hasPermi="['system:menu:remove']"
-          >删除</el-button>
+              icon="el-icon-delete"
+              @click="handleDelete(scope.row)">{{ $t("Common.Delete") }}</el-button>
         </template>
       </el-table-column>
     </el-table>
-
     <pagination
-        v-show="total > 0"
+        v-show="total>0"
         :total="total"
-        v-model:page="queryParams.pageNum"
-        v-model:limit="queryParams.pageSize"
-        @pagination="getList"
-    />
+        :page.sync="queryParams.pageNum"
+        :limit.sync="queryParams.pageSize"
+        @pagination="getList" />
 
-    <!-- 操作日志详细 -->
-    <el-dialog :title="title" v-model="open" width="700px" append-to-body>
-      <el-form ref="applicationFormRef" :model="form" :rules="rules" label-width="80px">
-          <el-col :span="24">
-            <el-form-item label="菜单图标" prop="applicationIcons">
-              <el-popover
-                  placement="bottom-start"
-                  :width="540"
-                  trigger="click"
-                  @show="showSelectIcon">
-                <template #reference>
-                  <el-input v-model="form.applicationIcons" placeholder="点击选择图标" @click="showSelectIcon" v-click-outside="hideSelectIcon" readonly>
-                    <template #prefix>
-                      <svg-icon
-                          v-if="form.applicationIcons"
-                          :icon-class="form.applicationIcons"
-                          class="el-input__icon"
-                          style="height: 32px;width: 16px;"
-                      />
-                      <el-icon v-else style="height: 32px;width: 16px;"><search /></el-icon>
-                    </template>
-                  </el-input>
-                </template>
-                <icon-select ref="iconSelectRef" @selected="selected" />
-              </el-popover>
-            </el-form-item>
-          </el-col>
-        <el-form-item label="应用名称" prop="applicationName">
-          <el-input v-model="form.applicationName" placeholder="请输入应用名称" />
+    <!-- 添加或修改资源对话框 -->
+    <el-dialog
+        :title="title"
+        v-model="open"
+        width="500px"
+        append-to-body>
+      <el-form
+          ref="form"
+          :model="form"
+          :rules="rules"
+          label-width="80px">
+        <el-form-item :label="$t('CMS.Resource.UploadResource')">
         </el-form-item>
-        <el-form-item label="应用描述" prop="applicationDesc">
-          <el-input v-model="form.applicationDesc" placeholder="请输入应用描述" />
+        <el-form-item :label="$t('CMS.Resource.Name')" prop="name">
+          <el-input v-model="form.name" />
         </el-form-item>
-        <el-form-item label="应用代码" prop="applicationCode">
-          <el-input v-model="form.applicationCode" placeholder="请输入应用代码" />
+        <el-form-item :label="$t('Common.Remark')" prop="remark">
+          <el-input v-model="form.remark" type="textarea" />
         </el-form-item>
       </el-form>
-      <template #footer>
-        <div class="dialog-footer">
-          <el-button :loading="buttonLoading" type="primary" @click="submitForm">确 定</el-button>
-          <el-button @click="cancel">取 消</el-button>
-        </div>
-      </template>
+      <div slot="footer"
+           class="dialog-footer">
+        <el-button type="primary" :loading="upload.isUploading" @click="submitForm">{{ $t("Common.Confirm") }}</el-button>
+        <el-button @click="cancel">{{ $t("Common.Cancel") }}</el-button>
+      </div>
     </el-dialog>
   </div>
 </template>
+<script>
+import { getResourceTypes, getResrouceList, getResourceDetail, delResource } from "@/api/base/cms/attachment";
 
-<script setup name="Application">
-
-import { 
-  listApplication, 
-  delApplication , 
-  getApplication ,
-  updateApplication , 
-  addApplication
-} from "@/api/base/cms/cate";
-
-import SvgIcon from "@/components/SvgIcon";
-import IconSelect from "@/components/IconSelect";
-import { ClickOutside as vClickOutside } from 'element-plus'
-
-const { proxy } = getCurrentInstance();
-const { sys_oper_type, sys_common_status } = proxy.useDict("sys_oper_type","sys_common_status");
-
-const router = useRouter();
-const operlogList = ref([]);
-const open = ref(false);
-const loading = ref(true);
-const showSearch = ref(true);
-const ids = ref([]);
-const single = ref(true);
-const multiple = ref(true);
-const total = ref(0);
-const title = ref("");
-const showChooseIcon = ref(false);
-const iconSelectRef = ref(null);
-const dateRange = ref([]);
-const defaultSort = ref({ prop: "operTime", order: "descending" });
-
-const data = reactive({
-  form: {
-    applicationIcons: ''
+export default {
+  name: "CmsResource",
+  data () {
+    return {
+      // 遮罩层
+      loading: true,
+      // 选中数组
+      ids: [],
+      // 非单个禁用
+      single: true,
+      // 非多个禁用
+      multiple: true,
+      // 总条数
+      total: 0,
+      // 资源表格数据
+      resourceList: [],
+      // 弹出层标题
+      title: "",
+      // 是否显示弹出层
+      open: false,
+      dateRange: [],
+      // 查询参数
+      queryParams: {
+        pageNum: 1,
+        pageSize: 15,
+        resourceType: undefined,
+        name: undefined,
+        beginTime: undefined,
+        endTime: undefined
+      },
+      resourceTypes: [],
+      // 表单参数
+      form: {},
+      // 表单校验
+      rules: {
+        name: [
+          { required: true, message: this.$t('CMS.Resource.RuleTips.Name'), trigger: "blur" }
+        ]
+      },
+      // 上传参数
+      upload: {
+        // 是否禁用上传
+        isUploading: false,
+        fileList: [],
+        data: {}
+      },
+    };
   },
-  queryParams: {
-    pageNum: 1,
-    pageSize: 10,
-    title: undefined,
-    operName: undefined,
-    businessType: undefined,
-    status: undefined
-  }
-});
-
-const { queryParams, form } = toRefs(data);
-
-/** 表单重置 */
-function reset() {
-  form.value = {
-    id: undefined,
-    parentId: undefined,
-    deptName: undefined,
-    orderNum: 0,
-    leader: undefined,
-    phone: undefined,
-    email: undefined,
-    status: "0"
-  };
-  proxy.resetForm("deptRef");
-}
-
-/** 查询登录日志 */
-function getList() {
-  loading.value = true;
-  listApplication(proxy.addDateRange(queryParams.value, dateRange.value)).then(response => {
-    operlogList.value = response.rows;
-    total.value = response.total;
-    loading.value = false;
-  });
-}
-/** 取消按钮 */
-function cancel() {
-  open.value = false;
-  reset();
-}
-/** 展示下拉图标 */
-function showSelectIcon() {
-  iconSelectRef.value.reset();
-  showChooseIcon.value = true;
-}
-/** 打开菜单 */
-function openMenu(row){
-  let path =  '/application/system/menu/'
-  router.push({ path: path + row.id });
-}
-/** 选择图标 */
-function selected(name) {
-  form.value.icon = name;
-  showChooseIcon.value = false;
-}
-/** 图标外层点击隐藏下拉列表 */
-function hideSelectIcon(event) {
-  var elem = event.relatedTarget || event.srcElement || event.target || event.currentTarget;
-  var className = elem.className;
-  if (className !== "el-input__inner") {
-    showChooseIcon.value = false;
-  }
-}
-/** 操作日志类型字典翻译 */
-function typeFormat(row, column) {
-  return proxy.selectDictLabel(sys_oper_type.value, row.businessType);
-}
-/** 搜索按钮操作 */
-function handleQuery() {
-  queryParams.value.pageNum = 1;
-  getList();
-}
-/** 重置按钮操作 */
-function resetQuery() {
-  dateRange.value = [];
-  proxy.resetForm("queryRef");
-  proxy.$refs["operlogRef"].sort(defaultSort.value.prop, defaultSort.value.order);
-  handleQuery();
-}
-/** 多选框选中数据 */
-function handleSelectionChange(selection) {
-  ids.value = selection.map(item => item.id);
-  multiple.value = !selection.length;
-}
-/** 排序触发事件 */
-function handleSortChange(column, prop, order) {
-  queryParams.value.orderByColumn = column.prop;
-  queryParams.value.isAsc = column.order;
-  getList();
-}
-/** 详细按钮操作 */
-function handleView(row) {
-  open.value = true;
-  form.value = row;
-}
-/** 删除按钮操作 */
-function handleDelete(row) {
-  const operIds = row.id || ids.value;
-  proxy.$modal.confirm('是否确认删除日志编号为"' + operIds + '"的数据项?').then(function () {
-    return delApplication(operIds);
-  }).then(() => {
-    getList();
-    proxy.$modal.msgSuccess("删除成功");
-  }).catch(() => {});
-}
-/** 新增按钮操作 */
-function handleAdd() {
-  reset();
-  open.value = true;
-  title.value = "添加应用";
-}
-/** 修改按钮操作 */
-async function handleUpdate(row) {
-  reset();
-  getApplication(row.id).then(response => {
-    form.value = response.data;
-    open.value = true;
-    title.value = "修改应用";
-  });
-}
-/** 导出按钮操作 */
-function handleExport() {
-  proxy.download("monitor/operlog/export",{
-    ...queryParams.value,
-  }, `config_${new Date().getTime()}.xlsx`);
-}
-
-/** 提交按钮 */
-function submitForm() {
-  proxy.$refs["applicationFormRef"].validate(valid => {
-    if (valid) {
-      if (form.value.id != undefined) {
-        updateApplication(form.value).then(response => {
-          proxy.$modal.msgSuccess("修改成功");
-          open.value = false;
-          getList();
-        });
-      } else {
-        addApplication(form.value).then(response => {
-          proxy.$modal.msgSuccess("新增成功");
-          open.value = false;
-          getList();
-        });
+  created () {
+    this.getList();
+  },
+  methods: {
+    loadResourceTypes() {
+      getResourceTypes().then(response => {
+        this.resourceTypes = response.rows;
+      });
+    },
+    /** 查询资源列表 */
+    getList () {
+      this.loading = true;
+      if (this.dateRange && this.dateRange.length == 2) {
+        this.queryParams.beginTime = this.dateRange[0];
+        this.queryParams.endTime = this.dateRange[1];
       }
+      getResrouceList(this.queryParams).then(response => {
+        this.resourceList = response.rows;
+        this.resourceList.forEach(r => r.iconClass = getFileSvgIconClass(r.name))
+        this.total = parseInt(response.total);
+        this.loading = false;
+      });
+    },
+    // 取消按钮
+    cancel () {
+      this.open = false;
+      this.reset();
+    },
+    // 表单重置
+    reset () {
+      this.form = {
+        name: "",
+        remark: ""
+      };
+      this.resetForm("form");
+    },
+    /** 搜索按钮操作 */
+    handleQuery () {
+      this.queryParams.pageNum = 1;
+      this.getList();
+    },
+    /** 重置按钮操作 */
+    resetQuery () {
+      this.resetForm("queryForm");
+      this.queryParams.resourceType = undefined;
+      this.dateRange = [];
+      this.handleQuery();
+    },
+    // 多选框选中数据
+    handleSelectionChange (selection) {
+      this.ids = selection.map(item => item.resourceId)
+      this.single = selection.length != 1
+      this.multiple = !selection.length
+    },
+    /** 新增按钮操作 */
+    handleAdd () {
+      this.reset();
+      this.open = true;
+      this.title = this.$t('CMS.Resource.AddDialogTitle');
+    },
+    /** 修改按钮操作 */
+    handleUpdate (row) {
+      this.reset();
+      const resourceId = row.resourceId || this.ids
+      getResourceDetail(resourceId).then(response => {
+        this.form = response.rows;
+        this.title = this.$t('CMS.Resource.EditDialogTitle');
+        this.open = true;
+      });
+    },
+    handleFileUploadProgress(event, file, fileList) {
+      this.upload.isUploading = true;
+    },
+    handleFileSuccess(response, file, fileList) {
+      this.upload.isUploading = false;
+      this.$modal.msgSuccess(response.msg);
+      if (response.code == 200) {
+        this.open = false;
+        this.getList();
+      }
+      this.$refs.upload.clearFiles();
+      this.resetForm("form");
+    },
+    handleUploadChange(file) {
+      file.name = file.name.toLowerCase();
+      // if (!file.name.endsWith(".png") && !file.name.endsWith(".jpg")) {
+      //   this.$modal.msgError(this.$t('CMS.Resource.FileTypeErrMsg'));
+      //   this.upload.fileList = [];
+      //   return;
+      // }
+      this.form.name = file.name;
+    },
+    handleBeforeUpload(file) {
+      return true;
+    },
+    /** 提交按钮 */
+    submitForm: function () {
+      this.$refs["form"].validate(valid => {
+        if (valid) {
+          // this.$refs.upload.submit();
+        }
+      });
+    },
+    /** 删除按钮操作 */
+    handleDelete (row) {
+      const resourceIds = row.resourceId || this.ids;
+      this.$modal.confirm(this.$t('Common.ConfirmDelete')).then(function () {
+        return delResource(resourceIds);
+      }).then(() => {
+        this.getList();
+        this.$modal.msgSuccess(this.$t('Common.DeleteSuccess'));
+      }).catch(function () { });
     }
-  });
-}
-
-getList();
+  }
+};
 </script>

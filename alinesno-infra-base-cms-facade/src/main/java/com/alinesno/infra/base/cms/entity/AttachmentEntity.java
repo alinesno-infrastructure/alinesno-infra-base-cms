@@ -43,129 +43,139 @@ public class AttachmentEntity extends InfraBaseEntity {
 	private String module;
 
 	/**
-	 * catid
+	 * catId
 	 */
-	@Excel(name = "catid")
-	@TableField("catid")
+	@Excel(name = "catId")
+	@TableField("cat_id")
 	@ColumnType
-	@ColumnComment("catid")
-	private Integer catid;
+	@ColumnComment("catId")
+	private Integer catId;
 
 	/**
-	 * filename
+	 * 站点id
 	 */
-	@Excel(name = "filename")
-	@TableField("filename")
-	@ColumnType(length = 255)
-	@ColumnComment("filename")
-	private String filename;
-
-	/**
-	 * filepath
-	 */
-	@Excel(name = "filepath")
-	@TableField("filepath")
-	@ColumnType(length = 255)
-	@ColumnComment("filepath")
-	private String filepath;
-
-	/**
-	 * filesize
-	 */
-	@Excel(name = "filesize")
-	@TableField("filesize")
+	@TableField("site_id")
 	@ColumnType
-	@ColumnComment("filesize")
-	private Integer filesize;
+	@ColumnComment("站点id")
+	private Long siteId;
 
 	/**
-	 * fileext
+	 * 资源类型
 	 */
-	@Excel(name = "fileext")
-	@TableField("fileext")
-	@ColumnType(length = 255)
-	@ColumnComment("fileext")
-	private String fileext;
-
-	/**
-	 * isimage
-	 */
-	@Excel(name = "isimage")
-	@TableField("isimage")
+	@TableField("resource_type")
 	@ColumnType
-	@ColumnComment("isimage")
-	private Integer isimage;
+	@ColumnComment("资源类型")
+	private String resourceType;
 
 	/**
-	 * isthumb
+	 * 资源类型名称
 	 */
-	@Excel(name = "isthumb")
-	@TableField("isthumb")
+	@TableField(exist = false)
+	private String resourceTypeName;
+
+	/**
+	 * 存储类型，默认：local
+	 */
+	@TableField("storage_type")
 	@ColumnType
-	@ColumnComment("isthumb")
-	private Integer isthumb;
+	@ColumnComment("存储类型，默认：local")
+	private String storageType;
 
 	/**
-	 * downloads
+	 * 资源名称
 	 */
-	@Excel(name = "downloads")
-	@TableField("downloads")
+	@TableField("name")
 	@ColumnType
-	@ColumnComment("downloads")
-	private Integer downloads;
+	@ColumnComment("资源名称")
+	private String name;
 
 	/**
-	 * userid
+	 * 资源路径（相对站点根目录路径）
 	 */
-	@Excel(name = "userid")
-	@TableField("userid")
+	@TableField("path")
 	@ColumnType
-	@ColumnComment("userid")
-	private Integer userid;
+	@ColumnComment("资源路径（相对站点根目录路径）")
+	private String path;
 
 	/**
-	 * uploadtime
+	 * 文件名称
 	 */
-	@Excel(name = "uploadtime")
-	@TableField("uploadtime")
+	@TableField("file_name")
 	@ColumnType
-	@ColumnComment("uploadtime")
-	private Integer uploadtime;
+	@ColumnComment("文件名称")
+	private String fileName;
 
 	/**
-	 * uploadip
+	 * 后缀名，不带.
 	 */
-	@Excel(name = "uploadip")
-	@TableField("uploadip")
-	@ColumnType(length = 255)
-	@ColumnComment("uploadip")
-	private String uploadip;
+	@TableField("suffix")
+	@ColumnType
+	@ColumnComment("后缀名，不带.")
+	private String suffix;
 
 	/**
-	 * status
+	 * 图片宽度
 	 */
-	@Excel(name = "status")
+	@TableField("width")
+	@ColumnType
+	@ColumnComment("图片宽度")
+	private Integer width;
+
+	/**
+	 * 图片高度
+	 */
+	@TableField("height")
+	@ColumnType
+	@ColumnComment("图片高度")
+	private Integer height;
+
+	/**
+	 * 文件大小
+	 */
+	@TableField("file_size")
+	@ColumnType
+	@ColumnComment("文件大小")
+	private Long fileSize;
+
+	@TableField(exist = false)
+	private String fileSizeName;
+
+	/**
+	 * 来源地址
+	 */
+	@TableField("source_url")
+	@ColumnType
+	@ColumnComment("来源地址")
+	private String sourceUrl;
+
+	/**
+	 * 状态
+	 */
 	@TableField("status")
 	@ColumnType
-	@ColumnComment("status")
-	private Integer status;
+	@ColumnComment("状态")
+	private String status;
 
 	/**
-	 * authcode
+	 * 引用关系
 	 */
-	@Excel(name = "authcode")
-	@TableField("authcode")
-	@ColumnType(length = 255)
-	@ColumnComment("authcode")
-	private String authcode;
-
-	/**
-	 * siteid
-	 */
-	@Excel(name = "siteid")
-	@TableField("siteid")
+	@TableField("usage_info")
 	@ColumnType
-	@ColumnComment("siteid")
-	private Integer siteid;
+	@ColumnComment("引用关系")
+	private String usageInfo;
+
+	@TableField(exist = false)
+	private String src;
+
+	@TableField(exist = false)
+	private String internalUrl;
+
+	/**
+	 * 备注
+	 */
+	@TableField("remark")
+	@ColumnType
+	@ColumnComment("备注")
+	private String remark;
 }
 
