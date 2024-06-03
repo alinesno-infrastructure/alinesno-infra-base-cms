@@ -9,7 +9,6 @@
               icon="Plus"
               size="default"
               plain
-              v-hasPermi="['cms:friendlink:add']"
               @click="handleAdd">{{ $t("Common.Add") }}</el-button>
           </el-col>
           <el-col :span="1.5">
@@ -19,7 +18,6 @@
               size="default"
               plain
               :disabled="single"
-              v-hasPermi="[ 'cms:friendlink:add', 'cms:friendlink:edit' ]"
               @click="handleEdit">{{ $t("Common.Edit") }}</el-button>
           </el-col>
           <el-col :span="1.5">
@@ -29,7 +27,6 @@
               size="default"
               plain
               :disabled="multiple"
-              v-hasPermi="['cms:friendlink:delete']"
               @click="handleDelete">{{ $t("Common.Delete") }}</el-button>
           </el-col>
         </el-row>
@@ -49,10 +46,10 @@
             <el-button-group>
               <el-button
                 type="primary"
-                icon="el-icon-search"
+                icon="Search"
                 @click="handleQuery">{{ $t("Common.Search") }}</el-button>
               <el-button
-                icon="el-icon-refresh"
+                icon="Refresh"
                 @click="resetQuery">{{ $t("Common.Reset") }}</el-button>
             </el-button-group>
           </el-form-item>

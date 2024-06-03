@@ -5,19 +5,21 @@ import com.alinesno.infra.base.cms.service.ILinkService;
 import com.alinesno.infra.common.core.constants.SpringInstanceScope;
 import com.alinesno.infra.common.facade.pageable.DatatablesPageBean;
 import com.alinesno.infra.common.facade.pageable.TableDataInfo;
+import com.alinesno.infra.common.facade.response.AjaxResult;
+import com.alinesno.infra.common.facade.wrapper.RpcWrapper;
 import com.alinesno.infra.common.web.adapter.rest.BaseController;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.constraints.Min;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 处理与LinkEntity相关的请求的Controller。
@@ -36,7 +38,7 @@ public class LinkController extends BaseController<LinkEntity, ILinkService> {
     private static final Logger log = LoggerFactory.getLogger(LinkController.class);
 
     @Autowired
-    private ILinkService service;
+    private ILinkService linkService;
 
     /**
      * 获取LinkEntity的DataTables数据。
@@ -55,6 +57,18 @@ public class LinkController extends BaseController<LinkEntity, ILinkService> {
 
     @Override
     public ILinkService getFeign() {
-        return this.service;
+        return this.linkService;
+    }
+
+    @ResponseBody
+    @GetMapping("/list")
+    public AjaxResult getPageList(HttpServletRequest request,@RequestParam("groupId") @Min(1) Long groupId,
+                                  @RequestParam(value = "query", required = false) String query, DatatablesPageBean page) {
+        RpcWrapper<LinkEntity> restWrapper = page.buildWrapper(request);
+        Page<LinkEntity> linkEntityPage = this.linkService.lambdaQuery().eq(LinkEntity::getGroupId, groupId)
+                .like(StringUtils.isNotEmpty(query), LinkEntity::getName, query)
+                .orderByAsc(LinkEntity::getSortFlag)
+                .page(new Page<>(restWrapper.getPageNumber(), restWrapper.getPageSize(), true));
+        return AjaxResult.success(linkEntityPage);
     }
 }

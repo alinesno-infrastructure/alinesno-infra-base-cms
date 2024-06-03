@@ -91,7 +91,7 @@
           <el-table-column :label="$t('Common.UpdateTime')" align="center" width="160">
             <template #default="scope">
               <span v-if="scope.row.updateTime!=null">{{ parseTime(scope.row.updateTime) }}</span>
-              <span v-else>{{ parseTime(scope.row.createTime) }}</span>
+              <span v-else>{{ parseTime(scope.row.addTime) }}</span>
             </template>
           </el-table-column>
           <el-table-column :label="$t('Common.Operation')" align="center" width="180"  class-name="small-padding fixed-width">
@@ -210,7 +210,7 @@ export default {
     loadListData () {
       this.loading = true;
       listLink(this.queryParams).then(response => {
-        this.linkList = response.rows;
+        this.linkList = response.data.records;
         this.loading = false;
       });
     },
@@ -277,7 +277,7 @@ export default {
       }).catch(() => {});
     },
     handleGoBack() {
-      const obj = { path: "/Content/base/cms/link/linkGroup" };
+      const obj = { path: "/Content/base/cms/link/index" };
       this.$tab.closeOpenPage(obj);
     },
   }

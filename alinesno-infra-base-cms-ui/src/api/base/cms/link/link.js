@@ -5,27 +5,20 @@ import { parseStrEmpty } from "@/utils/ruoyi";
 var prefix = '/api/infra/base/cms/link/';
 var managerUrl = {
   datatables: prefix + "datatables",
-  createUrl: prefix + 'add',
+  list: prefix + "list",
+  detailUrl: prefix + "detail",
   saveUrl: prefix + 'save',
   updateUrl: prefix + "modify",
-  statusUrl: prefix + "changeStatus",
-  cleanUrl: prefix + "clean",
-  detailUrl: prefix + "detail",
   removeUrl: prefix + "delete",
-  choiceLink: prefix + "choiceLink",
-  exportUrl: prefix + "exportExcel",
-  changeField: prefix + "changeField",
-  currentLink: prefix + "currentLink",
-  downloadfile: prefix + "downloadfile" ,
-  latestList: prefix + "latestList"
+
 }
 
 
 // 查询友情链接列表
 export function listLink(query) {
   return request({
-    url: managerUrl.datatables,
-    method: 'post',
+    url: managerUrl.list,
+    method: 'get',
     params: query
   })
 }
