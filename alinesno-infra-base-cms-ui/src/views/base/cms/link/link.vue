@@ -42,13 +42,13 @@
           </el-col>
         </el-row>
       </el-col>
-      <el-col :span="12">
+      <el-col :span="12" type="float:right">
         <el-form 
           :model="queryParams"
           ref="queryForm"
           :inline="true"
           size="default"
-          class="Search"
+          class="el-form-search"
           v-show="showSearch">
           <el-form-item prop="query">
             <el-input v-model="queryParams.query" :placeholder="$t('CMS.FriendLink.Placeholder.LinkQuery')">

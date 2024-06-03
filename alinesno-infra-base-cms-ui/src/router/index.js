@@ -111,7 +111,7 @@ export const constantRoutes = [
         path: 'list',
         component: () => import('@/views/base/cms/link/link'),
         name: 'CmsLink',
-        meta: { noCache: true, title: i18n.global.t('CMS.ContentCore.Route.EditContent'), activeMenu: '/Content/base/cms/link/linkGroup'}
+        meta: { noCache: true, title: i18n.global.t('CMS.ContentCore.Route.EditContent'), activeMenu: '/Content/base/cms/link/index'}
       }
     ]
   },

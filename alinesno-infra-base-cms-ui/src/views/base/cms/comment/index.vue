@@ -1,42 +1,7 @@
 <template>
   <div class="app-container">
-    <el-row :gutter="10" class="mb12">
-      <el-col :span="1.5">
-        <el-button
-            type="success"
-            plain
-            icon="el-icon-cricle-check"
-            size="default"
-            :disabled="commentMultiple"
-            v-hasPermi="['comment:audit']"
-            @click="handleAuditPass">{{ $t('Comment.AuditPass') }}
-        </el-button>
-      </el-col>
-      <el-col :span="1.5">
-        <el-button
-            type="warning"
-            plain
-            icon="el-icon-cricle-close"
-            size="default"
-            :disabled="commentMultiple"
-            v-hasPermi="['comment:audit']"
-            @click="handleAuditNotPass">{{ $t('Comment.AuditNotPass') }}
-        </el-button>
-      </el-col>
-      <el-col :span="1.5">
-        <el-button
-            type="danger"
-            plain
-            icon="el-icon-delete"
-            size="default"
-            :disabled="commentMultiple"
-            v-hasPermi="['comment:delete']"
-            @click="handleDelete">{{ $t('Common.Delete') }}
-        </el-button>
-      </el-col>
-      <right-toolbar :showSearch.sync="showSearch" @queryTable="loadCommentList"></right-toolbar>
-    </el-row>
-    <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" style="float:right;" v-show="showSearch">
+
+    <el-form :model="queryParams" ref="queryForm" size="default" :inline="true" style="float:right;">
       <el-form-item :label="$t('Comment.SourceType')" prop="sourceType">
         <el-input
             v-model="queryParams.sourceType"
@@ -67,21 +32,58 @@
             clearable
             style="width: 100px"
         >
-<!--          <el-option-->
-<!--              v-for="dict in dict.type.CommentAuditStatus"-->
-<!--              :key="dict.value"-->
-<!--              :label="dict.label"-->
-<!--              :value="dict.value"-->
-<!--          />-->
+          <el-option
+              v-for="dict in commentAuditStatus"
+              :key="dict.value"
+              :label="dict.label"
+              :value="dict.value"
+          />
         </el-select>
       </el-form-item>
       <el-form-item>
         <el-button-group>
-          <el-button type="primary" icon="el-icon-search" size="small" @click="handleQuery">{{ $t('Common.Search') }}</el-button>
-          <el-button icon="el-icon-refresh" size="small" @click="resetQuery">{{ $t('Common.Reset') }}</el-button>
+          <el-button type="primary" icon="Search" size="default" @click="handleQuery">{{ $t('Common.Search') }}</el-button>
+          <el-button icon="Refresh" size="default" @click="resetQuery">{{ $t('Common.Reset') }}</el-button>
         </el-button-group>
       </el-form-item>
     </el-form>
+
+    <el-row :gutter="10" class="mb12">
+      <el-col :span="1.5">
+        <el-button
+            type="success"
+            plain
+            icon="Check"
+            size="default"
+            :disabled="commentMultiple"
+            v-hasPermi="['comment:audit']"
+            @click="handleAuditPass">{{ $t('Comment.AuditPass') }}
+        </el-button>
+      </el-col>
+      <el-col :span="1.5">
+        <el-button
+            type="warning"
+            plain
+            icon="Close"
+            size="default"
+            :disabled="commentMultiple"
+            v-hasPermi="['comment:audit']"
+            @click="handleAuditNotPass">{{ $t('Comment.AuditNotPass') }}
+        </el-button>
+      </el-col>
+      <el-col :span="1.5">
+        <el-button
+            type="danger"
+            plain
+            icon="Delete"
+            size="default"
+            :disabled="commentMultiple"
+            v-hasPermi="['comment:delete']"
+            @click="handleDelete">{{ $t('Common.Delete') }}
+        </el-button>
+      </el-col>
+    </el-row>
+
     <el-table v-loading="loading" :data="commentList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center"/>
       <el-table-column :label="$t('Comment.SourceType')" prop="sourceType" width="120" :show-overflow-tooltip="true"/>
@@ -89,7 +91,7 @@
       <el-table-column :label="$t('Comment.Content')" prop="content" :show-overflow-tooltip="true"/>
       <el-table-column :label="$t('Comment.AuditStatus')" prop="auditStatus" align="center" width="100">
         <template #default="scope">
-          <!--          <dict-tag :options="dict.type.CommentAuditStatus" :value="scope.row.auditStatus"/>-->
+          <dict-tag :options="commentAuditStatus" :value="scope.row.auditStatus"/>
         </template>
       </el-table-column>
       <el-table-column :label="$t('Comment.DelFlag')" align="center" width="80">
@@ -119,24 +121,24 @@
           <div v-if="scope.row.roleId !== 1">
             <el-button
                 v-if="scope.row.auditStatus==0||scope.row.auditStatus==2"
-                size="default"
+                size="small"
                 type="text"
-                icon="el-icon-circle-check"
+                icon="Check"
                 @click="handleAuditPass(scope.row)"
             >{{ $t('Comment.AuditPass') }}
             </el-button>
             <el-button
                 v-if="scope.row.auditStatus==0||scope.row.auditStatus==1"
-                size="default"
+                size="small"
                 type="text"
-                icon="el-icon-circle-close"
+                icon="Close"
                 @click="handleAuditNotPass(scope.row)"
             >{{ $t('Comment.AuditNotPass') }}
             </el-button>
             <el-button
-                size="default"
+                size="small"
                 type="text"
-                icon="el-icon-delete"
+                icon="Delete"
                 @click="handleDelete(scope.row)"
             >{{ $t('Common.Delete') }}
             </el-button>
@@ -163,7 +165,7 @@
         <el-table-column :label="$t('Comment.ReplyContent')" prop="content" :show-overflow-tooltip="true"/>
         <el-table-column :label="$t('Comment.AuditStatus')" align="center" width="100">
           <template #default="scope">
-            <!--            <dict-tag :options="dict.type.CommentAuditStatus" :value="scope.row.auditStatus"/>-->
+            <dict-tag :options="commentAuditStatus" :value="scope.row.auditStatus"/>
           </template>
         </el-table-column>
         <el-table-column :label="$t('Comment.LikeCount')" align="center" width="80">
@@ -184,7 +186,7 @@
                 v-if="scope.row.auditStatus==0||scope.row.auditStatus==2"
                 size="small"
                 type="text"
-                icon="el-icon-circle-check"
+                icon="Check"
                 @click="handleAuditPass(scope.row)"
             >{{ $t('Comment.AuditPass') }}
             </el-button>
@@ -192,14 +194,14 @@
                 v-if="scope.row.auditStatus==0||scope.row.auditStatus==1"
                 size="small"
                 type="text"
-                icon="el-icon-circle-close"
+                icon="Close"
                 @click="handleAuditNotPass(scope.row)"
             >{{ $t('Comment.AuditNotPass') }}
             </el-button>
             <el-button
                 size="small"
                 type="text"
-                icon="el-icon-delete"
+                icon="Delete"
                 @click="handleDelete(scope.row)"
             >{{ $t('Common.Delete') }}
             </el-button>
@@ -214,7 +216,7 @@
           @pagination="loadReplyList"
       />
     </el-drawer>
-        <comment-like-dialog :open.sync="likeVisible" :id="likeCommentId"></comment-like-dialog>
+    <comment-like-dialog :open.sync="likeVisible" :id="likeCommentId"></comment-like-dialog>
   </div>
 </template>
 
@@ -227,7 +229,6 @@ export default {
   components: {
     "comment-like-dialog": CommentLikeDialog
   },
-  dicts: ['CommentAuditStatus'],
   data() {
     return {
       // 遮罩层
@@ -259,7 +260,12 @@ export default {
       replyQueryParams: {
         pageNum: 1,
         pageSize: 10
-      }
+      },
+      commentAuditStatus: [
+        {value: 0, label: '未审核'},
+        {value: 1, label: '审核通过'},
+        {value: 2, label: '审核未通过'}
+      ]
     };
   },
   created() {
