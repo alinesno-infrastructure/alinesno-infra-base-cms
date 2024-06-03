@@ -111,7 +111,20 @@ export const constantRoutes = [
         path: 'list',
         component: () => import('@/views/base/cms/link/link'),
         name: 'CmsLink',
-        meta: { noCache: true, title: i18n.global.t('CMS.FriendLink.RouteLinkList'), activeMenu: '/Content/base/cms/link/linkGroup'}
+        meta: { noCache: true, title: i18n.global.t('CMS.ContentCore.Route.EditContent'), activeMenu: '/Content/base/cms/link/linkGroup'}
+      }
+    ]
+  },
+  {
+    path: '/Content/base/cms/post',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: 'editor',
+        component: () => import('@/views/base/cms/post/contentEditor.vue'),
+        name: 'CMSContentEditor',
+        meta: { noCache: true, title: i18n.global.t('CMS.FriendLink.RouteLinkList'), activeMenu: '/Content/base/cms/post/index'}
       }
     ]
   }

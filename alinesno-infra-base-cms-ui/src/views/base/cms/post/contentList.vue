@@ -125,7 +125,7 @@
       </el-col>
     </el-row>
     <el-row>
-      <el-form :model="queryParams" ref="queryForm" size="small" class="el-form-search" style="text-align:left;" :inline="true">
+      <el-form :model="queryParams" ref="queryForm" size="default" class="Search" style="text-align:left;" :inline="true">
         <div class="mb12">
           <el-form-item prop="title">
             <el-input
@@ -191,7 +191,7 @@
     <el-table
         v-loading="loading"
         ref="tableContentList"
-        size="small"
+        size="default"
         :data="contentList"
         :height="tableHeight"
         :max-height="tableMaxHeight"
@@ -219,30 +219,30 @@
           :label="$t('Common.Operation')"
           align="center"
           width="260"
-          class-name="small-padding fixed-width">
+          class-name="default-padding fixed-width">
         <template #default="scope">
           <span class="btn-cell-wrap">
             <el-button
-                size="small"
+                size="default"
                 type="text"
                 icon="el-icon-view"
                 @click="handlePreview(scope.row)">{{ $t('CMS.ContentCore.Preview') }}</el-button>
           </span>
           <span class="btn-cell-wrap">
             <el-button
-                size="small"
+                size="default"
                 type="text"
                 icon="el-icon-s-promotion"
                 @click="handlePublish(scope.row)">{{ $t('CMS.ContentCore.Publish') }}</el-button>
           </span>
           <span class="btn-cell-wrap">
             <el-button
-                size="small"
+                size="default"
                 type="text"
                 icon="el-icon-timer"
                 @click="handleToPublish(scope.row)">{{ $t('CMS.ContentCore.ToPublish') }}</el-button>
           </span>
-          <el-dropdown size="small">
+          <el-dropdown size="default">
             <el-link :underline="false" class="row-more-btn" icon="el-icon-more"></el-link>
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item icon="el-icon-edit" @click.native="handleEdit(scope.row)">{{ $t('Common.Edit') }}</el-dropdown-item>
@@ -419,10 +419,10 @@ export default {
       this.handleQuery();
     },
     handleAdd() {
-      if (!this.catalogId) {
-        this.$modal.msgError(this.$t("CMS.Content.SelectCatalogFirst"));
-        return;
-      }
+      // if (!this.catalogId) {
+      //   this.$modal.msgError(this.$t("CMS.Content.SelectCatalogFirst"));
+      //   return;
+      // }
       this.openEditor(this.catalogId, 0, this.addContentType);
     },
     handleEdit(row) {
@@ -431,12 +431,12 @@ export default {
     openEditor(catalogId, contentId, contentType) {
       if (this.openEditorW) {
         let routeData = this.$router.resolve({
-          path: "/cms/content/editorW",
+          path: "/Content/base/cms/post/editorW",
           query: {type: contentType, catalogId: catalogId, id: contentId},
         });
         window.open(routeData.href, '_blank');
       } else {
-        this.$router.push({path: "/cms/content/editor", query: {type: contentType, catalogId: catalogId, id: contentId, w: this.openEditorW}});
+        this.$router.push({path: "/Content/base/cms/post/editor", query: {type: contentType, catalogId: catalogId, id: contentId, w: this.openEditorW}});
       }
     },
     handleDelete(row) {
