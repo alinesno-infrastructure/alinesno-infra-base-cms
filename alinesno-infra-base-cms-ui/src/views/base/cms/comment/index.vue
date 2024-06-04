@@ -1,7 +1,44 @@
 <template>
   <div class="app-container">
 
-    <el-form :model="queryParams" ref="queryForm" size="default" :inline="true" style="float:right;">
+    <el-row :gutter="10" class="mb10">
+      <el-col :span="1.5">
+        <el-button
+            type="success"
+            plain
+            icon="Check"
+            size="default"
+            :disabled="commentMultiple"
+            v-hasPermi="['comment:audit']"
+            @click="handleAuditPass">{{ $t('Comment.AuditPass') }}
+        </el-button>
+      </el-col>
+      <el-col :span="1.5">
+        <el-button
+            type="warning"
+            plain
+            icon="Close"
+            size="default"
+            :disabled="commentMultiple"
+            v-hasPermi="['comment:audit']"
+            @click="handleAuditNotPass">{{ $t('Comment.AuditNotPass') }}
+        </el-button>
+      </el-col>
+      <el-col :span="1.5">
+        <el-button
+            type="danger"
+            plain
+            icon="Delete"
+            size="default"
+            :disabled="commentMultiple"
+            v-hasPermi="['comment:delete']"
+            @click="handleDelete">{{ $t('Common.Delete') }}
+        </el-button>
+      </el-col>
+      <right-toolbar v-model:showSearch="showSearch" @queryTable="loadCommentList"></right-toolbar>
+    </el-row>
+
+    <el-form :model="queryParams" ref="queryForm" size="default" :inline="true" style="float:right;" v-show="showSearch">
       <el-form-item :label="$t('Comment.SourceType')" prop="sourceType">
         <el-input
             v-model="queryParams.sourceType"
@@ -47,42 +84,6 @@
         </el-button-group>
       </el-form-item>
     </el-form>
-
-    <el-row :gutter="10" class="mb12">
-      <el-col :span="1.5">
-        <el-button
-            type="success"
-            plain
-            icon="Check"
-            size="default"
-            :disabled="commentMultiple"
-            v-hasPermi="['comment:audit']"
-            @click="handleAuditPass">{{ $t('Comment.AuditPass') }}
-        </el-button>
-      </el-col>
-      <el-col :span="1.5">
-        <el-button
-            type="warning"
-            plain
-            icon="Close"
-            size="default"
-            :disabled="commentMultiple"
-            v-hasPermi="['comment:audit']"
-            @click="handleAuditNotPass">{{ $t('Comment.AuditNotPass') }}
-        </el-button>
-      </el-col>
-      <el-col :span="1.5">
-        <el-button
-            type="danger"
-            plain
-            icon="Delete"
-            size="default"
-            :disabled="commentMultiple"
-            v-hasPermi="['comment:delete']"
-            @click="handleDelete">{{ $t('Common.Delete') }}
-        </el-button>
-      </el-col>
-    </el-row>
 
     <el-table v-loading="loading" :data="commentList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center"/>
@@ -262,9 +263,9 @@ export default {
         pageSize: 10
       },
       commentAuditStatus: [
-        {value: 0, label: '未审核'},
-        {value: 1, label: '审核通过'},
-        {value: 2, label: '审核未通过'}
+        {value: 0, label: '待审核'},
+        {value: 1, label: '通过'},
+        {value: 2, label: '未通过'}
       ]
     };
   },
