@@ -1,6 +1,6 @@
 <template>
   <div class="cms-content-list">
-    <el-row :gutter="10" class="mb12">
+    <el-row :gutter="10" class="mb10">
       <el-col :span="1.5">
         <el-popover class="btn-permi" placement="bottom-start" :width="400" trigger="click">
           <el-row style="margin-bottom:20px;text-align:right;">
@@ -24,7 +24,7 @@
             <el-button
                 type="primary"
                 slot="reference"
-                icon="el-icon-plus"
+                icon="Plus"
                 size="default"
                 plain>{{ $t("Common.Add") }}<i class="el-icon-arrow-down el-icon--right"></i>
             </el-button>
@@ -35,7 +35,7 @@
         <el-button
             plain
             type="danger"
-            icon="el-icon-delete"
+            icon="Delete"
             size="default"
             :disabled="multiple"
             @click="handleDelete">{{ $t("Common.Delete") }}
@@ -45,7 +45,7 @@
         <el-button
             plain
             type="primary"
-            icon="el-icon-timer"
+            icon="Timer"
             size="default"
             :disabled="multiple"
             @click="handleToPublish">{{ $t("CMS.ContentCore.ToPublish") }}
@@ -55,7 +55,7 @@
         <el-button
             plain
             type="success"
-            icon="el-icon-s-promotion"
+            icon="Promotion"
             size="default"
             :disabled="multiple"
             @click="handlePublish">{{ $t("CMS.ContentCore.Publish") }}
@@ -65,7 +65,7 @@
         <el-button
             plain
             type="warning"
-            icon="el-icon-download"
+            icon="Download"
             size="default"
             :disabled="multiple"
             @click="handleOffline">{{ $t("CMS.Content.Offline") }}
@@ -75,7 +75,7 @@
         <el-button
             plain
             type="primary"
-            icon="el-icon-document-copy"
+            icon="Plus"
             size="default"
             :disabled="multiple"
             @click="handleCopy">{{ $t("Common.Copy") }}
@@ -85,7 +85,7 @@
         <el-button
             plain
             type="primary"
-            icon="el-icon-right"
+            icon="Right"
             size="default"
             :disabled="multiple"
             @click="handleMove">{{ $t("Common.Move") }}
@@ -97,14 +97,16 @@
               plain
               size="default"
               type="primary"
+              icon="Plus"
               :disabled="multiple">
-            <svg-icon icon-class="recommend"/>
-            {{ $t('CMS.Content.Recommend') }}<i class="el-icon-arrow-down el-icon--right"></i>
+            {{ $t('CMS.Content.Recommend') }}<i class="Down Right"></i>
           </el-button>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item icon="el-icon-plus" :disabled="multiple" @click.native="handleRecommend">{{ $t('CMS.Content.Recommend') }}</el-dropdown-item>
-            <el-dropdown-item icon="el-icon-minus" :disabled="multiple" @click.native="handleCancelRecommend">{{ $t('CMS.Content.CancelRecommend') }}</el-dropdown-item>
-          </el-dropdown-menu>
+          <template #dropdown>
+            <el-dropdown-menu>
+              <el-dropdown-item icon="Plus" :disabled="multiple" @click.native="handleRecommend">{{ $t('CMS.Content.Recommend') }}</el-dropdown-item>
+              <el-dropdown-item icon="Minus" :disabled="multiple" @click.native="handleCancelRecommend">{{ $t('CMS.Content.CancelRecommend') }}</el-dropdown-item>
+            </el-dropdown-menu>
+          </template>
         </el-dropdown>
       </el-col>
       <el-col :span="1.5">
@@ -113,14 +115,16 @@
               plain
               size="default"
               type="primary"
+              icon="plus"
               :disabled="multiple">
-            <svg-icon icon-class="fire"/>
             {{ $t('CMS.Content.Hot') }}<i class="el-icon-arrow-down el-icon--right"></i>
           </el-button>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item icon="el-icon-plus" :disabled="multiple" @click.native="handleHot">{{ $t('CMS.Content.Hot') }}</el-dropdown-item>
-            <el-dropdown-item icon="el-icon-minus" :disabled="multiple" @click.native="handleCancelHot">{{ $t('CMS.Content.CancelHot') }}</el-dropdown-item>
-          </el-dropdown-menu>
+          <template #dropdown>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item icon="Plus" :disabled="multiple" @click.native="handleHot">{{ $t('CMS.Content.Hot') }}</el-dropdown-item>
+              <el-dropdown-item icon="Minus" :disabled="multiple" @click.native="handleCancelHot">{{ $t('CMS.Content.CancelHot') }}</el-dropdown-item>
+            </el-dropdown-menu>
+          </template>
         </el-dropdown>
       </el-col>
     </el-row>
@@ -167,10 +171,10 @@
           </el-form-item>
           <el-form-item>
             <el-button-group>
-              <el-button type="primary" icon="el-icon-search" @click="handleQuery">{{ $t("Common.Search") }}</el-button>
-              <el-button icon="el-icon-refresh" @click="resetQuery">{{ $t("Common.Reset") }}</el-button>
+              <el-button type="primary" icon="Search" @click="handleQuery">{{ $t("Common.Search") }}</el-button>
+              <el-button icon="Refresh" @click="resetQuery">{{ $t("Common.Reset") }}</el-button>
             </el-button-group>
-            <el-button icon="el-icon-plus" class="ml10" @click="showSearch=!showSearch">{{ $t("Common.More") }}</el-button>
+            <el-button icon="Plus" class="ml10" @click="showSearch=!showSearch">{{ $t("Common.More") }}</el-button>
           </el-form-item>
         </div>
         <div class="mb12" v-show="showSearch">
@@ -225,35 +229,35 @@
             <el-button
                 size="default"
                 type="text"
-                icon="el-icon-view"
+                icon="View"
                 @click="handlePreview(scope.row)">{{ $t('CMS.ContentCore.Preview') }}</el-button>
           </span>
           <span class="btn-cell-wrap">
             <el-button
                 size="default"
                 type="text"
-                icon="el-icon-s-promotion"
+                icon="Promotion"
                 @click="handlePublish(scope.row)">{{ $t('CMS.ContentCore.Publish') }}</el-button>
           </span>
           <span class="btn-cell-wrap">
             <el-button
                 size="default"
                 type="text"
-                icon="el-icon-timer"
+                icon="Timer"
                 @click="handleToPublish(scope.row)">{{ $t('CMS.ContentCore.ToPublish') }}</el-button>
           </span>
           <el-dropdown size="default">
-            <el-link :underline="false" class="row-more-btn" icon="el-icon-more"></el-link>
+            <el-link :underline="false" class="row-more-btn" icon="More"></el-link>
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item icon="el-icon-edit" @click.native="handleEdit(scope.row)">{{ $t('Common.Edit') }}</el-dropdown-item>
-              <el-dropdown-item icon="el-icon-delete" @click.native="handleDelete(scope.row)">{{ $t('Common.Delete') }}</el-dropdown-item>
-              <el-dropdown-item icon="el-icon-sort" @click.native="handleSort(scope.row)">{{ $t('Common.Sort') }}</el-dropdown-item>
-              <el-dropdown-item v-show="scope.row.topFlag<=0" icon="el-icon-top" @click.native="handleSetTop(scope.row)">{{ $t('CMS.Content.SetTop') }}</el-dropdown-item>
-              <el-dropdown-item v-show="scope.row.topFlag>0" icon="el-icon-bottom" @click.native="handleCancelTop(scope.row)">{{ $t('CMS.Content.CancelTop') }}</el-dropdown-item>
-              <el-dropdown-item icon="el-icon-document-copy" @click.native="handleCopy(scope.row)">{{ $t('Common.Copy') }}</el-dropdown-item>
-              <el-dropdown-item icon="el-icon-right" @click.native="handleMove(scope.row)">{{ $t('Common.Move') }}</el-dropdown-item>
-              <el-dropdown-item icon="el-icon-download" @click.native="handleOffline(scope.row)">{{ $t('CMS.Content.Offline') }}</el-dropdown-item>
-              <el-dropdown-item icon="el-icon-search" @click.native="handleCreateIndex(scope.row)">{{ $t('CMS.Content.GenIndex') }}</el-dropdown-item>
+              <el-dropdown-item icon="Edit" @click.native="handleEdit(scope.row)">{{ $t('Common.Edit') }}</el-dropdown-item>
+              <el-dropdown-item icon="Delete" @click.native="handleDelete(scope.row)">{{ $t('Common.Delete') }}</el-dropdown-item>
+              <el-dropdown-item icon="Sort" @click.native="handleSort(scope.row)">{{ $t('Common.Sort') }}</el-dropdown-item>
+              <el-dropdown-item v-show="scope.row.topFlag<=0" icon="Top" @click.native="handleSetTop(scope.row)">{{ $t('CMS.Content.SetTop') }}</el-dropdown-item>
+              <el-dropdown-item v-show="scope.row.topFlag>0" icon="eBottom" @click.native="handleCancelTop(scope.row)">{{ $t('CMS.Content.CancelTop') }}</el-dropdown-item>
+              <el-dropdown-item icon="Copy" @click.native="handleCopy(scope.row)">{{ $t('Common.Copy') }}</el-dropdown-item>
+              <el-dropdown-item icon="Right" @click.native="handleMove(scope.row)">{{ $t('Common.Move') }}</el-dropdown-item>
+              <el-dropdown-item icon="Download" @click.native="handleOffline(scope.row)">{{ $t('CMS.Content.Offline') }}</el-dropdown-item>
+              <el-dropdown-item icon="Search" @click.native="handleCreateIndex(scope.row)">{{ $t('CMS.Content.GenIndex') }}</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
         </template>

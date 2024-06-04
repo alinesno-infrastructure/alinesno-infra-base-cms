@@ -5,7 +5,7 @@
         <el-button 
           plain
           type="success"
-          icon="el-icon-edit"
+          icon="Edit"
           size="default"
           :disabled="!this.catalogId"
           @click="handleUpdate">{{ $t("Common.Save") }}</el-button>
@@ -24,7 +24,7 @@
             plain
             size="default"
             type="primary"
-            icon="el-icon-s-promotion"
+            icon="Promotion"
             :disabled="!this.catalogId"
             @click="handlePublish(-1)">
             {{ $t('CMS.ContentCore.Publish') }}<i class="el-icon-arrow-down el-icon--right"></i>
@@ -37,7 +37,7 @@
         <el-button 
           plain
           type="warning"
-          :icon="catalogVisible?'el-icon-circle-close':'el-icon-circle-check'"
+          :icon="catalogVisible?'Close':'Check'"
           size="default"
           :disabled="!this.catalogId"
           @click="handleChangeVisible">{{ catalogVisible ? $t("Common.Hide") : $t("Common.Show") }}</el-button>
@@ -45,7 +45,7 @@
       <el-col :span="1.5">
         <el-button 
           type="primary"
-          icon="el-icon-rank"
+          icon="Rank"
           size="default"
           plain
           :disabled="!this.catalogId"
@@ -70,7 +70,7 @@
             size="default"
             plain
             type="primary"
-            icon="el-icon-sort"
+            icon="Sort"
           >{{ $t('Common.Sort') }}</el-button>
         </el-popover>
       </el-col>
@@ -78,7 +78,7 @@
         <el-popconfirm :title="$t('CMS.Catalog.DeleteTip')" @confirm="handleDelete" class="btn-permi" >
           <el-button 
             type="danger" 
-            icon="el-icon-delete"
+            icon="Delete"
             size="default"
             plain
             :disabled="!this.catalogId"
@@ -181,7 +181,7 @@
               <el-button 
                 plain 
                 class="ml5"
-                icon="el-icon-bottom-right" 
+                icon="Right"
                 type="primary" 
                 @click="handleApplyToChildren('listTemplate')">{{ $t('CMS.Catalog.ApplyToChildren') }}</el-button>
             </el-form-item>
@@ -200,7 +200,7 @@
               </el-input>
               <el-button 
                 class="ml5"
-                icon="el-icon-bottom-right" 
+                icon="Right"
                 type="primary" 
                 plain 
                 @click="handleApplyToChildren(`detailTemplate_${ct.id}`)"
@@ -217,7 +217,7 @@
               <el-button 
                 plain 
                 class="ml5"
-                icon="el-icon-bottom-right" 
+                icon="Right"
                 type="primary" 
                 @click="handleApplyToChildren('contentExTemplate')">{{ $t('CMS.Catalog.ApplyToChildren') }}</el-button>
             </el-form-item>

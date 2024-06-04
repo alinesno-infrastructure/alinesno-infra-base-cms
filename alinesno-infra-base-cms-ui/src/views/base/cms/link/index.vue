@@ -31,7 +31,7 @@
           </el-col>
         </el-row>
       </el-col>
-      <el-col :span="12">
+      <el-col :span="12" style="text-align:right">
         <el-form
           :model="queryParams"
           ref="queryForm"
@@ -81,7 +81,7 @@
               <span class="btn-cell-wrap">
                 <el-button
                   type="text"
-                  icon="el-icon-edit"
+                  icon="edit"
                   size="small"
                   v-hasPermi="[ 'cms:friendlink:add', 'cms:friendlink:edit' ]"
                   @click="handleEdit(scope.row)">{{ $t('Common.Edit') }}</el-button>
@@ -89,7 +89,7 @@
               <span class="btn-cell-wrap">
                 <el-button
                   type="text"
-                  icon="el-icon-delete"
+                  icon="delete"
                   size="small"
                   v-hasPermi="[ 'cms:friendlink:delete' ]"
                   @click="handleDelete(scope.row)">{{ $t("Common.Delete") }}</el-button>

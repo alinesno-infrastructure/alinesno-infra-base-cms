@@ -6,7 +6,7 @@
           <el-col :span="1.5">
             <el-button
                 type="primary"
-                icon="el-icon-plus"
+                icon="Plus"
                 size="default"
                 plain
                 @click="handleAdd">{{ $t("Common.Add") }}
@@ -15,7 +15,7 @@
           <el-col :span="1.5">
             <el-button
                 type="success"
-                icon="el-icon-edit"
+                icon="Edit"
                 size="default"
                 plain
                 :disabled="single"
@@ -25,7 +25,7 @@
           <el-col :span="1.5">
             <el-button
                 type="danger"
-                icon="el-icon-delete"
+                icon="Delete"
                 size="default"
                 plain
                 :disabled="multiple"
@@ -35,7 +35,7 @@
           <el-col :span="1.5">
             <el-button
                 type="danger"
-                icon="el-icon-remove-outline"
+                icon="Delete"
                 size="default"
                 plain
                 :disabled="multiple"
@@ -68,11 +68,11 @@
             <el-button-group>
               <el-button
                   type="primary"
-                  icon="el-icon-search"
+                  icon="Search"
                   @click="handleQuery">{{ $t("Common.Search") }}
               </el-button>
               <el-button
-                  icon="el-icon-refresh"
+                  icon="Refresh"
                   @click="resetQuery">{{ $t("Common.Reset") }}
               </el-button>
             </el-button-group>
@@ -131,26 +131,26 @@
             <template #default="scope">
               <el-button
                   type="text"
-                  icon="el-icon-edit"
+                  icon="Edit"
                   size="small"
                   @click="handleRename(scope.row)">{{ $t('CMS.Template.Rename') }}
               </el-button>
               <el-button
                   type="text"
-                  icon="el-icon-edit"
+                  icon="Edit"
                   size="small"
                   @click="handleEdit(scope.row)">{{ $t("Common.Edit") }}
               </el-button>
               <el-button
                   type="text"
-                  icon="el-icon-delete"
+                  icon="Delete"
                   size="small"
                   @click="handleDelete(scope.row)">{{ $t("Common.Delete") }}
               </el-button>
               <el-button
                   type="text"
                   size="small"
-                  icon="el-icon-remove-outline"
+                  icon="Delete"
                   @click="handleClearIncludeCache(scope.row)">{{ $t("CMS.Template.ClearIncludeCache") }}
               </el-button>
             </template>

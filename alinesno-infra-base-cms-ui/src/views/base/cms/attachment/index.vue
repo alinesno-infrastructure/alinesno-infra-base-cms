@@ -7,7 +7,7 @@
             <el-button
                 plain
                 type="primary"
-                icon="el-icon-plus"
+                icon="Plus"
                 size="mini"
                 @click="handleAdd">{{ $t("Common.Add") }}</el-button>
           </el-col>
@@ -15,7 +15,7 @@
             <el-button
                 plain
                 type="success"
-                icon="el-icon-edit"
+                icon="Edit"
                 size="mini"
                 :disabled="single"
                 @click="handleUpdate">{{ $t("Common.Edit") }}</el-button>
@@ -24,7 +24,7 @@
             <el-button
                 plain
                 type="danger"
-                icon="el-icon-delete"
+                icon="Delete"
                 size="mini"
                 :disabled="multiple"
                 @click="handleDelete">{{ $t("Common.Delete") }}</el-button>
@@ -66,10 +66,10 @@
             <el-button-group>
               <el-button
                   type="primary"
-                  icon="el-icon-search"
+                  icon="Search"
                   @click="handleQuery">{{ $t("Common.Search") }}</el-button>
               <el-button
-                  icon="el-icon-refresh"
+                  icon="Refresh"
                   @click="resetQuery">{{ $t("Common.Reset") }}</el-button>
             </el-button-group>
           </el-form-item>
@@ -102,12 +102,12 @@
           <el-button
               size="small"
               type="text"
-              icon="el-icon-edit"
+              icon="Edit"
               @click="handleUpdate(scope.row)">{{ $t("Common.Edit") }}</el-button>
           <el-button
               size="small"
               type="text"
-              icon="el-icon-delete"
+              icon="Delete"
               @click="handleDelete(scope.row)">{{ $t("Common.Delete") }}</el-button>
         </template>
       </el-table-column>
