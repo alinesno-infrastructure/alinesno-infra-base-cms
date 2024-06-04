@@ -217,7 +217,7 @@ export default {
     loadListData() {
       this.loading = true;
       listLink(this.queryParams).then(response => {
-        this.linkList = response.data.records;
+        this.linkList = response.rows;
         this.loading = false;
       });
     },

@@ -5,7 +5,6 @@ import com.alinesno.infra.base.cms.service.ILinkService;
 import com.alinesno.infra.common.core.constants.SpringInstanceScope;
 import com.alinesno.infra.common.facade.pageable.DatatablesPageBean;
 import com.alinesno.infra.common.facade.pageable.TableDataInfo;
-import com.alinesno.infra.common.facade.response.AjaxResult;
 import com.alinesno.infra.common.facade.wrapper.RpcWrapper;
 import com.alinesno.infra.common.web.adapter.rest.BaseController;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -62,13 +61,19 @@ public class LinkController extends BaseController<LinkEntity, ILinkService> {
 
     @ResponseBody
     @GetMapping("/list")
-    public AjaxResult getPageList(HttpServletRequest request,@RequestParam("groupId") @Min(1) Long groupId,
+    public TableDataInfo getPageList(HttpServletRequest request,@RequestParam("groupId") @Min(1) Long groupId,
                                   @RequestParam(value = "query", required = false) String query, DatatablesPageBean page) {
         RpcWrapper<LinkEntity> restWrapper = page.buildWrapper(request);
         Page<LinkEntity> linkEntityPage = this.linkService.lambdaQuery().eq(LinkEntity::getGroupId, groupId)
                 .like(StringUtils.isNotEmpty(query), LinkEntity::getName, query)
                 .orderByAsc(LinkEntity::getSortFlag)
                 .page(new Page<>(restWrapper.getPageNumber(), restWrapper.getPageSize(), true));
-        return AjaxResult.success(linkEntityPage);
+
+        TableDataInfo dInfo = new TableDataInfo();
+        dInfo.setCode(200);
+        dInfo.setMsg("查询成功");
+        dInfo.setRows(linkEntityPage.getRecords());
+        dInfo.setTotal(((int)linkEntityPage.getTotal()));
+        return dInfo;
     }
 }

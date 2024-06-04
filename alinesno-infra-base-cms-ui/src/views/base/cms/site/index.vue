@@ -165,8 +165,8 @@ export default {
     loadSiteList () {
       this.siteListLoading = true;
       listSite(this.queryParams).then(response => {
-        this.siteList = response.data.records;
-        this.siteTotal = parseInt(response.data.total);
+        this.siteList = response.rows;
+        this.siteTotal = parseInt(response.total);
         this.siteListLoading = false;
       });
     },

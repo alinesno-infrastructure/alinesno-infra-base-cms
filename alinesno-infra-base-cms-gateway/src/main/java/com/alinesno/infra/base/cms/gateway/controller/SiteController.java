@@ -6,7 +6,6 @@ import com.alinesno.infra.base.cms.service.ISiteService;
 import com.alinesno.infra.common.core.constants.SpringInstanceScope;
 import com.alinesno.infra.common.facade.pageable.DatatablesPageBean;
 import com.alinesno.infra.common.facade.pageable.TableDataInfo;
-import com.alinesno.infra.common.facade.response.AjaxResult;
 import com.alinesno.infra.common.facade.wrapper.RpcWrapper;
 import com.alinesno.infra.common.web.adapter.rest.BaseController;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
@@ -62,10 +61,15 @@ public class SiteController extends BaseController<SiteEntity, ISiteService> {
     }
 
     @GetMapping("/list")
-    public AjaxResult list(HttpServletRequest request,@RequestParam(value = "siteName", required = false) String siteName, DatatablesPageBean page) {
+    public TableDataInfo list(HttpServletRequest request,@RequestParam(value = "siteName", required = false) String siteName, DatatablesPageBean page) {
         RpcWrapper<LinkEntity> restWrapper = page.buildWrapper(request);
         LambdaQueryWrapper<SiteEntity> q = new LambdaQueryWrapper<SiteEntity>().like(StringUtils.isNotEmpty(siteName), SiteEntity::getName, siteName);
         Page<SiteEntity> siteEntityPage = siteService.page(new Page<>(restWrapper.getPageNumber(), restWrapper.getPageSize(), true), q);
-        return AjaxResult.success(siteEntityPage);
+        TableDataInfo dInfo = new TableDataInfo();
+        dInfo.setCode(200);
+        dInfo.setMsg("查询成功");
+        dInfo.setRows(siteEntityPage.getRecords());
+        dInfo.setTotal(((int)siteEntityPage.getTotal()));
+        return dInfo;
     }
 }
