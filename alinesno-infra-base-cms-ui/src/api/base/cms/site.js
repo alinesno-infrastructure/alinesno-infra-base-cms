@@ -9,14 +9,15 @@ var managerUrl = {
     saveUrl: prefix + 'save',
     updateUrl: prefix + "modify",
     removeUrl: prefix + "delete",
-    publish: prefix + "publish"
+    publish: prefix + "publish",
+    list: prefix + "list"
 }
 
 // 查询站点列表
 export function listSite(query) {
     return request({
-        url: managerUrl.datatables,
-        method: 'post',
+        url: managerUrl.list,
+        method: 'get',
         params: query
     })
 }

@@ -1,23 +1,26 @@
 package com.alinesno.infra.base.cms.gateway.controller;
 
+import com.alinesno.infra.base.cms.entity.LinkEntity;
 import com.alinesno.infra.base.cms.entity.SiteEntity;
 import com.alinesno.infra.base.cms.service.ISiteService;
 import com.alinesno.infra.common.core.constants.SpringInstanceScope;
 import com.alinesno.infra.common.facade.pageable.DatatablesPageBean;
 import com.alinesno.infra.common.facade.pageable.TableDataInfo;
+import com.alinesno.infra.common.facade.response.AjaxResult;
+import com.alinesno.infra.common.facade.wrapper.RpcWrapper;
 import com.alinesno.infra.common.web.adapter.rest.BaseController;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import jakarta.servlet.http.HttpServletRequest;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 处理与SiteEntity相关的请求的Controller。
@@ -36,7 +39,7 @@ public class SiteController extends BaseController<SiteEntity, ISiteService> {
     private static final Logger log = LoggerFactory.getLogger(SiteController.class);
 
     @Autowired
-    private ISiteService service;
+    private ISiteService siteService;
 
     /**
      * 获取SiteEntity的DataTables数据。
@@ -55,6 +58,14 @@ public class SiteController extends BaseController<SiteEntity, ISiteService> {
 
     @Override
     public ISiteService getFeign() {
-        return this.service;
+        return this.siteService;
+    }
+
+    @GetMapping("/list")
+    public AjaxResult list(HttpServletRequest request,@RequestParam(value = "siteName", required = false) String siteName, DatatablesPageBean page) {
+        RpcWrapper<LinkEntity> restWrapper = page.buildWrapper(request);
+        LambdaQueryWrapper<SiteEntity> q = new LambdaQueryWrapper<SiteEntity>().like(StringUtils.isNotEmpty(siteName), SiteEntity::getName, siteName);
+        Page<SiteEntity> siteEntityPage = siteService.page(new Page<>(restWrapper.getPageNumber(), restWrapper.getPageSize(), true), q);
+        return AjaxResult.success(siteEntityPage);
     }
 }

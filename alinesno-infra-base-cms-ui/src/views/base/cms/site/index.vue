@@ -118,9 +118,7 @@
           <el-button @click="cancel">{{ $t("Common.Cancel") }}</el-button>
         </div>
       </template>
-
     </el-dialog>
-    <!-- 进度条 -->
   </div>
 </template>
 <style scoped>
@@ -167,8 +165,8 @@ export default {
     loadSiteList () {
       this.siteListLoading = true;
       listSite(this.queryParams).then(response => {
-        this.siteList = response.rows;
-        this.siteTotal = parseInt(response.total);
+        this.siteList = response.data.records;
+        this.siteTotal = parseInt(response.data.total);
         this.siteListLoading = false;
       });
     },
