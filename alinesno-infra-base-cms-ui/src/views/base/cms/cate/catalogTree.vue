@@ -4,7 +4,7 @@
       <el-button 
         v-if="showNewBtn"
         type="text"
-        icon="el-icon-plus"
+        icon="plus"
         @click="handleAdd"
         style="margin-top:2px;">{{ $t('CMS.Catalog.AddCatalog') }}</el-button>
       <el-input 
@@ -12,7 +12,7 @@
         v-model="filterCatalogName"
         clearable
         size="default"
-        suffix-icon="el-icon-search">
+        suffix-icon="search">
       </el-input>
     </div>
     <div class="tree-container">
@@ -20,7 +20,7 @@
         :loading="loading"
         type="text" 
         class="tree-header"
-        icon="el-icon-s-home"
+        icon="home"
         @click="handleTreeRootClick">{{ siteName }}</el-button>
       <el-tree 
         :data="catalogOptions" 
@@ -36,10 +36,10 @@
           <span>{{ node.label }}</span>
           <span class="node-tool">
             <el-dropdown size="small" type="primary">
-              <el-link :underline="false" class="row-more-btn" icon="el-icon-more"></el-link>
+              <el-link :underline="false" class="row-more-btn" icon="more"></el-link>
               <el-dropdown-menu slot="dropdown">
                 <el-dropdown-item @click.native="handlePreview(data)"><svg-icon icon-class="eye-open" class="mr5"></svg-icon>{{ $t('CMS.ContentCore.Preview') }}</el-dropdown-item>
-                <el-dropdown-item icon="el-icon-s-promotion" @click.native="handlePublish(data)" >{{ $t('CMS.ContentCore.Publish') }}</el-dropdown-item>
+                <el-dropdown-item icon="promotion" @click.native="handlePublish(data)" >{{ $t('CMS.ContentCore.Publish') }}</el-dropdown-item>
                 <el-dropdown-item icon="el-icon-sort-up" @click.native="handleSortUp(data)" >{{ $t('CMS.Catalog.SortUp') }}</el-dropdown-item>
                 <el-dropdown-item icon="el-icon-sort-down" @click.native="handleSortDown(data)" >{{ $t('CMS.Catalog.SortDown') }}</el-dropdown-item>
               </el-dropdown-menu>
@@ -81,10 +81,12 @@
           </el-select>
         </el-form-item>
       </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="handleAddSave">{{ $t("Common.Confirm") }}</el-button>
-        <el-button @click="cancel">{{ $t("Common.Cancel") }}</el-button>
-      </div>
+      <template #footer>
+        <div class="dialog-footer">
+          <el-button type="primary" @click="handleAddSave">{{ $t("Common.Confirm") }}</el-button>
+          <el-button @click="cancel">{{ $t("Common.Cancel") }}</el-button>
+        </div>
+      </template>
     </el-dialog>
     
     <el-dialog 

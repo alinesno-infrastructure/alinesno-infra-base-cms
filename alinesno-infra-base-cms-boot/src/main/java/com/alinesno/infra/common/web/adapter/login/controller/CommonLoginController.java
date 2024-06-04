@@ -130,36 +130,36 @@ public class CommonLoginController {
                 new Menu("Dashboard", "index", false, false , "dashboard", new Menu.Meta("仪盘表", "dashboard", false, null))
         ));
 
-        Menu contentMenu = new Menu("Content", "/Content", false, "noRedirect", "Layout", true, new Menu.Meta("内容管理", "post", false, null),
+        Menu contentMenu = new Menu("Content", "/Content", false, "noRedirect", "Layout", true, new Menu.Meta("内容管理", "list", false, null),
                 List.of(
-                        new Menu("PostManager", "base/cms/post/index", false,false,  "base/cms/post/index", new Menu.Meta("内容管理", "tree", false, null)),
-                        new Menu("Attachment", "base/cms/attachment/index", false,false,  "base/cms/attachment/index", new Menu.Meta("附件管理", "user", false, null)),
+                        new Menu("PostManager", "base/cms/post/index", false,false,  "base/cms/post/index", new Menu.Meta("内容管理", "list", false, null)),
+                        new Menu("Attachment", "base/cms/attachment/index", false,false,  "base/cms/attachment/index", new Menu.Meta("附件管理", "server", false, null)),
                         new Menu("Special", "base/cms/special/index", false,false,  "base/cms/special/index", new Menu.Meta("专题", "tree", false, null)),
                         new Menu("Collection", "base/cms/collection/index", false,false,  "base/cms/collection/index", new Menu.Meta("采集管理", "tree", false, null)),
-                        new Menu("Comment", "base/cms/comment/index", false,false,  "base/cms/comment/index", new Menu.Meta("评论管理", "tree", false, null)),
-                        new Menu("Link", "base/cms/link/index", false,false, "base/cms/link/index", new Menu.Meta("友情链接", "tree", false, null))
+                        new Menu("Comment", "base/cms/comment/index", false,false,  "base/cms/comment/index", new Menu.Meta("评论管理", "message", false, null)),
+                        new Menu("Link", "base/cms/link/index", false,false, "base/cms/link/index", new Menu.Meta("友情链接", "link", false, null))
                 ));
 
         Menu postMenu = new Menu("Post", "/Post", false, "noRedirect", "Layout", true, new Menu.Meta("发布管理", "monitor", false, null),
                 List.of(
-                        new Menu("ContentAdd", "base/cms/add/index", false,false, "base/cms/add/index", new Menu.Meta("文章发布", "content", false, null)),
-                        new Menu("Tag", "base/cms/tag/index", false,false, "base/cms/tag/index", new Menu.Meta("标签管理", "Tag", false, null)),
-                        new Menu("Template", "base/cms/template/index", false,false, "base/cms/template/index", new Menu.Meta("模板管理", "template", false, null))
+                        new Menu("ContentAdd", "base/cms/add/index", false,false, "base/cms/add/index", new Menu.Meta("文章发布", "checkbox", false, null)),
+                        new Menu("Tag", "base/cms/tag/index", false,false, "base/cms/tag/index", new Menu.Meta("标签管理", "chart", false, null)),
+                        new Menu("Template", "base/cms/template/index", false,false, "base/cms/template/index", new Menu.Meta("模板管理", "code", false, null))
                 ));
 
         Menu cataMenu = new Menu("Cate", "/cate", false, "noRedirect", "Layout", true, new Menu.Meta("栏目管理", "log", false, null),
                 List.of(
-                        new Menu("Cate", "base/cms/cate/index", false,false, "base/cms/cate/index", new Menu.Meta("栏目管理", "cate", false, null)),
-                        new Menu("Logininfor", "base/cms/logininfor/index", false,false, "base/cms/logininfor/index", new Menu.Meta("推荐位管理", "logininfor", false, null)),
-                        new Menu("Type", "base/cms/type/index", false,false, "base/cms/type/index", new Menu.Meta("类别管理", "type", false, null)),
-                        new Menu("Model", "base/cms/model/index", false,false, "base/cms/model/index", new Menu.Meta("模型管理", "model", false, null))
+                        new Menu("Cate", "base/cms/cate/index", false,false, "base/cms/cate/index", new Menu.Meta("栏目管理", "log", false, null)),
+                        new Menu("Logininfor", "base/cms/logininfor/index", false,false, "base/cms/logininfor/index", new Menu.Meta("推荐位管理", "tree", false, null)),
+                        new Menu("Type", "base/cms/type/index", false,false, "base/cms/type/index", new Menu.Meta("类别管理", "tree", false, null)),
+                        new Menu("Model", "base/cms/model/index", false,false, "base/cms/model/index", new Menu.Meta("模型管理", "tree", false, null))
                 ));
 
         Menu systemMenu = new Menu("System", "/system", false, "noRedirect", "Layout", true, new Menu.Meta("系统设置", "tool", false, null),
                 List.of(
                         new Menu("Site", "base/cms/site/index", false,false, "base/cms/site/index", new Menu.Meta("站点管理", "tree", false, null)),
                         new Menu("Basic", "base/cms/basic/index",false, false, "base/cms/basic/index", new Menu.Meta("基础设置", "user", false, null)),
-                        new Menu("Security", "base/cms/security/index",false, false, "base/cms/security/index", new Menu.Meta("安全设置", "logininfo", false, null)),
+                        new Menu("Security", "base/cms/security/index",false, false, "base/cms/security/index", new Menu.Meta("安全设置", "tree", false, null)),
                         new Menu("Email", "base/cms/email/index",false, false, "base/cms/email/index", new Menu.Meta("邮箱配置", "tree", false, null))
                 ));
 
