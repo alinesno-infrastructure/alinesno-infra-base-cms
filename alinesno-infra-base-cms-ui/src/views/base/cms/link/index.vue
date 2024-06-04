@@ -117,10 +117,12 @@
           <el-input-number v-model="form.sortFlag" controls-position="right" :min="0" />
         </el-form-item>
       </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="submitForm">{{ $t("Common.Confirm") }}</el-button>
-        <el-button @click="cancel">{{ $t("Common.Cancel") }}</el-button>
-      </div>
+      <template #footer>
+        <div class="dialog-footer">
+          <el-button type="primary" @click="submitForm">{{ $t("Common.Confirm") }}</el-button>
+          <el-button @click="cancel">{{ $t("Common.Cancel") }}</el-button>
+        </div>
+      </template>
     </el-dialog>
   </div>
 </template>

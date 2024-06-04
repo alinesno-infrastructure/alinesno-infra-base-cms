@@ -1,6 +1,6 @@
 <template>
   <div class="catalog-info-container">
-    <el-row :gutter="10" class="mb12 btn-row">
+    <el-row :gutter="10" class="mb10 btn-row">
       <el-col :span="1.5">
         <el-button 
           plain

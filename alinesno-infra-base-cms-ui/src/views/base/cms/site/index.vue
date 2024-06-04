@@ -6,7 +6,7 @@
           <el-col :span="1.5">
             <el-button plain
                        type="primary"
-                       icon="el-icon-plus"
+                       icon="plus"
                        size="default"
                        @click="handleAdd">{{ $t("Common.Add") }}</el-button>
           </el-col>
@@ -17,16 +17,16 @@
                  ref="queryForm"
                  :inline="true"
                  size="default"
-                 class="el-form-search">
+                 class="search">
           <el-form-item prop="siteName">
             <el-input :placeholder="$t('CMS.Site.Name')" v-model="queryParams.siteName"></el-input>
           </el-form-item>
           <el-form-item>
             <el-button-group>
               <el-button type="primary"
-                         icon="el-icon-search"
+                         icon="search"
                          @click="handleQuery">{{ $t("Common.Search") }}</el-button>
-              <el-button icon="el-icon-refresh"
+              <el-button icon="refresh"
                          @click="resetQuery">{{ $t("Common.Reset") }}</el-button>
             </el-button-group>
           </el-form-item>
@@ -57,21 +57,21 @@
             <span class="btn-cell-wrap">
               <el-button
                   type="text"
-                  icon="el-icon-s-promotion"
+                  icon="promotion"
                   size="small"
                   @click="handlePublish(scope.row)">{{ $t('CMS.Site.PublishHome') }}</el-button>
             </span>
             <span class="btn-cell-wrap">
               <el-button
                   type="text"
-                  icon="el-icon-edit"
+                  icon="edit"
                   size="small"
                   @click="handleEdit(scope.row)">{{ $t("Common.Edit") }}</el-button>
             </span>
             <span class="btn-cell-wrap">
               <el-button
                   type="text"
-                  icon="el-icon-delete"
+                  icon="delete"
                   size="small"
                   @click="handleDelete(scope.row)">{{ $t("Common.Delete") }}</el-button>
             </span>
@@ -111,12 +111,14 @@
           <el-input v-model="form.description" type="textarea" :maxlength="300" />
         </el-form-item>
       </el-form>
-      <div slot="footer"
-           class="dialog-footer">
-        <el-button type="primary"
-                   @click="handleAddSave">{{ $t("Common.Confirm") }}</el-button>
-        <el-button @click="cancel">{{ $t("Common.Cancel") }}</el-button>
-      </div>
+      <template #footer>
+        <div class="dialog-footer">
+          <el-button type="primary"
+                     @click="handleAddSave">{{ $t("Common.Confirm") }}</el-button>
+          <el-button @click="cancel">{{ $t("Common.Cancel") }}</el-button>
+        </div>
+      </template>
+
     </el-dialog>
     <!-- 进度条 -->
   </div>

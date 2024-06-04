@@ -193,10 +193,13 @@
           <el-input v-model="form.remark"/>
         </el-form-item>
       </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="submitForm">{{ $t("Common.Confirm") }}</el-button>
-        <el-button @click="cancel">{{ $t("Common.Cancel") }}</el-button>
-      </div>
+      <template #footer>
+        <div class="dialog-footer">
+          <el-button type="primary" @click="submitForm">{{ $t("Common.Confirm") }}</el-button>
+          <el-button @click="cancel">{{ $t("Common.Cancel") }}</el-button>
+        </div>
+      </template>
+
     </el-dialog>
   </div>
 </template>

@@ -4,65 +4,71 @@
       <el-col :span="12">
         <el-row :gutter="10">
           <el-col :span="1.5">
-            <el-button 
-              type="info"
-              icon="Back"
-              size="default"
-              plain
-              @click="handleGoBack">{{ $t('CMS.FriendLink.GoBack') }}</el-button>
+            <el-button
+                type="info"
+                icon="Back"
+                size="default"
+                plain
+                @click="handleGoBack">{{ $t('CMS.FriendLink.GoBack') }}
+            </el-button>
           </el-col>
           <el-col :span="1.5">
-            <el-button 
-              type="primary"
-              icon="Plus"
-              size="default"
-              plain
-              v-hasPermi="[ 'cms:friendlink:add' ]"
-              @click="handleAdd">{{ $t("Common.Add") }}</el-button>
+            <el-button
+                type="primary"
+                icon="Plus"
+                size="default"
+                plain
+                v-hasPermi="[ 'cms:friendlink:add' ]"
+                @click="handleAdd">{{ $t("Common.Add") }}
+            </el-button>
           </el-col>
           <el-col :span="1.5">
-            <el-button 
-              type="success"
-              icon="Edit"
-              size="default"
-              plain
-              :disabled="single"
-              v-hasPermi="[ 'cms:friendlink:add', 'cms:friendlink:edit' ]"
-              @click="handleEdit">{{ $t('Common.Edit') }}</el-button>
+            <el-button
+                type="success"
+                icon="Edit"
+                size="default"
+                plain
+                :disabled="single"
+                v-hasPermi="[ 'cms:friendlink:add', 'cms:friendlink:edit' ]"
+                @click="handleEdit">{{ $t('Common.Edit') }}
+            </el-button>
           </el-col>
           <el-col :span="1.5">
-            <el-button 
-              type="danger"
-              icon="Delete"
-              size="default"
-              plain
-              :disabled="multiple"
-              v-hasPermi="[ 'cms:friendlink:delete' ]"
-              @click="handleDelete">{{ $t("Common.Delete") }}</el-button>
+            <el-button
+                type="danger"
+                icon="Delete"
+                size="default"
+                plain
+                :disabled="multiple"
+                v-hasPermi="[ 'cms:friendlink:delete' ]"
+                @click="handleDelete">{{ $t("Common.Delete") }}
+            </el-button>
           </el-col>
         </el-row>
       </el-col>
       <el-col :span="12" type="float:right">
-        <el-form 
-          :model="queryParams"
-          ref="queryForm"
-          :inline="true"
-          size="default"
-          class="el-form-search"
-          v-show="showSearch">
+        <el-form
+            :model="queryParams"
+            ref="queryForm"
+            :inline="true"
+            size="default"
+            class="el-form-search"
+            v-show="showSearch">
           <el-form-item prop="query">
             <el-input v-model="queryParams.query" :placeholder="$t('CMS.FriendLink.Placeholder.LinkQuery')">
             </el-input>
           </el-form-item>
           <el-form-item>
             <el-button-group>
-              <el-button 
-                type="primary"
-                icon="Search"
-                @click="handleQuery">{{ $t("Common.Search") }}</el-button>
-              <el-button 
-                icon="Refresh"
-                @click="resetQuery">{{ $t("Common.Reset") }}</el-button>
+              <el-button
+                  type="primary"
+                  icon="Search"
+                  @click="handleQuery">{{ $t("Common.Search") }}
+              </el-button>
+              <el-button
+                  icon="Refresh"
+                  @click="resetQuery">{{ $t("Common.Reset") }}
+              </el-button>
             </el-button-group>
           </el-form-item>
         </el-form>
@@ -71,17 +77,17 @@
 
     <el-row>
       <el-col>
-        <el-table 
-          v-loading="loading"
-          :data="linkList"
-          @selection-change="handleSelectionChange">
-          <el-table-column type="selection" width="50" align="center" />
-          <el-table-column type="index" :label="$t('Common.RowNo')" align="center" width="50" />
+        <el-table
+            v-loading="loading"
+            :data="linkList"
+            @selection-change="handleSelectionChange">
+          <el-table-column type="selection" width="50" align="center"/>
+          <el-table-column type="index" :label="$t('Common.RowNo')" align="center" width="50"/>
           <el-table-column label="Logo" align="left" width="100" prop="name">
             <template #default="scope">
               <el-image v-if="scope.row.src!=null&&scope.row.src!=''" :src="scope.row.src"
-                style="height: 60px;"
-                fit="scale-down">
+                        style="height: 60px;"
+                        fit="scale-down">
               </el-image>
             </template>
           </el-table-column>
@@ -94,71 +100,72 @@
               <span v-else>{{ parseTime(scope.row.addTime) }}</span>
             </template>
           </el-table-column>
-          <el-table-column :label="$t('Common.Operation')" align="center" width="180"  class-name="small-padding fixed-width">
+          <el-table-column :label="$t('Common.Operation')" align="center" width="180" class-name="small-padding fixed-width">
             <template #default="scope">
               <span class="btn-cell-wrap">
-                <el-button 
-                  type="text"
-                  icon="Edit"
-                  size="small"
-                  v-hasPermi="[ 'cms:friendlink:add', 'cms:friendlink:edit' ]"
-                  @click="handleEdit(scope.row)">{{ $t('Common.Edit') }}</el-button>
+                <el-button
+                    type="text"
+                    icon="Edit"
+                    size="small"
+                    v-hasPermi="[ 'cms:friendlink:add', 'cms:friendlink:edit' ]"
+                    @click="handleEdit(scope.row)">{{ $t('Common.Edit') }}</el-button>
               </span>
               <span class="btn-cell-wrap">
-                <el-button 
-                  type="text"
-                  icon="Delete"
-                  size="small"
-                  v-hasPermi="[ 'cms:friendlink:delete' ]"
-                  @click="handleDelete(scope.row)">{{ $t("Common.Delete") }}</el-button>
+                <el-button
+                    type="text"
+                    icon="Delete"
+                    size="small"
+                    v-hasPermi="[ 'cms:friendlink:delete' ]"
+                    @click="handleDelete(scope.row)">{{ $t("Common.Delete") }}</el-button>
               </span>
             </template>
           </el-table-column>
         </el-table>
-      </el-col> 
+      </el-col>
     </el-row>
     <!-- 添加或修改弹窗 -->
-    <el-dialog 
-      :title="title"
-      v-model="open"
-      :close-on-click-modal="false"
-      width="500px"
-      append-to-body>
+    <el-dialog
+        :title="title"
+        v-model="open"
+        :close-on-click-modal="false"
+        width="500px"
+        append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
         <el-form-item :label="$t('CMS.FriendLink.LinkName')" prop="name">
-          <el-input v-model="form.name" />
+          <el-input v-model="form.name"/>
         </el-form-item>
         <el-form-item :label="$t('CMS.FriendLink.LinkUrl')" prop="url">
-          <el-input v-model="form.url" placeholder="http(s)://" />
+          <el-input v-model="form.url" placeholder="http(s)://"/>
         </el-form-item>
         <el-form-item label="Logo" prop="logo">
-<!--          <cms-logo-view -->
-<!--            v-model="form.logo" -->
-<!--            :src="form.src"-->
-<!--            :width="218" -->
-<!--            :height="150">-->
-<!--          </cms-logo-view>-->
+          <!--          <cms-logo-view -->
+          <!--            v-model="form.logo" -->
+          <!--            :src="form.src"-->
+          <!--            :width="218" -->
+          <!--            :height="150">-->
+          <!--          </cms-logo-view>-->
         </el-form-item>
         <el-form-item v-if="form.id" :label="$t('CMS.FriendLink.SortFlag')" prop="sortFlag">
-          <el-input-number v-model="form.sortFlag" controls-position="right" :min="0" />
+          <el-input-number v-model="form.sortFlag" controls-position="right" :min="0"/>
         </el-form-item>
         <el-form-item :label="$t('Common.Remark')" prop="remark">
-          <el-input v-model="form.remark" />
+          <el-input v-model="form.remark"/>
         </el-form-item>
       </el-form>
-      <div slot="footer"
-           class="dialog-footer">
-        <el-button type="primary" @click="submitForm">{{ $t("Common.Confirm") }}</el-button>
-        <el-button @click="cancel">{{ $t("Common.Cancel") }}</el-button>
-      </div>
+      <template #footer>
+        <div class="dialog-footer">
+          <el-button type="primary" @click="submitForm">{{ $t("Common.Confirm") }}</el-button>
+          <el-button @click="cancel">{{ $t("Common.Cancel") }}</el-button>
+        </div>
+      </template>
     </el-dialog>
   </div>
 </template>
 <style scoped>
 </style>
 <script>
-import { urlValidator } from '@/utils/validate'
-import { listLink, addLink, updateLink, delLink } from "@/api/base/cms/link/link";
+import {urlValidator} from '@/utils/validate'
+import {listLink, addLink, updateLink, delLink} from "@/api/base/cms/link/link";
 // import CMSLogoView from '@/views/components/LogoView';
 
 export default {
@@ -166,7 +173,7 @@ export default {
   // components: {
   //   "cms-logo-view": CMSLogoView
   // },
-  data () {
+  data() {
     return {
       // 遮罩层
       loading: true,
@@ -195,51 +202,51 @@ export default {
       // 表单校验
       rules: {
         name: [
-          { required: true, message: this.$t('Common.RuleTips.NotEmpty'), trigger: "blur" }
+          {required: true, message: this.$t('Common.RuleTips.NotEmpty'), trigger: "blur"}
         ],
         url: [
-          { required: true, validator: urlValidator, trigger: "blur" }
+          {required: true, validator: urlValidator, trigger: "blur"}
         ]
       }
     };
   },
-  created () {
+  created() {
     this.loadListData();
   },
   methods: {
-    loadListData () {
+    loadListData() {
       this.loading = true;
       listLink(this.queryParams).then(response => {
         this.linkList = response.data.records;
         this.loading = false;
       });
     },
-    cancel () {
+    cancel() {
       this.open = false;
       this.reset();
     },
-    reset () {
+    reset() {
       this.form = {};
     },
-    handleQuery () {
+    handleQuery() {
       this.queryParams.pageNo = 1;
       this.loadListData();
     },
-    resetQuery () {
+    resetQuery() {
       this.resetForm("queryForm");
       this.handleQuery();
     },
-    handleSelectionChange (selection) {
+    handleSelectionChange(selection) {
       this.selectedRows = selection.map(item => item);
       this.single = selection.length != 1;
       this.multiple = !selection.length;
     },
-    handleAdd () {
+    handleAdd() {
       this.reset();
       this.title = this.$t('CMS.FriendLink.AddLinkTitle');
       this.open = true;
     },
-    handleEdit (row) {
+    handleEdit(row) {
       const data = row.id ? row : this.selectedRows[0];
       this.reset();
       this.title = this.$t('CMS.FriendLink.EditLinkTitle');
@@ -247,7 +254,7 @@ export default {
       this.open = true;
     },
     /** 提交按钮 */
-    submitForm () {
+    submitForm() {
       this.$refs["form"].validate(valid => {
         if (valid) {
           this.form.groupId = this.queryParams.groupId;
@@ -256,28 +263,29 @@ export default {
               this.$modal.msgSuccess(response.msg);
               this.open = false;
               this.loadListData();
-            }); 
+            });
           } else {
             addLink(this.form).then(response => {
               this.$modal.msgSuccess(response.msg);
               this.open = false;
               this.loadListData();
-            }); 
+            });
           }
         }
       });
     },
-    handleDelete (row) {
+    handleDelete(row) {
       const rows = row.id
-      this.$modal.confirm(this.$t('Common.ConfirmDelete')).then(function() {
+      this.$modal.confirm(this.$t('Common.ConfirmDelete')).then(function () {
         return delLink(rows);
       }).then((response) => {
         this.$modal.msgSuccess(response.msg);
         this.loadListData();
-      }).catch(() => {});
+      }).catch(() => {
+      });
     },
     handleGoBack() {
-      const obj = { path: "/Content/base/cms/link/index" };
+      const obj = {path: "/Content/base/cms/link/index"};
       this.$tab.closeOpenPage(obj);
     },
   }

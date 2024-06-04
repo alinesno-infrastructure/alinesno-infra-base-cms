@@ -2,8 +2,8 @@
   <div class="cms-content-list">
     <el-row :gutter="10" class="mb10">
       <el-col :span="1.5">
-        <el-popover class="btn-permi" placement="bottom-start" :width="400" trigger="click">
-          <el-row style="margin-bottom:20px;text-align:right;">
+        <el-popover class="btn-permi" placement="bottom-start" :width="270" trigger="click">
+          <el-row style="margin-bottom:20px;float:right;">
             <el-radio-group v-model="addContentType">
               <el-radio-button
                   v-for="ct in contentTypeOptions"
@@ -13,7 +13,7 @@
               </el-radio-button>
             </el-radio-group>
           </el-row>
-          <el-row style="text-align:right;">
+          <el-row style="float:right;">
             <el-button
                 plain
                 type="primary"
