@@ -1,0 +1,666 @@
+
+// 定义一些常用的变量
+$primary-color: #b92b27;
+$text-color: #333;
+$subtle-text-color: #666;
+$light-background: #f5fafe;
+
+// 设置宽度
+$container-width: 1300px;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    line-height: 1.6;
+    background-color: #fafafa;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .1rem 2rem;
+    background-color: #fff;
+    // box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid #e5e5e5;
+
+    .header-container{
+        display: flex;
+        justify-content: space-between;
+        width: 90%;
+        margin: auto;
+        max-width: $container-width;
+        padding: 5px 2rem;
+    }
+
+    .logo {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #b92b27;
+    }
+
+    nav ul {
+        list-style: none;
+        display: flex;
+        line-height: 3rem;
+
+        li {
+            margin-left: 1rem;
+            line-height: 2.3rem;
+            font-size: 14px;
+
+            a {
+                text-decoration: none;
+                color: #333;
+            }
+        }
+    }
+
+    .search-form {
+        display: flex;
+
+        input[type="text"] {
+            padding: 0.5rem;
+            width: 20rem;
+            border: 1px solid #ddd;
+            border-right: none;
+            border-radius: 4px 0 0 4px;
+        }
+
+        button {
+            padding: 0.5rem 1rem;
+            background-color: #b92b27;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 0 4px 4px 0;
+        }
+    }
+}
+
+main {
+    padding: 1rem 2rem;
+}
+
+
+.question-list {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.question-item {
+    background: #fff;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    h2 {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .question-details,
+    .question-content,
+    .question-actions span {
+        color: #666;
+    }
+
+    .question-actions {
+        margin-top: 1rem;
+        display: flex;
+        justify-content: space-between;
+
+        span {
+            display: flex;
+            align-items: center;
+            color: #666;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: color 0.3s ease;
+
+            i {
+                margin-right: 0.5rem;
+            }
+
+            &:hover {
+                color: #b92b27;
+            }
+        }
+    }
+}
+
+// 如果有独立的.question-actions样式，可以在这里定义
+.question-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+
+    span {
+        display: flex;
+        align-items: center;
+        color: #666;
+        font-size: 0.9em;
+        cursor: pointer;
+        transition: color 0.3s ease;
+
+        i {
+            margin-right: 0.5rem;
+        }
+
+        &:hover {
+            color: #b92b27;
+        }
+    }
+}
+
+.square , 
+.dynamic , 
+.profile{
+    background-color: #fff;
+}
+
+// Sidebar 样式
+.sidebar {
+    h3 {
+        font-size: 1.2rem;
+        color: $text-color;
+        margin-bottom: 1rem;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        margin-bottom: 1.5rem;
+
+        li {
+            margin-bottom: 0.5rem;
+
+            a {
+                text-decoration: none;
+                color: $subtle-text-color;
+                display: flex;
+                align-items: center;
+                padding: 0.5rem 0;
+                transition: color 0.3s ease;
+
+                &:hover {
+                    color: $primary-color;
+                }
+            }
+        }
+    }
+
+    .avatar {
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        margin-right: 0.5rem;
+    }
+
+    .writer-info, .topic-info {
+        flex: 1;
+    }
+
+    .username, .topic-title, .question-title {
+        font-weight: bold;
+        color: $text-color;
+        display: block;
+        margin-bottom: 0.2rem;
+    }
+
+    .user-description, .topic-description, .question-details {
+        color: #777;
+        font-size: 0.9em;
+    }
+
+    .topic-icon {
+        margin-right: 0.5rem;
+        color: $primary-color;
+    }
+
+    .category {
+        color: $primary-color;
+        font-weight: bold;
+    }
+}
+
+// Footer 样式
+
+.footer-container-p {
+    background: $light-background;
+    padding-top: 40px;
+    font-size: 13px;
+}
+
+.footer-bottom {
+    background-color: $light-background;
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-size: 14px;
+
+    p {
+        margin: 0.5rem 0;
+
+        a {
+            text-decoration: none;
+            color: $subtle-text-color;
+            margin: 0 0.5rem;
+
+            &:hover {
+                color: $primary-color;
+            }
+        }
+    }
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    .footer-section {
+        flex: 1 1 200px;
+        margin: 0 1rem;
+
+        h3 {
+            font-size: 1.2rem;
+            color: $text-color;
+            margin-bottom: 1rem;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+
+            li {
+                margin-bottom: 0.5rem;
+
+                a {
+                    text-decoration: none;
+                    color: $subtle-text-color;
+
+                    &:hover {
+                        color: $primary-color;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// User Info 样式
+.user-info {
+    // display: flex;
+    // align-items: center;
+    // margin-bottom: 0.5rem;
+
+    .avatar {
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        margin-right: 0.5rem;
+    }
+
+    // .username {
+    //     font-weight: bold;
+    //     color: $text-color;
+    // }
+
+    .user-description {
+        color: #777;
+        font-size: 0.9em;
+        margin-top: 0.2rem;
+    }
+}
+
+// 媒体内容样式
+.audio, .video {
+    margin: 1rem 0;
+}
+
+.video {
+    max-width: 100%;
+    height: auto;
+}
+
+// 问题内容样式
+.question-content {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; // 设置行数
+    -webkit-box-orient: vertical;
+}
+
+.question-image {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    margin: 1rem 0;
+}
+
+// 问题项样式
+.question-item {
+    margin: 1rem 0;
+    padding: 1rem;
+
+    h2, h3 {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .answer-content, .answer-details, .answer-actions span {
+        color: $subtle-text-color;
+    }
+
+    p.answer-content {
+        font-size: 0.9rem;
+        margin-bottom: 0.7rem;
+    }
+
+    .answer-details{
+        font-size: 0.9rem;
+        margin-bottom: 0.7rem;
+    }
+
+    .answer-actions {
+        margin-top: 1rem;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &.image-answer .answer-image {
+        width: 100%;
+        max-width: 400px;
+        height: auto;
+        margin: 1rem 0;
+    }
+}
+
+// 内容容器样式
+.content-container {
+    display: flex;
+    padding: 1rem;
+    margin: auto;
+    width: 90%;
+    max-width: $container-width;
+
+    aside {
+        width: 350px;
+        background: #fff;
+        padding: 1rem;
+        margin-right: 1rem;
+    }
+
+    .question-list {
+        flex: 1;
+    }
+}
+
+
+
+.right-sidebar {
+    width: 300px;
+    background: #fafafa;
+    padding: 1rem;
+    margin-left: 1rem;
+
+    h3,
+    .sidebar & h3 {
+        font-size: 1.2rem;
+        color: #333;
+        margin-bottom: 1rem;
+    }
+
+    ul,
+    .sidebar & ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        margin-bottom: 1.5rem;
+
+        li {
+            margin-bottom: 0.5rem;
+
+            a {
+                text-decoration: none;
+                color: #666;
+                display: flex;
+                align-items: center;
+                padding: 0.5rem 0;
+                transition: color 0.3s ease;
+
+                &:hover {
+                    color: #b92b27;
+                }
+            }
+        }
+    }
+
+    .avatar,
+    .sidebar & .avatar {
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        margin-right: 0.5rem;
+    }
+
+    .writer-info,
+    .topic-info,
+    .sidebar & .writer-info,
+    .sidebar & .topic-info {
+        flex: 1;
+    }
+
+    .username,
+    .sidebar & .username {
+        font-weight: bold;
+        color: #333;
+        display: block;
+        margin-bottom: 0.2rem;
+    }
+
+    .user-description,
+    .topic-description,
+    .sidebar & .user-description,
+    .sidebar & .topic-description {
+        color: #777;
+        font-size: 0.8em;
+    }
+
+    .topic-title,
+    .sidebar & .topic-title {
+        font-weight: bold;
+        color: #333;
+        display: block;
+        margin-bottom: 0.2rem;
+    }
+
+    .topic-icon,
+    .sidebar & .topic-icon {
+        margin-right: 0.5rem;
+        color: #b92b27;
+    }
+
+    .question-title,
+    .sidebar & .question-title {
+        font-weight: bold;
+        color: #333;
+        display: block;
+        margin-bottom: 0.2rem;
+    }
+
+    .question-details,
+    .sidebar & .question-details {
+        color: #777;
+        font-size: 0.9em;
+    }
+
+    .category,
+    .sidebar & .category {
+        color: #b92b27;
+        font-weight: bold;
+    }
+}
+
+
+.waterfall-container {
+    column-count: 4; // 三列布局
+    column-gap: 1rem; // 列间距
+    width: 90%; // 最大宽度限制
+    max-width: $container-width;
+    margin: 0 auto; // 水平居中
+    padding: 2rem;
+
+    .card {
+        background: #fff;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        break-inside: avoid; // 防止卡片被分割到不同列
+        margin-bottom: 1.5rem; // 卡片间的垂直间距
+        width: 100%; // 卡片宽度占满列宽
+
+        .card-actions{
+            margin: 1rem;
+        }
+
+        & h2 {
+            padding: 0.5rem;
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        & p {
+            padding: 0.5rem;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .card-image {
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    .music audio,
+    .video video {
+        width: 100%;
+        padding: 5px;
+    }
+}
+
+.article p {
+    padding: 0.5rem;
+    color: #666;
+    font-size: 0.9em;
+}
+
+// 响应式设计
+@media (max-width: 768px) {
+    .waterfall-container {
+        column-count: 2; // 两列布局
+    }
+}
+
+@media (max-width: 480px) {
+    .waterfall-container {
+        column-count: 1;
+        max-width: 100%;
+        padding: 10px;
+        margin: 0px;
+        width: 100%;
+    }
+
+    header{
+        padding:0px;
+        .header-container{
+            width: 100%;
+            padding:5px;
+        }
+    }
+
+    nav {
+        display: none;
+    }
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+
+    .avatar {
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        margin-right: 0.5rem;
+    }
+
+    .username {
+        font-weight: bold;
+        color: #333;
+    }
+
+    .user-description {
+        color: #777;
+        padding: 0px !important;
+        font-size: 0.6em !important;
+        font-weight: lighter;
+    }
+}
+
+.user-profile-header {
+    display: flex;
+    align-items: center;
+    padding: 1rem 2.5rem;
+    background: #fff;
+    margin-bottom: 2rem;
+    margin: auto;
+    max-width: $container-width;
+    width: 90%;
+
+    .profile-avatar img {
+        border-radius: 50%;
+        width: 150px;
+        height: 150px;
+        margin-right: 2rem;
+    }
+
+    .profile-info {
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .bio {
+            font-size: 1.2rem;
+            color: #777;
+            margin-bottom: 1rem;
+        }
+
+        .stats {
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+            color: #777;
+
+            span {
+                margin-right: 1rem;
+            }
+        }
+    }
+}
