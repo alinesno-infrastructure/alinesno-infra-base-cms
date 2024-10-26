@@ -8,7 +8,7 @@
         <relativePath></relativePath>
     </parent>
 
-    <artifactId>alinesno-ui</artifactId>
+    <artifactId>alinesno-infra-portal</artifactId>
     <packaging>jar</packaging>
 
     <properties>
