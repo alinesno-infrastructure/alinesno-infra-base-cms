@@ -19,6 +19,10 @@ body {
     background-color: #fafafa;
 }
 
+a{
+    text-decoration: none;
+}
+
 header {
     display: flex;
     justify-content: space-between;
@@ -189,6 +193,7 @@ main {
                 align-items: center;
                 padding: 0.5rem 0;
                 transition: color 0.3s ease;
+                flex-wrap: wrap;
 
                 &:hover {
                     color: $primary-color;
@@ -410,13 +415,29 @@ main {
     }
 }
 
+.followed-spaces{
+    li a.topic-item {
+        padding: 0.2rem 0 !important;
+    }
+        span.discussion-count {
+            margin-left: 5px;
+            font-size: 0.9rem;
+            color: #a5a5a5;
+            text-align: right;
+        }
+}
 
 
-.right-sidebar {
-    width: 300px;
-    background: #fafafa;
+aside.right-sidebar {
+    width: 350px ;
     padding: 1rem;
     margin-left: 1rem;
+
+    .trending-topics{
+        .topic-info{
+            margin-left:10px;
+        }
+    }
 
     h3,
     .sidebar & h3 {
@@ -642,12 +663,12 @@ main {
 
     .profile-info {
         h1 {
-            font-size: 2.5rem;
+            font-size: 1.5rem;
             margin-bottom: 0.5rem;
         }
 
         .bio {
-            font-size: 1.2rem;
+            font-size: 0.9rem;
             color: #777;
             margin-bottom: 1rem;
         }
@@ -659,7 +680,7 @@ main {
             color: #777;
 
             span {
-                margin-right: 1rem;
+                margin-right: 0.9rem;
             }
         }
     }
