@@ -2,7 +2,7 @@
   "name": "alinesno-infra-base-cms-admin",
   "version": "1.0.0",
   "description": "内容管理服务",
-  "author": "LuoXiaoDong",
+  "author": "luoxiaodong",
   "license": "Apache-2.0",
   "scripts": {
     "dev": "vite",
