@@ -32,6 +32,12 @@ public class WpPostsEntity extends InfraBaseEntity {
     @ColumnComment("自增唯一ID")
     private Long id;
 
+    // 文章类型
+    @TableField
+    @ColumnType(value = MySqlTypeConstant.VARCHAR, length = 20)
+    @ColumnComment("文章类型")
+    private String type ;
+
     /**
      * 对应作者ID
      */
