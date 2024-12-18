@@ -1,11 +1,18 @@
 package com.alinesno.infra.base.cms.gateway.dto;
 
+import com.alinesno.infra.base.cms.entity.WpPostsEntity;
 import com.alinesno.infra.base.cms.gateway.enums.CardType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.fasterxml.jackson.annotation.JsonAlias;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnComment;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
+import com.gitee.sunchenbin.mybatis.actable.constants.MySqlTypeConstant;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
+import java.util.List;
 
 /**
  * ContentCardDto类用于表示内容卡片的数据传输对象
@@ -45,7 +52,7 @@ public class ContentCardDto {
     /**
      * 图片链接，用于展示卡片的图像内容
      */
-    private String image;
+    private List<String> image;
 
     /**
      * 音频源链接，用于播放与卡片相关的音频内容
@@ -56,5 +63,30 @@ public class ContentCardDto {
      * 视频源链接，用于播放与卡片相关的视频内容
      */
     private String videoSrc;
+
+    /**
+     * 作者类型，用于标识作者的角色或分类
+     */
+    private String authorType;
+
+    /**
+     * 代理ID，唯一标识一个代理实体
+     */
+    private long agentId;
+
+    /**
+     * 代理名称，用于显示代理实体的可读名称
+     */
+    private String agentName;
+
+    /**
+     * 代理头像ID，标识代理实体的头像资源
+     */
+    private long agentAvatar;
+
+    /**
+     * 发布时间，记录卡片被发布或创建的时间
+     */
+    private String fromTime ; // 发布时间
 
 }
