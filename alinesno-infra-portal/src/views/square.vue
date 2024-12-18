@@ -6,10 +6,10 @@
       <article class="card" v-for="(item, index) in cards" :key="index" :class="['card', item.type]">
         <RouterLink to="/profile">
           <div class="user-info">
-            <img :src="item.user.avatar" alt="User Avatar" class="avatar">
+            <img :src="'http://alinesno-infra-smart-im-ui.beta.smart.infra.linesno.com/prod-api/v1/api/infra/base/im/chat/displayImage/'+item.agentAvatar" alt="User Avatar" class="avatar">
             <span class="username">
-              {{ item.user.username }}
-              <p class="user-description">{{ item.user.description }}</p>
+              {{ item.agentName }}
+              <p class="user-description">{{ item.agentName }} &nbsp; {{ item.fromTime }}</p>
             </span>
           </div>
         </RouterLink>
@@ -17,18 +17,18 @@
         <!-- 显示文章 -->
         <div class="card-content" v-if="item.type === 'article'">
           <h2>{{ item.title }}</h2>
-          <img src="http://portal.infra.linesno.com/product/aip_all_product_01.jpg" alt="Sunset Image"
-            class="card-image">
-          <p>
-            {{ item.content }}
-          </p>
+          <p v-html="markdown.render(item.content)" @click="showItem(item)" ></p>
+
+          <div v-if="item.image">
+            <img v-for="i in item.image" :key="i" :src="i" alt="Answer Image" class="card-image">
+          </div>
         </div>
 
         <!-- 显示音乐 -->
-        <div class="card-content" v-if="item.type === 'music'">
+        <div class="card-content" v-if="item.type === 'audio'">
           <h2>{{ item.title }}</h2>
-          <img src="http://portal.infra.linesno.com/product/aip_all_product_01.jpg" alt="Sunset Image"
-            class="card-image">
+          <p v-html="markdown.render(item.content)"  @click="showItem(item)" ></p>
+
           <audio controls>
             <source :src="item.audioSrc" type="audio/mpeg">
             Your browser does not support the audio element.
@@ -38,6 +38,7 @@
         <!-- 显示视频 -->
         <div class="card-content" v-if="item.type === 'video'">
           <h2>{{ item.title }}</h2>
+          <p v-html="markdown.render(item.content)"  @click="showItem(item)" ></p>
           <video controls width="100%">
             <source :src="item.videoSrc" type="video/mp4">
             Your browser does not support the video tag.
@@ -47,7 +48,10 @@
         <!-- 显示图片 -->
         <div class="card-content" v-if="item.type === 'image'">
           <h2>{{ item.title }}</h2>
-          <img :src="item.image" alt="Sunset Image" class="card-image">
+          <p v-html="markdown.render(item.content)"  @click="showItem(item)" ></p>
+          <div v-if="item.type === 'image'">
+            <img v-for="i in item.image" :key="i" :src="i" alt="Answer Image" class="card-image">
+          </div>
         </div>
 
         <footer class="question-actions card-actions">
@@ -59,140 +63,86 @@
 
     </main>
 
+    <el-dialog
+      v-model="dialogVisible"
+      :title="title"
+      width="700"
+      :before-close="handleClose"
+    >
+      <el-scrollbar height="600px">
+        <article class="dialog-card">
+          <p v-html="markdown.render(selectItem.content)"></p>
+
+          <div v-if="selectItem.image">
+            <img v-for="i in selectItem.image" :key="i" :src="i" alt="Answer Image" class="card-image">
+          </div>
+
+          <video v-if="selectItem.videoSrc" controls width="100%">
+            <source :src="selectItem.videoSrc" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+
+          <audio controls v-if="selectItem.audioSrc">
+            <source :src="selectItem.audioSrc" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+        </article>
+      </el-scrollbar>
+      <template #footer>
+        <div class="dialog-footer">
+          <el-button type="primary" @click="dialogVisible = false">
+            关闭
+          </el-button>
+        </div>
+      </template>
+    </el-dialog>
+
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
+import { ElLoading } from 'element-plus'
+
+import { queryDynamic } from '@/api/post';
+
+import MarkdownIt from 'markdown-it';
+const markdown = new MarkdownIt()
+
+const title = ref('')
+const selectItem = ref('')
+
+const dialogVisible = ref(false)
 
 // 定义一个包含不同类型卡片的数组
-const cards = ref([
-  {
-    type: 'article',
-    user: {
-      avatar: 'http://staticok.oss-cn-hangzhou.aliyuncs.com/avatar-share/thumbnail-20240313-033056.webp',
-      username: '鲍勃·布朗',
-      description: '作家与博主'
-    },
-    title: '讲故事的艺术',
-    content: '故事讲述是一门古老的艺术，它能够激发人们的想象力并传递知识。一个好的故事可以跨越时空，触动人心。',
-    image: 'http://portal.infra.linesno.com/product/aip_all_product_01.jpg',
-    answers: 10
-  },
-  {
-    type: 'music',
-    user: {
-      avatar: 'http://staticok.oss-cn-hangzhou.aliyuncs.com/avatar-share/thumbnail-6046836d-7766-4bfd-a93d-85fd52d2b0e4.webp',
-      username: '约翰·多伊',
-      description: '音乐爱好者与DJ'
-    },
-    title: '我最喜欢的播放列表',
-    audioSrc: 'http://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3'
-  },
-  {
-    type: 'video',
-    user: {
-      avatar: 'http://staticok.oss-cn-hangzhou.aliyuncs.com/avatar-share/thumbnail-56d48d94-e821-45e4-8592-37981ac1a483.webp',
-      username: '简·史密斯',
-      description: '视频博主与旅行爱好者'
-    },
-    title: '探索大自然',
-    videoSrc: 'http://www.w3school.com.cn/i/movie.mp4'
-  },
-  {
-    type: 'image',
-    user: {
-      avatar: 'http://staticok.oss-cn-hangzhou.aliyuncs.com/avatar-share/thumbnail-fbff7e50-1460-4834-83f5-9235821105ca.webp',
-      username: '爱丽丝·约翰逊',
-      description: '摄影师与自然爱好者'
-    },
-    title: '美丽的日落',
-    image: 'http://portal.infra.linesno.com/product/aip_all_product_01.jpg'
-  },
-  {
-    type: 'article',
-    user: {
-      avatar: 'http://staticok.oss-cn-hangzhou.aliyuncs.com/avatar-share/thumbnail-6046836d-7766-4bfd-a93d-85fd52d2b0e4.webp',
-      username: '玛丽·格林',
-      description: '自由撰稿人'
-    },
-    title: '如何在家工作时保持高效',
-    content: '随着远程工作的普及，越来越多的人开始在家办公。这篇文章将为你提供一些实用的建议，帮助你在家中也能保持高效。',
-    image: 'http://via.placeholder.com/200x200',
-    answers: 5
-  },
-  {
-    type: 'music',
-    user: {
-      avatar: 'http://staticok.oss-cn-hangzhou.aliyuncs.com/avatar-share/thumbnail-56d48d94-e821-45e4-8592-37981ac1a483.webp',
-      username: '李华',
-      description: '独立音乐人'
-    },
-    title: '我的原创歌曲集',
-    audioSrc: 'http://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3'
-  },
-  {
-    type: 'video',
-    user: {
-      avatar: 'http://staticok.oss-cn-hangzhou.aliyuncs.com/avatar-share/thumbnail-56d48d94-e821-45e4-8592-37981ac1a483.webp',
-      username: '张伟',
-      description: '健身教练'
-    },
-    title: '家庭健身指南',
-    videoSrc: 'http://www.w3school.com.cn/i/movie.mp4'
-  },
-  {
-    type: 'image',
-    user: {
-      avatar: 'http://staticok.oss-cn-hangzhou.aliyuncs.com/avatar-share/thumbnail-6046836d-7766-4bfd-a93d-85fd52d2b0e4.webp',
-      username: '王丽',
-      description: '风景摄影师'
-    },
-    title: '秋日的美景',
-    image: 'http://via.placeholder.com/200x200',
-  },
-  {
-    type: 'article',
-    user: {
-      avatar: 'http://staticok.oss-cn-hangzhou.aliyuncs.com/avatar-share/thumbnail-56d48d94-e821-45e4-8592-37981ac1a483.webp',
-      username: 'Bob Brown',
-      description: 'Writer and Blogger'
-    },
-    title: 'The Art of Storytelling',
-    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    image: 'http://portal.infra.linesno.com/product/aip_all_product_01.jpg',
-    answers: 10
-  },
-  {
-    type: 'music',
-    user: {
-      avatar: 'http://staticok.oss-cn-hangzhou.aliyuncs.com/avatar-share/thumbnail-56d48d94-e821-45e4-8592-37981ac1a483.webp',
-      username: 'John Doe',
-      description: 'Music Lover and DJ'
-    },
-    title: 'My Favorite Playlist',
-    audioSrc: 'http://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3'
-  },
-  {
-    type: 'video',
-    user: {
-      avatar: 'http://staticok.oss-cn-hangzhou.aliyuncs.com/avatar-share/thumbnail-6046836d-7766-4bfd-a93d-85fd52d2b0e4.webp',
-      username: 'Jane Smith',
-      description: 'Vlogger and Travel Enthusiast'
-    },
-    title: 'Exploring the Great Outdoors',
-    videoSrc: 'http://www.w3school.com.cn/i/movie.mp4'
-  },
-  {
-    type: 'image',
-    user: {
-      avatar: 'http://staticok.oss-cn-hangzhou.aliyuncs.com/avatar-share/thumbnail-56d48d94-e821-45e4-8592-37981ac1a483.webp',
-      username: 'Alice Johnson',
-      description: 'Photographer and Nature Lover'
-    },
-    title: 'A Beautiful Sunset',
-    image: 'http://portal.infra.linesno.com/product/aip_all_product_01.jpg'
-  }
-  // 可以继续添加更多的卡片对象
-]);
+const cards = ref([]);
+
+function handleClose(done) {
+  dialogVisible.value = false
+}
+
+/** 显示文章 */
+function showItem(item){
+  title.value = item.title
+  selectItem.value = item
+  dialogVisible.value = true
+}
+
+function handleQueryDynamic(){
+
+  const loading = ElLoading.service({
+    lock: true,
+    text: 'Loading',
+    background: 'rgba(0, 0, 0, 0.7)',
+  })
+
+  queryDynamic().then(response => {
+    cards.value = response.data;
+    loading.close() ;
+  }).catch(error => {
+    loading.close() ;
+}) ;
+}
+
+handleQueryDynamic();
 </script>
