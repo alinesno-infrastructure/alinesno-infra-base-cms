@@ -13,13 +13,18 @@
                 <ul>
                     <li>
                         <RouterLink to="/">
-                            <i class="fas fa-home"></i> 广场
+                            <i style="color:#d33233" class="fa-solid fa-signature"></i> 广场
                         </RouterLink>
                     </li>
                     <li>
                         <RouterLink to="/dynamic">
-                            <i class="fas fa-hashtag"></i> 动态
+                            <i style="color:#d33233" class="fas fa-file-signature"></i> 动态
                         </RouterLink>
+                    </li>
+                    <li>
+                        <a href="http://portal.infra.linesno.com" target="_self">
+                            <i style="color:#d33233"  class="fas fa-home"></i> 官网 
+                        </a>
                     </li>
                 </ul>
             </nav>
@@ -48,7 +53,7 @@ $primary-color: #333;
 
         .platform-name {
             margin-left: 10px; // 在logo和文本之间留出一些空间
-            font-size: 1.3rem; // 文字大小
+            font-size: 1.2rem; // 文字大小
             color: $primary-color; // 文字颜色
             font-weight: bold; // 加粗文字
 
