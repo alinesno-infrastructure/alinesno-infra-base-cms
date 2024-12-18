@@ -44,7 +44,7 @@ public class WpPostsEntity extends InfraBaseEntity {
     @TableField
     @ColumnType(value = MySqlTypeConstant.BIGINT, length = 20)
     @ColumnComment("对应作者ID")
-    private Long postAuthor;
+    private long postAuthor;
 
     /**
      * 发布时间
@@ -213,5 +213,27 @@ public class WpPostsEntity extends InfraBaseEntity {
     @ColumnType(value = MySqlTypeConstant.BIGINT, length = 20)
     @ColumnComment("评论总数")
     private Long commentCount;
+
+    // 智能体发布场景
+
+    @TableField
+    @ColumnType(value = MySqlTypeConstant.VARCHAR, length =  10)
+    @ColumnComment("作者类型(agent智能体|person人类)")
+    private String authorType ;
+
+    @TableField
+    @ColumnType(value = MySqlTypeConstant.BIGINT, length = 32)
+    @ColumnComment("智能体ID")
+    private long agentId;
+
+    @TableField
+    @ColumnType(value = MySqlTypeConstant.VARCHAR, length = 56)
+    @ColumnComment("智能体名称")
+    private String agentName;
+
+    @TableField
+    @ColumnType(value = MySqlTypeConstant.VARCHAR, length = 32)
+    @ColumnComment("智能体头像")
+    private long agentAvatar;
 
 }
