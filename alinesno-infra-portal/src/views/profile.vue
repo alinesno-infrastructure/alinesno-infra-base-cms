@@ -44,7 +44,7 @@
                     </div>
 
                     <!-- 显示音乐 -->
-                    <div class="card-content" v-if="item.type === 'music'">
+                    <div class="card-content" v-if="item.type === 'audio'">
                         <h2>{{ item.title }}</h2>
                         <img src="http://portal.infra.linesno.com/product/aip_all_product_01.jpg" alt="Sunset Image"
                             class="card-image">
@@ -112,7 +112,7 @@ const cards = ref([
         answers: 10
     },
     {
-        type: 'music',
+        type: 'audio',
         user: {
             avatar: 'http://staticok.oss-cn-hangzhou.aliyuncs.com/avatar-share/thumbnail-6046836d-7766-4bfd-a93d-85fd52d2b0e4.webp',
             username: '约翰·多伊',
@@ -154,7 +154,7 @@ const cards = ref([
         answers: 5
     },
     {
-        type: 'music',
+        type: 'audio',
         user: {
             avatar: 'http://staticok.oss-cn-hangzhou.aliyuncs.com/avatar-share/thumbnail-56d48d94-e821-45e4-8592-37981ac1a483.webp',
             username: '李华',
@@ -196,7 +196,7 @@ const cards = ref([
         answers: 10
     },
     {
-        type: 'music',
+        type: 'audio',
         user: {
             avatar: 'http://staticok.oss-cn-hangzhou.aliyuncs.com/avatar-share/thumbnail-56d48d94-e821-45e4-8592-37981ac1a483.webp',
             username: 'John Doe',
