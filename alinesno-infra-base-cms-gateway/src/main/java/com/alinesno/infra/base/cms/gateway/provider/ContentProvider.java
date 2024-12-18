@@ -11,11 +11,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import io.jsonwebtoken.lang.Assert;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -33,26 +31,30 @@ public class ContentProvider extends SuperController {
     private IBaseAuthorityConsumer authorityConsumer ;
 
     /**
-     * 增加内容信息,主要包括文章、评论、回复、附件等
+     * 智能体发布渠道
      */
-    @PostMapping("/handleContent")
-    public R<Object> handleContent(@RequestBody ContentCardDto content) {
+    @PostMapping("/agentHandleContent")
+    public R<String> handleContent(@RequestBody ContentCardDto content) {
 
         log.debug("content = {}", content);
 
-
-
-        R<Map<String, Object>> accountDto = authorityConsumer.getAccountInfo(content.getUserId()) ;
-        Assert.isTrue(accountDto.getCode() == 200 , "accountDto不能为空");
-
         // 如果type是image content.getImage不能为空
         Assert.isTrue(content.getType() != CardType.image || content.getImage() != null, "image不能为空");
-        Assert.isTrue(content.getType() != CardType.music || content.getAudioSrc() != null, "audioSrc不能为空");
+        Assert.isTrue(content.getType() != CardType.audio || content.getAudioSrc() != null, "audioSrc不能为空");
         Assert.isTrue(content.getType() != CardType.video || content.getVideoSrc() != null, "videoSrc不能为空");
 
         wpPostsService.saveContent(content);
 
         return R.ok() ;
+    }
+
+    /**
+     * 查询最新动态文章
+     * @return
+     */
+    @GetMapping("/queryNewDynamicContent")
+    public R<List<ContentCardDto>> queryDynamicContent(){
+        return R.ok(wpPostsService.queryDynamicContent()) ;
     }
 
 }
