@@ -6,7 +6,7 @@ import lombok.Getter;
 public enum CardType {
 
     article("article"),
-    music("music"),
+    audio("audio"),
     video("video"),
     image("image");
 
