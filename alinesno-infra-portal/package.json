@@ -9,6 +9,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "axios": "1.6.0",
+    "element-plus": "2.2.27",
+    "file-saver": "2.0.5",
+    "js-cookie": "3.0.1",
+    "markdown-it": "^14.1.0",
+    "nprogress": "0.2.0",
     "vue": "^3.5.12",
     "vue-router": "^4.4.5"
   },
