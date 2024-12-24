@@ -94,7 +94,7 @@ main {
 
 
 .question-list {
-    max-width: 800px;
+    max-width: 700px;
     width: 100%;
     margin: 0 auto;
 }
@@ -378,9 +378,13 @@ main {
     p.answer-content {
         font-size: 0.9rem;
         margin-bottom: 0.7rem;
+<<<<<<< HEAD
+        line-height: 1.7rem;
+=======
         li {
             list-style: none !important;
         }
+>>>>>>> 8e7e7bece87cd5842f4236cab30c6670f930d656
     }
 
     .answer-details{
