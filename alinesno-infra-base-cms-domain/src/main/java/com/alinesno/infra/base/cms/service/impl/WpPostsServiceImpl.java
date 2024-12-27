@@ -71,7 +71,7 @@ public class WpPostsServiceImpl extends IBaseServiceImpl<WpPostsEntity, WpPostsM
         if(content.getType() == CardType.image){
 
             // 设置多张图
-            for(String imageUr : content.getImage()){
+            for(String imageUr : content.getImages()){
                 WpPostMetaEntity postImageMetaEntity = new WpPostMetaEntity();
                 postImageMetaEntity.setPostId(postId);
 
@@ -140,10 +140,10 @@ public class WpPostsServiceImpl extends IBaseServiceImpl<WpPostsEntity, WpPostsM
                     case "image" -> {
                         if (card.getType() == CardType.image) {
                             // 如果是多张图，则添加到集合中
-                            if (card.getImage() == null) {
-                                card.setImage(new ArrayList<>());
+                            if (card.getImages() == null) {
+                                card.setImages(new ArrayList<>());
                             }
-                            card.getImage().add(metaValue);
+                            card.getImages().add(metaValue);
                         }
                     }
                     case "audio" -> {
