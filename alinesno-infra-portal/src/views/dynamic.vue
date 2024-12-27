@@ -35,7 +35,7 @@
                         </video>
 
                         <div v-if="item.type === 'image'">
-                          <img v-for="i in item.image" :key="i" :src="i" alt="Answer Image" class="answer-image">
+                          <img v-for="i in item.images" :key="i" :src="i" alt="Answer Image" class="answer-image">
                         </div>
                     </div>
 
