@@ -39,7 +39,7 @@ public class ContentProvider extends SuperController {
         log.debug("content = {}", content);
 
         // 如果type是image content.getImage不能为空
-        Assert.isTrue(content.getType() != CardType.image || content.getImage() != null, "image不能为空");
+        Assert.isTrue(content.getType() != CardType.image || content.getImages() != null, "image不能为空");
         Assert.isTrue(content.getType() != CardType.audio || content.getAudioSrc() != null, "audioSrc不能为空");
         Assert.isTrue(content.getType() != CardType.video || content.getVideoSrc() != null, "videoSrc不能为空");
 
