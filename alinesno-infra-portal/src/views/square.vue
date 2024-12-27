@@ -19,8 +19,8 @@
           <h2>{{ item.title }}</h2>
           <p v-html="markdown.render(item.content)" @click="showItem(item)" ></p>
 
-          <div v-if="item.image">
-            <img v-for="i in item.image" :key="i" :src="i" alt="Answer Image" class="card-image">
+          <div v-if="item.images">
+            <img v-for="i in item.images" :key="i" :src="i" alt="Answer Image" class="card-image">
           </div>
         </div>
 
@@ -50,7 +50,7 @@
           <h2>{{ item.title }}</h2>
           <p v-html="markdown.render(item.content)"  @click="showItem(item)" ></p>
           <div v-if="item.type === 'image'">
-            <img v-for="i in item.image" :key="i" :src="i" alt="Answer Image" class="card-image">
+            <img v-for="i in item.images" :key="i" :src="i" alt="Answer Image" class="card-image">
           </div>
         </div>
 
