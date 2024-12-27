@@ -52,7 +52,7 @@ public class ContentCardDto {
     /**
      * 图片链接，用于展示卡片的图像内容
      */
-    private List<String> image;
+    private List<String> images;
 
     /**
      * 音频源链接，用于播放与卡片相关的音频内容
