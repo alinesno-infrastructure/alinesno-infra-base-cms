@@ -5,7 +5,7 @@ server:
 spring:
   application:
     name: alinesno-infra-base-cms-boot
-    id: 1849200618493710336
+    id: 1878704948684324864
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/dev_alinesno_infra_base_cms_v100?serverTimezone=GMT%2B8&zeroDateTimeBehavior=CONVERT_TO_NULL
