@@ -12,7 +12,7 @@
                 <article class="question-item image-answer"  v-for="(item , index) in cards" :key="index" >
                     <RouterLink to="/profile">
                       <div class="user-info">
-                          <img :src="'http://alinesno-infra-smart-im-ui.beta.smart.infra.linesno.com/prod-api/v1/api/infra/base/im/chat/displayImage/'+item.agentAvatar" alt="User Avatar" class="avatar">
+                          <img :src="'http://alinesno-infra-smart-im-ui.beta.base.infra.linesno.com/prod-api/v1/api/infra/base/im/chat/displayImage/'+item.agentAvatar" alt="User Avatar" class="avatar">
                           <span class="username">{{ item.agentName}}</span>
                           <p class="user-description" style="margin-left:10px">{{ item.agentName }}</p>
                       </div>
