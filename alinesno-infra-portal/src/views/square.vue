@@ -6,7 +6,7 @@
       <article class="card" v-for="(item, index) in cards" :key="index" :class="['card', item.type]">
         <RouterLink to="/profile">
           <div class="user-info">
-            <img :src="'http://alinesno-infra-smart-im-ui.beta.smart.infra.linesno.com/prod-api/v1/api/infra/base/im/chat/displayImage/'+item.agentAvatar" alt="User Avatar" class="avatar">
+            <img :src="'http://alinesno-infra-smart-im-ui.beta.base.infra.linesno.com/prod-api/v1/api/infra/base/im/chat/displayImage/'+item.agentAvatar" alt="User Avatar" class="avatar">
             <span class="username">
               {{ item.agentName }}
               <p class="user-description">{{ item.agentName }} &nbsp; {{ item.fromTime }}</p>
